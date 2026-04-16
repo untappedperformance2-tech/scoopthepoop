@@ -2,331 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Scoop The Poop | Contact & Free Quote — Eagle Mountain</title>
-  <meta name="description" content="Contact Scoop The Poop for professional pet waste removal in Eagle Mountain, Utah. Request a free quote today!">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoop The Poop | Deploy Your Strike Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', 'Poppins', sans-serif;
-      background: #0a2f1f;
-      color: #fef9e6;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* LIVING BACKGROUND */
-    .living-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: linear-gradient(125deg, #1e4b2e, #0e3a24, #1f5437, #2c6e42);
-      background-size: 400% 400%;
-      animation: gradientShift 22s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* FLOATING PARTICLES */
-    .particle-area {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      background: rgba(255, 215, 140, 0.2);
-      backdrop-filter: blur(2px);
-      border-radius: 60% 40% 70% 30% / 45% 55% 45% 55%;
-      opacity: 0.4;
-      animation: floatParticle 20s infinite linear;
-      box-shadow: 0 0 8px rgba(253, 216, 53, 0.3);
-    }
-
-    .particle:nth-child(1) { width: 90px; height: 70px; left: 10%; animation-duration: 28s; background: rgba(240, 188, 78, 0.25);}
-    .particle:nth-child(2) { width: 120px; height: 90px; left: 70%; top: 20%; animation-duration: 34s; background: rgba(219, 172, 52, 0.2);}
-    .particle:nth-child(3) { width: 70px; height: 55px; left: 40%; top: 70%; animation-duration: 26s;}
-    .particle:nth-child(4) { width: 110px; height: 80px; left: 85%; top: 80%; animation-duration: 40s; background: rgba(203, 153, 46, 0.25);}
-    .particle:nth-child(5) { width: 50px; height: 45px; left: 15%; top: 85%; animation-duration: 22s;}
-    .particle:nth-child(6) { width: 140px; height: 100px; left: 55%; top: 45%; animation-duration: 45s; opacity: 0.2;}
-    .particle:nth-child(7) { width: 80px; height: 65px; left: 5%; top: 30%; animation-duration: 30s;}
-    .particle:nth-child(8) { width: 100px; height: 75px; left: 92%; top: 60%; animation-duration: 32s;}
-    .particle:nth-child(9) { width: 60px; height: 50px; left: 45%; top: 10%; animation-duration: 27s;}
-    .particle:nth-child(10) { width: 130px; height: 85px; left: 22%; top: 55%; animation-duration: 38s;}
-
-    @keyframes floatParticle {
-      0% { transform: translateY(0px) rotate(0deg) translateX(0); opacity: 0.2; }
-      33% { transform: translateY(-50px) rotate(10deg) translateX(20px); opacity: 0.5; }
-      66% { transform: translateY(30px) rotate(-8deg) translateX(-15px); opacity: 0.35; }
-      100% { transform: translateY(0px) rotate(0deg) translateX(0); opacity: 0.2; }
-    }
-
-    /* MAIN LAYOUT */
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 2rem 2rem 3rem;
-      position: relative;
-    }
-
-    /* NAVIGATION */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      background: rgba(10, 35, 20, 0.65);
-      backdrop-filter: blur(12px);
-      border-radius: 60px;
-      padding: 0.8rem 2rem;
-      margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 215, 120, 0.3);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .logo h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFE6B0, #FFC857);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .logo p {
-      font-size: 0.8rem;
-      color: #e2f0da;
-      letter-spacing: 1px;
-    }
-
-    .nav-links a {
-      color: #fef9e6;
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 1.8rem;
-      font-size: 1.1rem;
-      transition: 0.2s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 4px;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      border-bottom-color: #ffcd6b;
-      color: #ffdf9c;
-    }
-
-    /* CONTACT PAGE GRID */
-    .page-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .contact-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      margin-top: 2rem;
-    }
-    .contact-info {
-      flex: 1;
-      background: rgba(0,0,0,0.2);
-      border-radius: 32px;
-      padding: 2rem;
-      backdrop-filter: blur(4px);
-    }
-    .contact-form {
-      flex: 1.5;
-      background: rgba(20, 45, 28, 0.6);
-      backdrop-filter: blur(8px);
-      border-radius: 32px;
-      padding: 2rem;
-      border: 1px solid rgba(255,210,100,0.3);
-    }
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 12px 16px;
-      background: #fef9ef;
-      border: none;
-      border-radius: 40px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      outline: none;
-    }
-    textarea {
-      border-radius: 28px;
-      resize: vertical;
-    }
-    button[type="submit"] {
-      background: #FFC857;
-      color: #1e3a2a;
-      font-weight: bold;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 40px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.2s;
-      width: 100%;
-    }
-    button[type="submit"]:hover {
-      background: #ffb82e;
-      transform: scale(1.01);
-    }
-    .contact-detail-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      font-size: 1.1rem;
-    }
-    .contact-detail-item i {
-      width: 32px;
-      font-size: 1.6rem;
-      color: #FFD966;
-    }
-    .service-area {
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255,200,100,0.3);
-      padding-top: 1.5rem;
-    }
-    .alert-message {
-      background: #2b6e43;
-      padding: 12px;
-      border-radius: 40px;
-      margin-top: 1rem;
-      text-align: center;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,200,120,0.25);
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    @media (max-width: 780px) {
-      .navbar { flex-direction: column; border-radius: 32px; text-align: center; }
-      .nav-links a { margin: 0 0.8rem; }
-      .container { padding: 1rem; }
-      .page-title { font-size: 1.8rem; }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', 'Orbitron', sans-serif; background: #03050b; color: #ffffff; min-height: 100vh; overflow-x: hidden; }
+    .living-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: radial-gradient(circle at 20% 30%, #0a0f1f, #020408); }
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; display: block; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 3rem 4rem; position: relative; z-index: 2; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(16px); border-radius: 100px; padding: 0.6rem 2rem 0.6rem 2.2rem; margin-bottom: 3rem; border: 1px solid rgba(255, 80, 40, 0.5); box-shadow: 0 0 20px rgba(255, 60, 0, 0.3); }
+    .logo h1 { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #FF4D00, #FFB700); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo p { font-size: 0.7rem; color: #ffaa66; letter-spacing: 2px; font-weight: 600; }
+    .nav-links a { color: #ffffff; text-decoration: none; font-weight: 700; margin-left: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; border-bottom: 2px solid transparent; padding-bottom: 6px; }
+    .nav-links a:hover, .nav-links a.active { border-bottom-color: #FF4D00; color: #FF8C42; text-shadow: 0 0 4px #FF4D00; }
+    .page-title { font-size: 3rem; font-weight: 900; text-align: center; margin-bottom: 1rem; text-transform: uppercase; }
+    .page-title span { background: linear-gradient(135deg, #FF4D00, #FFB700); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .subhead { text-align: center; margin-bottom: 3rem; opacity: 0.8; font-size: 1.2rem; }
+    .contact-grid { display: flex; flex-wrap: wrap; gap: 3rem; margin-top: 1rem; }
+    .contact-info { flex: 1; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-radius: 32px; padding: 2rem; border: 1px solid rgba(255, 77, 0, 0.4); }
+    .contact-form { flex: 1.5; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-radius: 32px; padding: 2rem; border: 1px solid rgba(255, 77, 0, 0.4); }
+    .contact-detail-item { display: flex; align-items: center; gap: 1rem; margin: 1.8rem 0; font-size: 1.1rem; font-weight: 500; }
+    .contact-detail-item i { width: 36px; font-size: 1.8rem; color: #FF4D00; }
+    .form-group { margin-bottom: 1.8rem; }
+    label { display: block; font-weight: 700; margin-bottom: 0.6rem; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+    input, textarea, select { width: 100%; padding: 14px 18px; background: #11151f; border: 1px solid #FF4D00; border-radius: 20px; font-family: 'Inter', sans-serif; font-size: 1rem; color: white; outline: none; transition: 0.2s; }
+    input:focus, textarea:focus, select:focus { border-color: #FFB700; box-shadow: 0 0 10px rgba(255, 77, 0, 0.5); }
+    button[type="submit"] { background: linear-gradient(95deg, #FF4D00, #FF2B00); color: white; font-weight: 800; border: none; padding: 14px 28px; border-radius: 40px; font-size: 1rem; cursor: pointer; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px; width: 100%; }
+    button[type="submit"]:hover { transform: scale(1.02); box-shadow: 0 0 20px #FF4D00; }
+    .alert-message { background: #2b6e43; padding: 12px; border-radius: 20px; margin-top: 1rem; text-align: center; display: none; font-weight: bold; }
+    footer { text-align: center; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid rgba(255, 77, 0, 0.3); font-size: 0.85rem; opacity: 0.7; }
+    @media (max-width: 780px) { .container { padding: 1rem; } .navbar { flex-direction: column; } .nav-links a { margin: 0 0.8rem; } .page-title { font-size: 2rem; } }
   </style>
 </head>
 <body>
 <div class="living-bg"></div>
-<div class="particle-area">
-  <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-  <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-</div>
-
+<canvas id="plasmaCanvas"></canvas>
 <div class="container">
   <div class="navbar">
-    <div class="logo">
-      <h1>🐾 Scoop The Poop</h1>
-      <p>Eagle Mountain's #1 pet waste removal</p>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="contact.html" class="active">Contact</a>
-    </div>
+    <div class="logo"><h1>💀 SCOOP THE POOP</h1><p>ELITE PET WASTE ELIMINATION</p></div>
+    <div class="nav-links"><a href="index.html">HOME</a><a href="contact.html" class="active">CONTACT</a></div>
   </div>
-
-  <h1 class="page-title">Get a Free Quote</h1>
-  <p style="text-align: center; margin-bottom: 1rem; opacity: 0.9;">Reach out today for a spotless yard — we serve all of Eagle Mountain, UT.</p>
-
+  <h1 class="page-title">DEPLOY THE <span>STRIKE TEAM</span></h1>
+  <div class="subhead">Request your free tactical assessment. We respond within 24 hours.</div>
   <div class="contact-grid">
     <div class="contact-info">
-      <div class="contact-detail-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>Serving Eagle Mountain, UT & surrounding areas</span>
-      </div>
-      <div class="contact-detail-item">
-        <i class="fas fa-phone-alt"></i>
-        <span>(385) 555-POOP (7667)</span>
-      </div>
-      <div class="contact-detail-item">
-        <i class="fas fa-envelope"></i>
-        <span>hello@scoopthepoop.net</span>
-      </div>
-      <div class="contact-detail-item">
-        <i class="fas fa-clock"></i>
-        <span>Mon-Sat: 7am - 6pm | Closed Sunday</span>
-      </div>
-      <div class="service-area">
-        <i class="fas fa-paw" style="margin-right: 8px;"></i> <strong>Service options:</strong> Weekly | Bi-weekly | One-time | Deep sanitize
-      </div>
+      <div class="contact-detail-item"><i class="fas fa-map-marker-alt"></i><span>Eagle Mountain, UT — Full coverage</span></div>
+      <div class="contact-detail-item"><i class="fas fa-phone-alt"></i><span>(385) 555-STRIKE (7853)</span></div>
+      <div class="contact-detail-item"><i class="fas fa-envelope"></i><span>operations@scoopthepoop.net</span></div>
+      <div class="contact-detail-item"><i class="fas fa-clock"></i><span>24/7 Dispatch • 7 days a week</span></div>
+      <div class="service-area" style="margin-top: 2rem;"><i class="fas fa-skull"></i> <strong>Zero trace guarantee.</strong> No survivors. No excuses.</div>
     </div>
-
     <div class="contact-form">
       <form id="quoteForm">
-        <div class="form-group">
-          <label for="name">Full name *</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email address *</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone">
-        </div>
-        <div class="form-group">
-          <label for="service">Service type *</label>
-          <select id="service" name="service" required>
-            <option value="">Select an option</option>
-            <option value="weekly">Weekly cleanup</option>
-            <option value="biweekly">Bi-weekly cleanup</option>
-            <option value="onetime">One-time cleanup</option>
-            <option value="sanitize">Cleanup + sanitizing</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Additional details (yard size, # of pets, etc.)</label>
-          <textarea id="message" rows="3" placeholder="Tell us about your yard..."></textarea>
-        </div>
-        <button type="submit"><i class="fas fa-paper-plane"></i> Request Free Quote</button>
+        <div class="form-group"><label>FULL NAME *</label><input type="text" id="name" required></div>
+        <div class="form-group"><label>EMAIL *</label><input type="email" id="email" required></div>
+        <div class="form-group"><label>PHONE</label><input type="tel" id="phone"></div>
+        <div class="form-group"><label>OPERATION TYPE *</label><select id="service" required><option value="">Select mission</option><option value="weekly">Weekly — constant dominance</option><option value="biweekly">Bi-weekly — strategic strikes</option><option value="onetime">One-time — surgical cleanup</option><option value="sanitize">Full sanitization + elimination</option></select></div>
+        <div class="form-group"><label>INTEL (yard size, pets, etc.)</label><textarea id="message" rows="3" placeholder="Provide coordinates..."></textarea></div>
+        <button type="submit"><i class="fas fa-bolt"></i> REQUEST IMMEDIATE QUOTE</button>
         <div id="formAlert" class="alert-message"></div>
       </form>
     </div>
   </div>
-
-  <footer>
-    <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Keeping yards clean, one scoop at a time. 💚</p>
-  </footer>
+  <footer><p>© 2026 SCOOP THE POOP — EAGLE MOUNTAIN, UT. NO MERCY. NO MESS. ONLY VICTORY.</p></footer>
 </div>
-
 <script>
+  const canvas = document.getElementById('plasmaCanvas');
+  const ctx = canvas.getContext('2d');
+  let width, height, time = 0;
+  function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+  function drawPlasma() {
+    if (!ctx) return;
+    const imageData = ctx.getImageData(0, 0, width, height);
+    const data = imageData.data;
+    time += 0.008;
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        const index = (y * width + x) * 4;
+        const val1 = Math.sin(x * 0.008 + time) * Math.cos(y * 0.008 + time * 0.7);
+        const val2 = Math.sin((x * 0.015 - time * 1.2) + Math.cos(y * 0.012 + time)) * 0.8;
+        const val3 = Math.sin((y * 0.01 + time * 0.5) + Math.sin(x * 0.005)) * 0.6;
+        let r = Math.sin(val1 * Math.PI) * 0.6 + 0.4;
+        let g = Math.sin(val2 * Math.PI + 2) * 0.4 + 0.2;
+        let b = Math.sin(val3 * Math.PI + 4) * 0.2;
+        data[index] = Math.min(255, r * 1.2 + 30);
+        data[index + 1] = Math.min(255, g * 1.1 + 40);
+        data[index + 2] = Math.min(255, b + 15);
+        data[index + 3] = 255;
+      }
+    }
+    ctx.putImageData(imageData, 0, 0);
+    requestAnimationFrame(drawPlasma);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  drawPlasma();
+
   const form = document.getElementById('quoteForm');
   const alertBox = document.getElementById('formAlert');
   form.addEventListener('submit', function(e) {
@@ -336,13 +109,13 @@
     const service = document.getElementById('service').value;
     if (!name || !email || !service) {
       alertBox.style.display = 'block';
-      alertBox.textContent = '⚠️ Please fill in all required fields.';
+      alertBox.textContent = '⚠️ INCOMPLETE FIELD. PROVIDE FULL INTEL.';
       alertBox.style.background = '#9e3b2f';
       setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
       return;
     }
     alertBox.style.display = 'block';
-    alertBox.textContent = '✅ Thanks! We’ll get back to you within 24 hours.';
+    alertBox.textContent = '✅ STRIKE TEAM DEPLOYED. CHECK YOUR COMMS (EMAIL) WITHIN 24H.';
     alertBox.style.background = '#2b6e43';
     form.reset();
     setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
