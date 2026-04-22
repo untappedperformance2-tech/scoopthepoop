@@ -1,308 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Scoop The Poop | Professional Pet Waste Removal | Eagle Mountain, UT</title>
-  <meta name="description" content="Professional, reliable pet waste removal serving Eagle Mountain, Utah. Weekly, bi-weekly, and one-time cleanup services. Family-owned, fully insured.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7f5;
-      color: #1a2a1f;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* PROFESSIONAL LIVING BACKGROUND - subtle, elegant moving gradient */
-    .living-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%);
-      background-size: 200% 200%;
-      animation: gentleShift 18s ease infinite;
-    }
-
-    @keyframes gentleShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* subtle floating particles - barely noticeable, adds depth */
-    .particle-area {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      background: rgba(80, 110, 70, 0.08);
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      animation: floatSoft 24s infinite linear;
-    }
-
-    .particle:nth-child(1) { width: 150px; height: 150px; left: 5%; top: 20%; animation-duration: 32s; }
-    .particle:nth-child(2) { width: 100px; height: 100px; left: 80%; top: 60%; animation-duration: 28s; }
-    .particle:nth-child(3) { width: 200px; height: 200px; left: 60%; top: 10%; animation-duration: 40s; opacity: 0.04; }
-    .particle:nth-child(4) { width: 120px; height: 120px; left: 15%; top: 75%; animation-duration: 35s; }
-    .particle:nth-child(5) { width: 80px; height: 80px; left: 90%; top: 30%; animation-duration: 26s; }
-    .particle:nth-child(6) { width: 170px; height: 170px; left: 40%; top: 85%; animation-duration: 45s; opacity: 0.05; }
-
-    @keyframes floatSoft {
-      0% { transform: translateY(0px) translateX(0px); }
-      33% { transform: translateY(-40px) translateX(20px); }
-      66% { transform: translateY(30px) translateX(-15px); }
-      100% { transform: translateY(0px) translateX(0px); }
-    }
-
-    /* MAIN LAYOUT */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 2rem 3rem;
-      position: relative;
-    }
-
-    /* NAVIGATION - clean, professional */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 0.8rem 2rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(60, 90, 50, 0.1);
-    }
-
-    .logo h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #2d5a2c;
-      letter-spacing: -0.3px;
-    }
-    .logo p {
-      font-size: 0.75rem;
-      color: #5a7a4e;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-links a {
-      color: #2a3a25;
-      text-decoration: none;
-      font-weight: 500;
-      margin-left: 2rem;
-      font-size: 1rem;
-      transition: 0.2s;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      border-bottom-color: #4a7c3f;
-      color: #3a6a2f;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 3rem;
-      margin: 2rem 0 3rem;
-    }
-    .hero-text {
-      flex: 1.2;
-    }
-    .hero-badge {
-      background: #e8f0e5;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #3a6a2f;
-      margin-bottom: 1.2rem;
-    }
-    .hero-text h2 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
-      color: #1a3a15;
-    }
-    .hero-text .highlight {
-      color: #4a8c3e;
-      border-bottom: 3px solid #bdd8b0;
-    }
-    .hero-text p {
-      font-size: 1.1rem;
-      margin: 1.2rem 0 1.8rem;
-      color: #3a4a35;
-      line-height: 1.5;
-      max-width: 90%;
-    }
-    .btn-primary {
-      display: inline-block;
-      background: #3a7a30;
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.2s;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-primary i {
-      margin-right: 8px;
-    }
-    .btn-primary:hover {
-      background: #2d6224;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-    }
-    .hero-image {
-      flex: 0.9;
-      text-align: center;
-      font-size: 7rem;
-      opacity: 0.85;
-    }
-
-    /* FEATURE SECTION */
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin: 3rem 0 2rem;
-      font-weight: 600;
-      color: #1a3a15;
-    }
-    .section-title:after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #8bba7a;
-      margin: 0.8rem auto 0;
-      border-radius: 2px;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: 0.25s;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(80, 110, 70, 0.1);
-    }
-    .card i {
-      font-size: 2.4rem;
-      color: #4a8c3e;
-      margin-bottom: 1rem;
-    }
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.7rem;
-      font-weight: 600;
-      color: #1a3a15;
-    }
-    .card p {
-      color: #4a5a45;
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-      border-color: rgba(74, 140, 62, 0.3);
-    }
-
-    /* TESTIMONIAL / TRUST SECTION */
-    .trust-badge {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      margin: 2rem 0;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-    .trust-badge p {
-      font-style: italic;
-      color: #3a5a35;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* CTA SECTION */
-    .cta-section {
-      background: #e8f0e5;
-      border-radius: 28px;
-      padding: 2.5rem;
-      text-align: center;
-      margin: 3rem 0;
-    }
-    .cta-section h3 {
-      font-size: 1.8rem;
-      margin-bottom: 0.8rem;
-      color: #1a3a15;
-    }
-    .cta-section .btn-primary {
-      margin-top: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(60, 80, 50, 0.1);
-      font-size: 0.8rem;
-      color: #5a7a4e;
-    }
-
-    @media (max-width: 780px) {
-      .container { padding: 1rem; }
-      .hero-text h2 { font-size: 2.2rem; }
-      .navbar { flex-direction: column; border-radius: 20px; text-align: center; }
-      .nav-links a { margin: 0 1rem; }
-      .hero-image { font-size: 4rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Scoop The Poop | Professional Pet Waste Removal | Eagle Mountain, UT</title>
+<meta name="description" content="Professional, reliable pet waste removal serving Eagle Mountain, Utah. Weekly, bi-weekly, and one-time cleanup services. Family-owned, fully insured.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Inter', sans-serif;
+background: #f5f7f5;
+color: #1a2a1f;
+min-height: 100vh;
+overflow-x: hidden;
+position: relative;
+}
+.living-bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -2;
+background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%);
+background-size: 200% 200%;
+animation: gentleShift 18s ease infinite;
+}
+@keyframes gentleShift {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.particle-area {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+overflow: hidden;
+pointer-events: none;
+}
+.particle {
+position: absolute;
+background: rgba(80, 110, 70, 0.08);
+border-radius: 50%;
+width: 80px;
+height: 80px;
+animation: floatSoft 24s infinite linear;
+}
+.particle:nth-child(1) { width: 150px; height: 150px; left: 5%; top: 20%; animation-duration: 32s; }
+.particle:nth-child(2) { width: 100px; height: 100px; left: 80%; top: 60%; animation-duration: 28s; }
+.particle:nth-child(3) { width: 200px; height: 200px; left: 60%; top: 10%; animation-duration: 40s; opacity: 0.04; }
+.particle:nth-child(4) { width: 120px; height: 120px; left: 15%; top: 75%; animation-duration: 35s; }
+.particle:nth-child(5) { width: 80px; height: 80px; left: 90%; top: 30%; animation-duration: 26s; }
+.particle:nth-child(6) { width: 170px; height: 170px; left: 40%; top: 85%; animation-duration: 45s; opacity: 0.05; }
+@keyframes floatSoft {
+0% { transform: translateY(0px) translateX(0px); }
+33% { transform: translateY(-40px) translateX(20px); }
+66% { transform: translateY(30px) translateX(-15px); }
+100% { transform: translateY(0px) translateX(0px); }
+}
+.container {
+max-width: 1280px;
+margin: 0 auto;
+padding: 2rem 2rem 3rem;
+position: relative;
+}
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1.5rem;
+background: rgba(255, 255, 255, 0.96);
+backdrop-filter: blur(8px);
+border-radius: 20px;
+padding: 0.8rem 2rem;
+margin-bottom: 2.5rem;
+box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+border: 1px solid rgba(60, 90, 50, 0.1);
+}
+.logo h1 {
+font-size: 1.6rem;
+font-weight: 700;
+color: #2d5a2c;
+letter-spacing: -0.3px;
+}
+.logo p {
+font-size: 0.75rem;
+color: #5a7a4e;
+letter-spacing: 0.5px;
+}
+.nav-links a {
+color: #2a3a25;
+text-decoration: none;
+font-weight: 500;
+margin-left: 2rem;
+font-size: 1rem;
+transition: 0.2s;
+padding-bottom: 4px;
+border-bottom: 2px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active {
+border-bottom-color: #4a7c3f;
+color: #3a6a2f;
+}
+.hero {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 3rem;
+margin: 2rem 0 3rem;
+}
+.hero-text {
+flex: 1.2;
+}
+.hero-badge {
+background: #e8f0e5;
+display: inline-block;
+padding: 0.3rem 1rem;
+border-radius: 40px;
+font-size: 0.75rem;
+font-weight: 600;
+color: #3a6a2f;
+margin-bottom: 1.2rem;
+}
+.hero-text h2 {
+font-size: 3.2rem;
+font-weight: 700;
+line-height: 1.2;
+margin-bottom: 1.2rem;
+color: #1a3a15;
+}
+.hero-text .highlight {
+color: #4a8c3e;
+border-bottom: 3px solid #bdd8b0;
+}
+.hero-text p {
+font-size: 1.1rem;
+margin: 1.2rem 0 1.8rem;
+color: #3a4a35;
+line-height: 1.5;
+max-width: 90%;
+}
+.btn-primary {
+display: inline-block;
+background: #3a7a30;
+color: white;
+padding: 0.9rem 2rem;
+border-radius: 40px;
+font-weight: 600;
+text-decoration: none;
+transition: 0.2s;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+font-size: 1rem;
+border: none;
+cursor: pointer;
+}
+.btn-primary i {
+margin-right: 8px;
+}
+.btn-primary:hover {
+background: #2d6224;
+transform: translateY(-1px);
+box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+.hero-image {
+flex: 0.9;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.hero-image img {
+max-width: 340px;
+width: 100%;
+filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+}
+.section-title {
+text-align: center;
+font-size: 2rem;
+margin: 3rem 0 2rem;
+font-weight: 600;
+color: #1a3a15;
+}
+.section-title:after {
+content: '';
+display: block;
+width: 60px;
+height: 3px;
+background: #8bba7a;
+margin: 0.8rem auto 0;
+border-radius: 2px;
+}
+.features {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 2rem;
+margin: 1.5rem 0 2rem;
+}
+.card {
+background: white;
+border-radius: 24px;
+padding: 2rem 1.5rem;
+text-align: center;
+transition: 0.25s;
+box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+border: 1px solid rgba(80, 110, 70, 0.1);
+}
+.card i {
+font-size: 2.4rem;
+color: #4a8c3e;
+margin-bottom: 1rem;
+}
+.card h3 {
+font-size: 1.4rem;
+margin-bottom: 0.7rem;
+font-weight: 600;
+color: #1a3a15;
+}
+.card p {
+color: #4a5a45;
+line-height: 1.5;
+font-size: 0.95rem;
+}
+.card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+border-color: rgba(74, 140, 62, 0.3);
+}
+.trust-badge {
+background: white;
+border-radius: 20px;
+padding: 2rem;
+text-align: center;
+margin: 2rem 0;
+border: 1px solid rgba(0,0,0,0.05);
+}
+.trust-badge p {
+font-style: italic;
+color: #3a5a35;
+max-width: 600px;
+margin: 0 auto;
+}
+.cta-section {
+background: #e8f0e5;
+border-radius: 28px;
+padding: 2.5rem;
+text-align: center;
+margin: 3rem 0;
+}
+.cta-section h3 {
+font-size: 1.8rem;
+margin-bottom: 0.8rem;
+color: #1a3a15;
+}
+.cta-section .btn-primary {
+margin-top: 1rem;
+}
+footer {
+text-align: center;
+margin-top: 3rem;
+padding-top: 2rem;
+border-top: 1px solid rgba(60, 80, 50, 0.1);
+font-size: 0.8rem;
+color: #5a7a4e;
+}
+@media (max-width: 780px) {
+.container { padding: 1rem; }
+.hero-text h2 { font-size: 2.2rem; }
+.navbar { flex-direction: column; border-radius: 20px; text-align: center; }
+.nav-links a { margin: 0 1rem; }
+.hero-image img { max-width: 240px; }
+}
+</style>
 </head>
 <body>
+
 <div class="living-bg"></div>
 <div class="particle-area">
   <div class="particle"></div><div class="particle"></div><div class="particle"></div>
@@ -329,20 +311,20 @@
       <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Request a free quote</a>
     </div>
     <div class="hero-image">
-      <i class="fas fa-dog"></i> <i class="fas fa-leaf"></i>
+      <img src="dog-cartoon.png" alt="Cute cartoon dog">
     </div>
   </div>
 
   <div class="section-title">Why homeowners choose us</div>
   <div class="features">
-    <div class="card"><i class="fas fa-clock"></i><h3>Consistent & on time</h3><p>We show up when we say we will — no surprises.</p></div>
+    <div class="card"><i class="fas fa-bolt"></i><h3>Fast, Friendly Service</h3><p>We show up when we say we will — no surprises.</p></div>
     <div class="card"><i class="fas fa-recycle"></i><h3>Eco-friendly disposal</h3><p>Biodegradable bags and responsible waste management.</p></div>
     <div class="card"><i class="fas fa-shield-alt"></i><h3>Fully insured</h3><p>Peace of mind for you and your family.</p></div>
-    <div class="card"><i class="fas fa-smile"></i><h3>100% satisfaction</h3><p>We don't leave until you're happy with the result.</p></div>
+    <div class="card"><i class="fas fa-smile"></i><h3>We Think You Will Be Satisfied</h3><p>We don't leave until you're happy with the result.</p></div>
   </div>
 
   <div class="trust-badge">
-   <p><i class="fas fa-check-circle" style="color: #8bba7a; margin-right: 8px;"></i> We've served over 500+ happy homeowners across Eagle Mountain. Let us earn your trust, one scoop at a time.</p>
+    <p><i class="fas fa-check-circle" style="color: #8bba7a; margin-right: 8px;"></i> We've served over 500+ happy homeowners across Eagle Mountain. Let us earn your trust, one scoop at a time.</p>
   </div>
 
   <div class="cta-section">
@@ -353,8 +335,9 @@
 
   <footer>
     <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal.</p>
-    <p>Website Created by Darkbloom Industries™</p>
+    <p>Website Created By Darkbloom Industries</p>
   </footer>
 </div>
+
 </body>
 </html>
