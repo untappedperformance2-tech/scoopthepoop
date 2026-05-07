@@ -23,7 +23,6 @@
       position: relative;
     }
 
-    /* LIVING BACKGROUND - same as index.html */
     .living-bg {
       position: fixed;
       top: 0;
@@ -42,7 +41,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* SUBTLE FLOATING PARTICLES */
     .particle-area {
       position: fixed;
       top: 0;
@@ -75,7 +73,6 @@
       100% { transform: translateY(0px) translateX(0px); }
     }
 
-    /* MAIN LAYOUT */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -83,7 +80,6 @@
       position: relative;
     }
 
-    /* NAVIGATION - matching index */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -126,7 +122,6 @@
       color: #3a6a2f;
     }
 
-    /* PAGE HEADER */
     .page-header {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -153,7 +148,6 @@
       border-radius: 2px;
     }
 
-    /* CONTACT GRID */
     .contact-grid {
       display: flex;
       flex-wrap: wrap;
@@ -161,7 +155,6 @@
       margin: 2rem 0;
     }
 
-    /* CONTACT INFO CARD */
     .contact-info {
       flex: 1;
       background: white;
@@ -210,7 +203,6 @@
       font-weight: 500;
     }
 
-    /* CONTACT FORM */
     .contact-form {
       flex: 1.5;
       background: white;
@@ -219,6 +211,136 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(80, 110, 70, 0.1);
     }
+
+    /* CALENDAR STYLES */
+    .calendar-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e8db;
+    }
+    .calendar-section h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a3a15;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .month-nav {
+      background: #e8f0e5;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2d5a2c;
+      transition: 0.2s;
+    }
+    .month-nav:hover {
+      background: #d4e2d0;
+    }
+    .current-month {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1a3a15;
+    }
+    .calendar-weekdays, .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+    }
+    .calendar-weekdays div {
+      font-weight: 600;
+      padding: 8px 0;
+      font-size: 0.8rem;
+      color: #5a7a4e;
+    }
+    .calendar-day {
+      padding: 10px 0;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      background: #f5f7f5;
+      margin: 2px;
+    }
+    .calendar-day:hover:not(.disabled-day):not(.selected-day) {
+      background: #d4e2d0;
+    }
+    .friday-available {
+      background: #e8f0e5;
+      color: #2d5a2c;
+      font-weight: 500;
+    }
+    .disabled-day {
+      color: #c0c8bb;
+      cursor: not-allowed;
+      background: #fafbf9;
+    }
+    .selected-day {
+      background: #3a7a30;
+      color: white;
+    }
+
+    /* TIME SLOTS */
+    .time-slots-section {
+      margin: 1.5rem 0;
+    }
+    .time-slots-section h4 {
+      font-size: 0.9rem;
+      color: #3a4a35;
+      margin-bottom: 0.8rem;
+    }
+    .time-slots-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .time-slot {
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #e8f0e5;
+      color: #2d5a2c;
+    }
+    .time-slot.available {
+      background: #4a8c3e;
+      color: white;
+      cursor: pointer;
+    }
+    .time-slot.available:hover {
+      background: #3a7a30;
+      transform: scale(1.02);
+    }
+    .time-slot.unavailable {
+      background: #d0d8cc;
+      color: #8a9a85;
+      cursor: not-allowed;
+    }
+    .time-slot.selected-slot {
+      background: #2d6224;
+      color: white;
+      box-shadow: 0 0 0 2px #8bba7a;
+    }
+    .slot-feedback {
+      font-size: 0.8rem;
+      color: #5a7a4e;
+      margin-top: 8px;
+    }
+
     .form-group {
       margin-bottom: 1.5rem;
     }
@@ -283,7 +405,6 @@
       color: #c23a00;
     }
 
-    /* MAP SECTION */
     .map-section {
       background: white;
       border-radius: 24px;
@@ -310,7 +431,6 @@
       color: #4a8c3e;
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       margin-top: 3rem;
@@ -345,16 +465,16 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="contact.html" class="active">Contact</a>
+      <a href="payment.html">Pay</a>
     </div>
   </div>
 
   <div class="page-header">
-    <h1 class="page-title">Get a free quote</h1>
-    <div class="page-subtitle">Reach out today — we'll respond within 24 hours</div>
+    <h1 class="page-title">Schedule your service</h1>
+    <div class="page-subtitle">Pick a Friday, choose a time, and we'll be there</div>
   </div>
 
   <div class="contact-grid">
-    <!-- LEFT: CONTACT INFO -->
     <div class="contact-info">
       <div class="info-section">
         <h3><i class="fas fa-phone-alt" style="margin-right: 8px;"></i> Contact us directly</h3>
@@ -372,7 +492,7 @@
         </div>
         <div class="contact-detail-item">
           <i class="fas fa-clock"></i>
-          <span>Contact Us Monday–Friday: 8:00 AM – 5:00 PM</span>
+          <span>Service hours: Friday 8:00 AM – 6:00 PM</span>
         </div>
       </div>
 
@@ -403,8 +523,25 @@
       </div>
     </div>
 
-    <!-- RIGHT: CONTACT FORM -->
     <div class="contact-form">
+      <!-- CALENDAR + TIME SLOT PICKER -->
+      <div class="calendar-section">
+        <h3><i class="fas fa-calendar-alt"></i> Select your preferred Friday</h3>
+        <div class="calendar-header">
+          <button class="month-nav" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+          <span class="current-month" id="currentMonthDisplay">March 2026</span>
+          <button class="month-nav" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-weekdays" id="calendarWeekdays"></div>
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+
+      <div class="time-slots-section" id="timeSlotsSection" style="display: none;">
+        <h4><i class="fas fa-clock"></i> Available time slots for <span id="selectedDateDisplay"></span></h4>
+        <div class="time-slots-grid" id="timeSlotsGrid"></div>
+        <div class="slot-feedback" id="slotFeedback"></div>
+      </div>
+
       <form id="quoteForm">
         <div class="form-group">
           <label>Full name <span class="required">*</span></label>
@@ -419,19 +556,44 @@
           <input type="tel" id="phone">
         </div>
         <div class="form-group">
+          <label>Address for service <span class="required">*</span></label>
+          <input type="text" id="address" placeholder="Street address, Eagle Mountain, UT" required>
+        </div>
+        <div class="form-group">
           <label>Service type <span class="required">*</span></label>
           <select id="service" required>
             <option value="">Select an option</option>
             <option value="weekly">Weekly cleanup</option>
             <option value="biweekly">Bi-weekly cleanup</option>
             <option value="onetime">One-time cleanup</option>
-            <option value="Sanatization">Sanitize</option>
-            </select>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Number of pets <span class="required">*</span></label>
+          <select id="petCount" required>
+            <option value="1">1 pet</option>
+            <option value="2">2 pets (+$5/service)</option>
+            <option value="3">3 pets (+$10/service)</option>
+            <option value="4">4 pets (+$15/service)</option>
+            <option value="5">5+ pets (+$20/service)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Add sanitation station <span class="required">*</span></label>
+          <select id="sanitation">
+            <option value="no">No, thank you</option>
+            <option value="yes">Yes (+$15/service)</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Additional details</label>
-          <textarea id="message" rows="3" placeholder="Yard size, number of pets, gates or access notes, special requests..."></textarea>
+          <textarea id="message" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
         </div>
+        
+        <!-- Hidden fields for calendar selection -->
+        <input type="hidden" id="selectedDate" value="">
+        <input type="hidden" id="selectedTimeSlot" value="">
+        
         <button type="submit" class="btn-submit">
           <i class="fas fa-paper-plane"></i> Request free quote
         </button>
@@ -440,7 +602,6 @@
     </div>
   </div>
 
-  <!-- SERVICE AREA MAP NOTE -->
   <div class="map-section">
     <h3><i class="fas fa-map-pin"></i> Our service area</h3>
     <div class="map-placeholder">
@@ -452,35 +613,242 @@
   </div>
 
   <footer>
-    <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal. All rights reserved. </p>
-     <p>Website Created by Darkbloom Industries™</p>
+    <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal. All rights reserved.</p>
+    <p>Website Created by Darkbloom Industries™</p>
   </footer>
 </div>
 
 <script>
+  // Generate time slots (8:00 AM to 6:00 PM every 30 minutes)
+  const timeSlots = [];
+  for (let hour = 8; hour <= 18; hour++) {
+    for (let minute of [0, 30]) {
+      if (hour === 18 && minute === 30) continue;
+      const displayHour = hour > 12 ? hour - 12 : hour;
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+      timeSlots.push(timeString);
+    }
+  }
+
+  // Mock unavailable slots (example: these times are booked)
+  // In a real implementation, this would come from a backend/database
+  const bookedSlots = [
+    "2026-03-06:10:00 AM",
+    "2026-03-06:11:30 AM",
+    "2026-03-13:9:00 AM",
+    "2026-03-13:2:00 PM",
+    "2026-03-20:1:30 PM",
+    "2026-03-27:4:00 PM"
+  ];
+
+  let currentDate = new Date();
+  let selectedCalendarDate = null;
+  let selectedSlot = null;
+
+  // Helper functions
+  function formatDateKey(date) {
+    return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
+  }
+
+  function isFriday(date) {
+    return date.getDay() === 5;
+  }
+
+  function isPastDate(date) {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return date < today;
+  }
+
+  function isSlotAvailable(dateStr, slot) {
+    const key = `${dateStr}:${slot}`;
+    return !bookedSlots.includes(key);
+  }
+
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    const firstDay = new Date(year, month, 1);
+    const startDayOfWeek = firstDay.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    document.getElementById('currentMonthDisplay').textContent = `${monthNames[month]} ${year}`;
+    
+    const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const weekdayHtml = weekdays.map(day => `<div>${day}</div>`).join('');
+    document.getElementById('calendarWeekdays').innerHTML = weekdayHtml;
+    
+    let daysHtml = '';
+    let dayCounter = 1;
+    
+    // Empty cells for days before month starts
+    for (let i = 0; i < startDayOfWeek; i++) {
+      daysHtml += '<div class="calendar-day disabled-day"></div>';
+    }
+    
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateObj = new Date(year, month, d);
+      const isFri = isFriday(dateObj);
+      const isPast = isPastDate(dateObj);
+      const isAvailable = isFri && !isPast;
+      const isSelected = selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
+      
+      let dayClass = 'calendar-day';
+      if (!isFri || isPast) {
+        dayClass += ' disabled-day';
+      } else if (isAvailable) {
+        dayClass += ' friday-available';
+      }
+      if (isSelected) {
+        dayClass += ' selected-day';
+      }
+      
+      const onclickAttr = isAvailable ? `onclick="selectDate('${formatDateKey(dateObj)}', ${dateObj.getFullYear()}, ${dateObj.getMonth()}, ${dateObj.getDate()})"` : '';
+      
+      daysHtml += `<div class="${dayClass}" ${onclickAttr}>${d}</div>`;
+      dayCounter++;
+    }
+    
+    document.getElementById('calendarDays').innerHTML = daysHtml;
+  }
+  
+  function selectDate(dateKey, year, month, day) {
+    selectedCalendarDate = new Date(year, month, day);
+    document.getElementById('selectedDate').value = dateKey;
+    
+    // Format display date
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('selectedDateDisplay').textContent = selectedCalendarDate.toLocaleDateString('en-US', options);
+    
+    // Render time slots
+    const slotsContainer = document.getElementById('timeSlotsGrid');
+    slotsContainer.innerHTML = '';
+    
+    timeSlots.forEach(slot => {
+      const isAvail = isSlotAvailable(dateKey, slot);
+      const slotClass = `time-slot ${isAvail ? 'available' : 'unavailable'}`;
+      const isSelectedSlot = (selectedSlot === slot);
+      const selectedClass = isSelectedSlot ? 'selected-slot' : '';
+      
+      const button = document.createElement('button');
+      button.className = `${slotClass} ${selectedClass}`;
+      button.textContent = slot;
+      if (isAvail) {
+        button.onclick = () => selectTimeSlot(slot);
+      }
+      slotsContainer.appendChild(button);
+    });
+    
+    document.getElementById('timeSlotsSection').style.display = 'block';
+    renderCalendar(); // Re-render to show selected day
+  }
+  
+  function selectTimeSlot(slot) {
+    selectedSlot = slot;
+    document.getElementById('selectedTimeSlot').value = slot;
+    
+    // Update UI to show selected slot
+    const allSlots = document.querySelectorAll('.time-slot');
+    allSlots.forEach(slotEl => {
+      slotEl.classList.remove('selected-slot');
+    });
+    event.target.classList.add('selected-slot');
+    
+    document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${document.getElementById('selectedDateDisplay').textContent}`;
+  }
+  
+  // Month navigation
+  document.getElementById('prevMonthBtn').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+  
+  document.getElementById('nextMonthBtn').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+  
+  // FORM SUBMISSION - sends to both email addresses
   const form = document.getElementById('quoteForm');
   const alertBox = document.getElementById('formAlert');
-
+  
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
     const service = document.getElementById('service').value;
-
-    if (!name || !email || !service) {
+    const petCount = document.getElementById('petCount').value;
+    const sanitation = document.getElementById('sanitation').value;
+    const message = document.getElementById('message').value;
+    const selectedDate = document.getElementById('selectedDate').value;
+    const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+    
+    // Validation
+    if (!name || !email || !address || !service) {
       alertBox.className = 'alert-message error';
       alertBox.style.display = 'block';
       alertBox.textContent = '⚠️ Please fill in all required fields.';
       setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
       return;
     }
-
+    
+    if (!selectedDate || !selectedTimeSlot) {
+      alertBox.className = 'alert-message error';
+      alertBox.style.display = 'block';
+      alertBox.textContent = '⚠️ Please select a Friday and a time slot.';
+      setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
+      return;
+    }
+    
+    // Build email content
+    const subject = `New Quote Request from ${name}`;
+    const body = `NEW SERVICE REQUEST
+    ===================
+    
+    Customer Information:
+    Name: ${name}
+    Email: ${email}
+    Phone: ${phone || 'Not provided'}
+    Address: ${address}
+    
+    Service Details:
+    Service Type: ${service}
+    Number of Pets: ${petCount}
+    Sanitation Station: ${sanitation === 'yes' ? 'Yes (+$15)' : 'No'}
+    
+    Preferred Date & Time:
+    Date: ${selectedDate}
+    Time: ${selectedTimeSlot}
+    
+    Additional Notes:
+    ${message || 'None'}
+    
+    ---
+    Please contact this customer to confirm their quote.`;
+    
+    // Create mailto link with both recipients
+    const mailtoLink = `mailto:contact@scoopthepoop.net,tenia@scoopthepoop.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
     alertBox.className = 'alert-message';
     alertBox.style.display = 'block';
-    alertBox.textContent = '✓ Thank you! We\'ll respond within 24 hours.';
-    form.reset();
-    setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+    alertBox.textContent = '✓ Request sent! Your email client will open. Please send to complete your request.';
+    
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 5000);
   });
+  
+  // Initialize calendar
+  renderCalendar();
 </script>
 </body>
 </html>
