@@ -166,18 +166,6 @@
       color: #1a3a15;
     }
 
-    .price {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #3a7a30;
-      margin: 1rem 0;
-    }
-    .price small {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #5a7a4e;
-    }
-
     .service-option {
       margin-bottom: 1rem;
     }
@@ -187,6 +175,11 @@
       align-items: center;
       padding: 0.75rem 0;
       cursor: pointer;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+    .service-option label:hover {
+      background: #f0f5ed;
     }
     .service-option input {
       width: auto;
@@ -235,35 +228,6 @@
       color: #1a3a15;
     }
 
-    .stripe-section {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 2px dashed #d0dbc8;
-    }
-    .api-key-input {
-      margin-bottom: 1rem;
-    }
-    .api-key-input label {
-      font-size: 0.8rem;
-      color: #5a7a4e;
-    }
-    .api-key-input input {
-      font-family: monospace;
-      font-size: 0.8rem;
-      padding: 10px;
-    }
-    .stripe-placeholder {
-      background: #fafbf9;
-      border: 2px dashed #c0cbb8;
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-    }
-    .stripe-placeholder i {
-      font-size: 3rem;
-      color: #635bff;
-      margin-bottom: 1rem;
-    }
     .btn-pay {
       background: #3a7a30;
       color: white;
@@ -279,11 +243,13 @@
     }
     .btn-pay:hover {
       background: #2d6224;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
     }
     .btn-pay:disabled {
       background: #b0c4a8;
       cursor: not-allowed;
+      transform: none;
     }
 
     .info-note {
@@ -294,6 +260,27 @@
       margin: 1.5rem 0;
       font-size: 0.85rem;
       color: #6a5a2a;
+    }
+
+    .payment-icons {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .payment-icons i {
+      font-size: 2rem;
+      margin: 0 8px;
+      color: #6b7280;
+    }
+
+    .error-message {
+      background: #fce4d6;
+      color: #c23a00;
+      padding: 12px;
+      border-radius: 16px;
+      margin-top: 1rem;
+      text-align: center;
+      display: none;
+      font-weight: 500;
     }
 
     footer {
@@ -310,6 +297,7 @@
       .navbar { flex-direction: column; text-align: center; }
       .nav-links a { margin: 0 1rem; }
       .payment-grid { flex-direction: column; }
+      .page-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -371,7 +359,7 @@
             <input type="checkbox" id="extraPetCheckbox">
             <span>🐕 Extra pet (+$5 per additional pet)</span>
           </label>
-          <select id="extraPetCount" style="width: 80px; padding: 6px;" disabled>
+          <select id="extraPetCount" style="width: 85px; padding: 6px; border-radius: 30px;" disabled>
             <option value="1">+1 pet</option>
             <option value="2">+2 pets</option>
             <option value="3">+3 pets</option>
@@ -382,7 +370,7 @@
         <div class="addon-item">
           <label>
             <input type="checkbox" id="sanitationCheckbox">
-            <span>🧼 Sanitation station + disinfection (+$15)</span>
+            <span>🧼 Sanitation station (add-on) +$15</span>
           </label>
         </div>
       </div>
@@ -395,31 +383,31 @@
       </div>
     </div>
 
-    <!-- RIGHT: Stripe Payment -->
+    <!-- RIGHT: Payment -->
     <div class="pricing-card">
       <h2><i class="fas fa-lock"></i> Secure payment</h2>
       
-      <!-- API Key placeholder - for when you get your keys -->
-      <div class="api-key-input">
-        <label><i class="fas fa-key"></i> Stripe API Key (Publishable)</label>
-        <input type="text" id="stripeApiKey" placeholder="pk_live_... or pk_test_... (your Stripe publishable key)" value="">
-        <p style="font-size: 0.7rem; color: #8a9a85; margin-top: 4px;">Get your keys from <a href="https://dashboard.stripe.com/apikeys" target="_blank">Stripe Dashboard</a></p>
+      <div class="payment-icons">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-amex"></i>
+        <i class="fab fa-cc-discover"></i>
+        <i class="fab fa-cc-apple-pay"></i>
       </div>
+      
+      <p style="text-align: center; color: #5a7a4e; margin-bottom: 1.5rem;">
+        Pay securely with Stripe. We never store your card details.
+      </p>
 
-      <div class="stripe-placeholder" id="stripePlaceholder">
-        <i class="fab fa-stripe"></i>
-        <i class="fab fa-cc-stripe" style="font-size: 2rem;"></i>
-        <p style="margin-top: 1rem; font-weight: 500;">Stripe Checkout ready</p>
-        <p style="font-size: 0.85rem; color: #5a7a4e;">Once you add your API key above, the payment button will activate.</p>
-      </div>
-
-      <button class="btn-pay" id="payButton" disabled>
-        <i class="fas fa-credit-card"></i> Pay with Stripe
+      <button class="btn-pay" id="payButton">
+        <i class="fas fa-credit-card"></i> Proceed to Checkout
       </button>
+
+      <div class="error-message" id="errorMessage"></div>
 
       <div class="info-note">
         <i class="fas fa-shield-alt"></i> <strong>Secure & encrypted</strong><br>
-        Your payment is processed securely by Stripe. We never store your card details.
+        Your payment is processed securely by Stripe. We never see or store your credit card information.
       </div>
     </div>
   </div>
@@ -448,8 +436,7 @@
   const sanitationCheckbox = document.getElementById('sanitationCheckbox');
   const totalAmountSpan = document.getElementById('totalAmount');
   const payButton = document.getElementById('payButton');
-  const stripeApiKeyInput = document.getElementById('stripeApiKey');
-  const stripePlaceholder = document.getElementById('stripePlaceholder');
+  const errorMessage = document.getElementById('errorMessage');
   
   let selectedService = 'weekly';
   let basePrice = 25;
@@ -491,69 +478,70 @@
   extraPetCount.addEventListener('change', () => calculateTotal());
   sanitationCheckbox.addEventListener('change', () => calculateTotal());
   
-  // Enable pay button when API key is entered (for demo)
-  function updatePayButton() {
-    const apiKey = stripeApiKeyInput.value.trim();
-    if (apiKey.length > 0 && apiKey.startsWith('pk_')) {
-      payButton.disabled = false;
-      stripePlaceholder.style.border = '2px solid #4a8c3e';
-      stripePlaceholder.style.background = '#f0f8ec';
-    } else {
-      payButton.disabled = true;
-      stripePlaceholder.style.border = '2px dashed #c0cbb8';
-      stripePlaceholder.style.background = '#fafbf9';
-    }
+  // YOUR CLOUDFLARE WORKER URL
+  const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
+  
+  // Hide error message
+  function hideError() {
+    errorMessage.style.display = 'none';
+    errorMessage.textContent = '';
   }
   
-  stripeApiKeyInput.addEventListener('input', updatePayButton);
+  function showError(msg) {
+    errorMessage.textContent = msg;
+    errorMessage.style.display = 'block';
+  }
   
-  // Stripe payment handler (using Stripe Checkout)
+  // Check if payment was canceled from URL parameter
+  if (window.location.search.includes('canceled=true')) {
+    showError('Payment was canceled. You can try again or contact us directly at (385)338-1939.');
+  }
+  
+  // Stripe payment handler - calls Cloudflare Worker
   payButton.addEventListener('click', async () => {
-    const apiKey = stripeApiKeyInput.value.trim();
+    hideError();
+    
     const total = calculateTotal();
+    const extraPets = extraPetCheckbox.checked ? parseInt(extraPetCount.value) : 0;
+    const hasSanitation = sanitationCheckbox.checked;
     
-    if (!apiKey) {
-      alert('Please enter your Stripe publishable API key');
-      return;
+    // Disable button while processing
+    payButton.disabled = true;
+    payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Redirecting to Stripe...';
+    
+    try {
+      // Call your Cloudflare Worker
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          serviceType: selectedService,
+          extraPets: extraPets,
+          sanitation: hasSanitation,
+          totalAmount: total
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      showError('Payment error: ' + error.message + '\n\nPlease try again or contact us directly at (385)338-1939.');
+      payButton.disabled = false;
+      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Proceed to Checkout';
     }
-    
-    // In a real implementation, you would:
-    // 1. Create a PaymentIntent on your backend
-    // 2. Get clientSecret
-    // 3. Call stripe.redirectToCheckout or stripe.confirmPayment
-    
-    // For now, show a demo message
-    alert(`🚧 Stripe integration ready!\n\nTotal: $${total.toFixed(2)}\nService: ${selectedService}\nExtra pets: ${extraPetCheckbox.checked ? extraPetCount.value : '0'}\nSanitation: ${sanitationCheckbox.checked ? 'Yes' : 'No'}\n\nOnce you have your backend set up, this will connect to Stripe Checkout.`);
-    
-    /* ACTUAL STRIPE IMPLEMENTATION (when backend is ready):
-    
-    // Load Stripe.js
-    const stripe = Stripe(apiKey);
-    
-    // Call your backend to create a checkout session
-    const response = await fetch('/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        serviceType: selectedService,
-        extraPets: extraPetCheckbox.checked ? parseInt(extraPetCount.value) : 0,
-        sanitation: sanitationCheckbox.checked,
-        totalAmount: total
-      })
-    });
-    
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({ sessionId: session.id });
-    
-    if (result.error) {
-      alert(result.error.message);
-    }
-    */
   });
   
   // Initial calculation
   calculateTotal();
-  updatePayButton();
 </script>
 </body>
 </html>
