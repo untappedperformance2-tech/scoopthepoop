@@ -390,6 +390,11 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
     }
+    .btn-submit:disabled {
+      background: #b0c4a8;
+      cursor: not-allowed;
+      transform: none;
+    }
     .alert-message {
       background: #e8f0e5;
       padding: 12px;
@@ -403,6 +408,10 @@
     .alert-message.error {
       background: #fce4d6;
       color: #c23a00;
+    }
+    .alert-message.success {
+      background: #d4e2d0;
+      color: #2d5a2c;
     }
 
     .map-section {
@@ -542,26 +551,27 @@
         <div class="slot-feedback" id="slotFeedback"></div>
       </div>
 
-      <form id="quoteForm">
+      <!-- FORMSPREE FORM - Your specific form ID is already inserted -->
+      <form id="quoteForm" action="https://formspree.io/f/mzdovywq" method="POST">
         <div class="form-group">
           <label>Full name <span class="required">*</span></label>
-          <input type="text" id="name" required>
+          <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
           <label>Email address <span class="required">*</span></label>
-          <input type="email" id="email" required>
+          <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
           <label>Phone number</label>
-          <input type="tel" id="phone">
+          <input type="tel" id="phone" name="phone">
         </div>
         <div class="form-group">
           <label>Address for service <span class="required">*</span></label>
-          <input type="text" id="address" placeholder="Street address, Eagle Mountain, UT" required>
+          <input type="text" id="address" name="address" placeholder="Street address, Eagle Mountain, UT" required>
         </div>
         <div class="form-group">
           <label>Service type <span class="required">*</span></label>
-          <select id="service" required>
+          <select id="service" name="service_type" required>
             <option value="">Select an option</option>
             <option value="weekly">Weekly cleanup</option>
             <option value="biweekly">Bi-weekly cleanup</option>
@@ -570,7 +580,7 @@
         </div>
         <div class="form-group">
           <label>Number of pets <span class="required">*</span></label>
-          <select id="petCount" required>
+          <select id="petCount" name="pet_count" required>
             <option value="1">1 pet</option>
             <option value="2">2 pets (+$5/service)</option>
             <option value="3">3 pets (+$10/service)</option>
@@ -579,22 +589,25 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Add sanitation station <span class="required">*</span></label>
-          <select id="sanitation">
+          <label>Add sanitation station</label>
+          <select id="sanitation" name="sanitation">
             <option value="no">No, thank you</option>
             <option value="yes">Yes (+$15/service)</option>
           </select>
         </div>
         <div class="form-group">
           <label>Additional details</label>
-          <textarea id="message" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
+          <textarea id="message" name="message" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
         </div>
         
         <!-- Hidden fields for calendar selection -->
-        <input type="hidden" id="selectedDate" value="">
-        <input type="hidden" id="selectedTimeSlot" value="">
+        <input type="hidden" id="selectedDate" name="preferred_date" value="">
+        <input type="hidden" id="selectedTimeSlot" name="preferred_time" value="">
         
-        <button type="submit" class="btn-submit">
+        <!-- Formspree: Redirect after successful submission -->
+        <input type="hidden" name="_next" value="https://scoopthepoop.net/thank-you.html">
+        
+        <button type="submit" class="btn-submit" id="submitBtn">
           <i class="fas fa-paper-plane"></i> Request free quote
         </button>
         <div id="formAlert" class="alert-message"></div>
@@ -633,13 +646,15 @@
 
   // Mock unavailable slots (example: these times are booked)
   // In a real implementation, this would come from a backend/database
+  // You can edit this array to mark specific date+time slots as unavailable
   const bookedSlots = [
-    "2026-03-06:10:00 AM",
-    "2026-03-06:11:30 AM",
-    "2026-03-13:9:00 AM",
-    "2026-03-13:2:00 PM",
-    "2026-03-20:1:30 PM",
-    "2026-03-27:4:00 PM"
+    // Format: "YYYY-MM-DD:HH:MM AM/PM"
+    // "2026-03-06:10:00 AM",
+    // "2026-03-06:11:30 AM",
+    // "2026-03-13:9:00 AM",
+    // "2026-03-13:2:00 PM",
+    // "2026-03-20:1:30 PM",
+    // "2026-03-27:4:00 PM"
   ];
 
   let currentDate = new Date();
@@ -649,6 +664,11 @@
   // Helper functions
   function formatDateKey(date) {
     return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
+  }
+
+  function formatDisplayDate(date) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   }
 
   function isFriday(date) {
@@ -677,14 +697,12 @@
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     document.getElementById('currentMonthDisplay').textContent = `${monthNames[month]} ${year}`;
     
-    const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const weekdays = ['SUN', 'MON', 'UE', 'WED', 'THU', 'FRI', 'SAT'];
     const weekdayHtml = weekdays.map(day => `<div>${day}</div>`).join('');
     document.getElementById('calendarWeekdays').innerHTML = weekdayHtml;
     
     let daysHtml = '';
-    let dayCounter = 1;
     
-    // Empty cells for days before month starts
     for (let i = 0; i < startDayOfWeek; i++) {
       daysHtml += '<div class="calendar-day disabled-day"></div>';
     }
@@ -709,21 +727,18 @@
       const onclickAttr = isAvailable ? `onclick="selectDate('${formatDateKey(dateObj)}', ${dateObj.getFullYear()}, ${dateObj.getMonth()}, ${dateObj.getDate()})"` : '';
       
       daysHtml += `<div class="${dayClass}" ${onclickAttr}>${d}</div>`;
-      dayCounter++;
     }
     
     document.getElementById('calendarDays').innerHTML = daysHtml;
   }
   
-  function selectDate(dateKey, year, month, day) {
+  // Make selectDate available globally
+  window.selectDate = function(dateKey, year, month, day) {
     selectedCalendarDate = new Date(year, month, day);
     document.getElementById('selectedDate').value = dateKey;
     
-    // Format display date
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('selectedDateDisplay').textContent = selectedCalendarDate.toLocaleDateString('en-US', options);
+    document.getElementById('selectedDateDisplay').textContent = formatDisplayDate(selectedCalendarDate);
     
-    // Render time slots
     const slotsContainer = document.getElementById('timeSlotsGrid');
     slotsContainer.innerHTML = '';
     
@@ -743,21 +758,20 @@
     });
     
     document.getElementById('timeSlotsSection').style.display = 'block';
-    renderCalendar(); // Re-render to show selected day
-  }
+    renderCalendar();
+  };
   
   function selectTimeSlot(slot) {
     selectedSlot = slot;
     document.getElementById('selectedTimeSlot').value = slot;
     
-    // Update UI to show selected slot
     const allSlots = document.querySelectorAll('.time-slot');
     allSlots.forEach(slotEl => {
       slotEl.classList.remove('selected-slot');
     });
     event.target.classList.add('selected-slot');
     
-    document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${document.getElementById('selectedDateDisplay').textContent}`;
+    document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
   }
   
   // Month navigation
@@ -771,81 +785,48 @@
     renderCalendar();
   });
   
-  // FORM SUBMISSION - sends to both email addresses
+  // Form validation before submission
   const form = document.getElementById('quoteForm');
+  const submitBtn = document.getElementById('submitBtn');
   const alertBox = document.getElementById('formAlert');
   
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const service = document.getElementById('service').value;
-    const petCount = document.getElementById('petCount').value;
-    const sanitation = document.getElementById('sanitation').value;
-    const message = document.getElementById('message').value;
     const selectedDate = document.getElementById('selectedDate').value;
     const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
     
-    // Validation
-    if (!name || !email || !address || !service) {
-      alertBox.className = 'alert-message error';
-      alertBox.style.display = 'block';
-      alertBox.textContent = '⚠️ Please fill in all required fields.';
-      setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
-      return;
-    }
-    
     if (!selectedDate || !selectedTimeSlot) {
+      e.preventDefault();
       alertBox.className = 'alert-message error';
       alertBox.style.display = 'block';
-      alertBox.textContent = '⚠️ Please select a Friday and a time slot.';
-      setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
-      return;
+      alertBox.textContent = '⚠️ Please select a Friday and a time slot before submitting.';
+      setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+      return false;
     }
     
-    // Build email content
-    const subject = `New Quote Request from ${name}`;
-    const body = `NEW SERVICE REQUEST
-    ===================
-    
-    Customer Information:
-    Name: ${name}
-    Email: ${email}
-    Phone: ${phone || 'Not provided'}
-    Address: ${address}
-    
-    Service Details:
-    Service Type: ${service}
-    Number of Pets: ${petCount}
-    Sanitation Station: ${sanitation === 'yes' ? 'Yes (+$15)' : 'No'}
-    
-    Preferred Date & Time:
-    Date: ${selectedDate}
-    Time: ${selectedTimeSlot}
-    
-    Additional Notes:
-    ${message || 'None'}
-    
-    ---
-    Please contact this customer to confirm their quote.`;
-    
-    // Create mailto link with both recipients
-    const mailtoLink = `mailto:contact@scoopthepoop.net,tenia@scoopthepoop.net?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
     alertBox.className = 'alert-message';
     alertBox.style.display = 'block';
-    alertBox.textContent = '✓ Request sent! Your email client will open. Please send to complete your request.';
+    alertBox.textContent = '📨 Sending your request...';
     
-    setTimeout(() => {
-      alertBox.style.display = 'none';
-    }, 5000);
+    // Form will submit normally to Formspree
+    return true;
   });
+  
+  // Check for URL parameters after Formspree redirect
+  if (window.location.search.includes('?submitted=true') || window.location.pathname.includes('thank-you')) {
+    alertBox.className = 'alert-message success';
+    alertBox.style.display = 'block';
+    alertBox.innerHTML = '✓ Thank you! Your request has been sent. We\'ll respond within 24 hours.';
+    // Clear the form data from memory
+    document.getElementById('selectedDate').value = '';
+    document.getElementById('selectedTimeSlot').value = '';
+    document.getElementById('timeSlotsSection').style.display = 'none';
+    selectedCalendarDate = null;
+    selectedSlot = null;
+    renderCalendar();
+  }
   
   // Initialize calendar
   renderCalendar();
