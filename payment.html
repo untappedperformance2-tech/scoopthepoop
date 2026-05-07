@@ -51,4 +51,509 @@
       pointer-events: none;
     }
 
-    .part
+    .particle {
+      position: absolute;
+      background: rgba(80, 110, 70, 0.08);
+      border-radius: 50%;
+      animation: floatSoft 24s infinite linear;
+    }
+
+    .particle:nth-child(1) { width: 150px; height: 150px; left: 5%; top: 20%; animation-duration: 32s; }
+    .particle:nth-child(2) { width: 100px; height: 100px; left: 80%; top: 60%; animation-duration: 28s; }
+    .particle:nth-child(3) { width: 200px; height: 200px; left: 60%; top: 10%; animation-duration: 40s; opacity: 0.04; }
+    .particle:nth-child(4) { width: 120px; height: 120px; left: 15%; top: 75%; animation-duration: 35s; }
+    .particle:nth-child(5) { width: 80px; height: 80px; left: 90%; top: 30%; animation-duration: 26s; }
+    .particle:nth-child(6) { width: 170px; height: 170px; left: 40%; top: 85%; animation-duration: 45s; opacity: 0.05; }
+
+    @keyframes floatSoft {
+      0% { transform: translateY(0px) translateX(0px); }
+      33% { transform: translateY(-40px) translateX(20px); }
+      66% { transform: translateY(30px) translateX(-15px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 0.8rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(60, 90, 50, 0.1);
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2d5a2c;
+      letter-spacing: -0.3px;
+    }
+    .logo p {
+      font-size: 0.75rem;
+      color: #5a7a4e;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      color: #2a3a25;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 2rem;
+      font-size: 1rem;
+      transition: 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: #4a7c3f;
+      color: #3a6a2f;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a3a15;
+      margin-bottom: 0.5rem;
+    }
+    .page-subtitle {
+      font-size: 1.1rem;
+      color: #5a7a4e;
+    }
+    .page-subtitle:after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #8bba7a;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .payment-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pricing-card {
+      flex: 1;
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(80, 110, 70, 0.1);
+    }
+
+    .pricing-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1a3a15;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #3a7a30;
+      margin: 1rem 0;
+    }
+    .price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #5a7a4e;
+    }
+
+    .service-option {
+      margin-bottom: 1rem;
+    }
+    .service-option label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      cursor: pointer;
+    }
+    .service-option input {
+      width: auto;
+      margin-right: 12px;
+      transform: scale(1.1);
+    }
+    .service-name {
+      flex: 1;
+      font-weight: 500;
+    }
+    .service-price {
+      color: #3a7a30;
+      font-weight: 600;
+    }
+
+    .addon-section {
+      margin: 1.5rem 0;
+      padding: 1rem 0;
+      border-top: 1px solid #e0e8db;
+      border-bottom: 1px solid #e0e8db;
+    }
+    .addon-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+    }
+    .addon-item label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .total-section {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #e8f0e5;
+      border-radius: 20px;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a3a15;
+    }
+
+    .stripe-section {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 2px dashed #d0dbc8;
+    }
+    .api-key-input {
+      margin-bottom: 1rem;
+    }
+    .api-key-input label {
+      font-size: 0.8rem;
+      color: #5a7a4e;
+    }
+    .api-key-input input {
+      font-family: monospace;
+      font-size: 0.8rem;
+      padding: 10px;
+    }
+    .stripe-placeholder {
+      background: #fafbf9;
+      border: 2px dashed #c0cbb8;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .stripe-placeholder i {
+      font-size: 3rem;
+      color: #635bff;
+      margin-bottom: 1rem;
+    }
+    .btn-pay {
+      background: #3a7a30;
+      color: white;
+      font-weight: 700;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: 0.2s;
+    }
+    .btn-pay:hover {
+      background: #2d6224;
+      transform: translateY(-1px);
+    }
+    .btn-pay:disabled {
+      background: #b0c4a8;
+      cursor: not-allowed;
+    }
+
+    .info-note {
+      background: #fef9e6;
+      border-left: 4px solid #e6b422;
+      padding: 1rem;
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+      color: #6a5a2a;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(60, 80, 50, 0.1);
+      font-size: 0.8rem;
+      color: #5a7a4e;
+    }
+
+    @media (max-width: 780px) {
+      .container { padding: 1rem; }
+      .navbar { flex-direction: column; text-align: center; }
+      .nav-links a { margin: 0 1rem; }
+      .payment-grid { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="living-bg"></div>
+<div class="particle-area">
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+</div>
+
+<div class="container">
+  <div class="navbar">
+    <div class="logo">
+      <h1>Scoop The Poop</h1>
+      <p>Eagle Mountain, Utah</p>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="payment.html" class="active">Pay</a>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1 class="page-title">Pay for service</h1>
+    <div class="page-subtitle">Secure checkout — choose your plan and add-ons</div>
+  </div>
+
+  <div class="payment-grid">
+    <!-- LEFT: Service Selection -->
+    <div class="pricing-card">
+      <h2><i class="fas fa-paw"></i> Select service</h2>
+      
+      <div class="service-option">
+        <label>
+          <input type="radio" name="serviceType" value="weekly" data-price="25" checked>
+          <span class="service-name">Weekly cleanup</span>
+          <span class="service-price">$25/week</span>
+        </label>
+      </div>
+      <div class="service-option">
+        <label>
+          <input type="radio" name="serviceType" value="biweekly" data-price="35">
+          <span class="service-name">Bi-weekly cleanup</span>
+          <span class="service-price">$35/visit</span>
+        </label>
+      </div>
+      <div class="service-option">
+        <label>
+          <input type="radio" name="serviceType" value="onetime" data-price="45">
+          <span class="service-name">One-time cleanup</span>
+          <span class="service-price">$45</span>
+        </label>
+      </div>
+
+      <div class="addon-section">
+        <div class="addon-item">
+          <label>
+            <input type="checkbox" id="extraPetCheckbox">
+            <span>🐕 Extra pet (+$5 per additional pet)</span>
+          </label>
+          <select id="extraPetCount" style="width: 80px; padding: 6px;" disabled>
+            <option value="1">+1 pet</option>
+            <option value="2">+2 pets</option>
+            <option value="3">+3 pets</option>
+            <option value="4">+4 pets</option>
+            <option value="5">+5 pets</option>
+          </select>
+        </div>
+        <div class="addon-item">
+          <label>
+            <input type="checkbox" id="sanitationCheckbox">
+            <span>🧼 Sanitation station + disinfection (+$15)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="total-section">
+        <div class="total-row">
+          <span>Total due today:</span>
+          <span id="totalAmount">$25.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Stripe Payment -->
+    <div class="pricing-card">
+      <h2><i class="fas fa-lock"></i> Secure payment</h2>
+      
+      <!-- API Key placeholder - for when you get your keys -->
+      <div class="api-key-input">
+        <label><i class="fas fa-key"></i> Stripe API Key (Publishable)</label>
+        <input type="text" id="stripeApiKey" placeholder="pk_live_... or pk_test_... (your Stripe publishable key)" value="">
+        <p style="font-size: 0.7rem; color: #8a9a85; margin-top: 4px;">Get your keys from <a href="https://dashboard.stripe.com/apikeys" target="_blank">Stripe Dashboard</a></p>
+      </div>
+
+      <div class="stripe-placeholder" id="stripePlaceholder">
+        <i class="fab fa-stripe"></i>
+        <i class="fab fa-cc-stripe" style="font-size: 2rem;"></i>
+        <p style="margin-top: 1rem; font-weight: 500;">Stripe Checkout ready</p>
+        <p style="font-size: 0.85rem; color: #5a7a4e;">Once you add your API key above, the payment button will activate.</p>
+      </div>
+
+      <button class="btn-pay" id="payButton" disabled>
+        <i class="fas fa-credit-card"></i> Pay with Stripe
+      </button>
+
+      <div class="info-note">
+        <i class="fas fa-shield-alt"></i> <strong>Secure & encrypted</strong><br>
+        Your payment is processed securely by Stripe. We never store your card details.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal. All rights reserved.</p>
+    <p>Website Created by Darkbloom Industries™</p>
+  </footer>
+</div>
+
+<script>
+  // Pricing configuration
+  const basePrices = {
+    weekly: 25,
+    biweekly: 35,
+    onetime: 45
+  };
+  
+  const EXTRA_PET_PRICE = 5;
+  const SANITATION_PRICE = 15;
+  
+  // DOM elements
+  const radioButtons = document.querySelectorAll('input[name="serviceType"]');
+  const extraPetCheckbox = document.getElementById('extraPetCheckbox');
+  const extraPetCount = document.getElementById('extraPetCount');
+  const sanitationCheckbox = document.getElementById('sanitationCheckbox');
+  const totalAmountSpan = document.getElementById('totalAmount');
+  const payButton = document.getElementById('payButton');
+  const stripeApiKeyInput = document.getElementById('stripeApiKey');
+  const stripePlaceholder = document.getElementById('stripePlaceholder');
+  
+  let selectedService = 'weekly';
+  let basePrice = 25;
+  
+  // Calculate total
+  function calculateTotal() {
+    let total = basePrice;
+    
+    if (extraPetCheckbox.checked) {
+      const extraPets = parseInt(extraPetCount.value);
+      total += extraPets * EXTRA_PET_PRICE;
+    }
+    
+    if (sanitationCheckbox.checked) {
+      total += SANITATION_PRICE;
+    }
+    
+    totalAmountSpan.textContent = `$${total.toFixed(2)}`;
+    return total;
+  }
+  
+  // Update base price when radio changes
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.checked) {
+        selectedService = radio.value;
+        basePrice = parseFloat(radio.getAttribute('data-price'));
+        calculateTotal();
+      }
+    });
+  });
+  
+  // Enable/disable pet count dropdown
+  extraPetCheckbox.addEventListener('change', () => {
+    extraPetCount.disabled = !extraPetCheckbox.checked;
+    calculateTotal();
+  });
+  
+  extraPetCount.addEventListener('change', () => calculateTotal());
+  sanitationCheckbox.addEventListener('change', () => calculateTotal());
+  
+  // Enable pay button when API key is entered (for demo)
+  function updatePayButton() {
+    const apiKey = stripeApiKeyInput.value.trim();
+    if (apiKey.length > 0 && apiKey.startsWith('pk_')) {
+      payButton.disabled = false;
+      stripePlaceholder.style.border = '2px solid #4a8c3e';
+      stripePlaceholder.style.background = '#f0f8ec';
+    } else {
+      payButton.disabled = true;
+      stripePlaceholder.style.border = '2px dashed #c0cbb8';
+      stripePlaceholder.style.background = '#fafbf9';
+    }
+  }
+  
+  stripeApiKeyInput.addEventListener('input', updatePayButton);
+  
+  // Stripe payment handler (using Stripe Checkout)
+  payButton.addEventListener('click', async () => {
+    const apiKey = stripeApiKeyInput.value.trim();
+    const total = calculateTotal();
+    
+    if (!apiKey) {
+      alert('Please enter your Stripe publishable API key');
+      return;
+    }
+    
+    // In a real implementation, you would:
+    // 1. Create a PaymentIntent on your backend
+    // 2. Get clientSecret
+    // 3. Call stripe.redirectToCheckout or stripe.confirmPayment
+    
+    // For now, show a demo message
+    alert(`🚧 Stripe integration ready!\n\nTotal: $${total.toFixed(2)}\nService: ${selectedService}\nExtra pets: ${extraPetCheckbox.checked ? extraPetCount.value : '0'}\nSanitation: ${sanitationCheckbox.checked ? 'Yes' : 'No'}\n\nOnce you have your backend set up, this will connect to Stripe Checkout.`);
+    
+    /* ACTUAL STRIPE IMPLEMENTATION (when backend is ready):
+    
+    // Load Stripe.js
+    const stripe = Stripe(apiKey);
+    
+    // Call your backend to create a checkout session
+    const response = await fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        serviceType: selectedService,
+        extraPets: extraPetCheckbox.checked ? parseInt(extraPetCount.value) : 0,
+        sanitation: sanitationCheckbox.checked,
+        totalAmount: total
+      })
+    });
+    
+    const session = await response.json();
+    const result = await stripe.redirectToCheckout({ sessionId: session.id });
+    
+    if (result.error) {
+      alert(result.error.message);
+    }
+    */
+  });
+  
+  // Initial calculation
+  calculateTotal();
+  updatePayButton();
+</script>
+</body>
+</html>
