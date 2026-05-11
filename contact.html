@@ -3,130 +3,416 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Book & Pay | Scoop The Poop | Eagle Mountain, UT</title>
-  <meta name="description" content="Book and pay for pet waste removal in Eagle Mountain, Utah. Weekly, bi-weekly, and one-time cleanup services.">
+  <title>Schedule & Pay | Scoop The Poop | Eagle Mountain, UT</title>
+  <meta name="description" content="Schedule your pet waste removal service. Pick a Friday, choose your service, and pay online - all in one place.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://js.stripe.com/v3/"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f5f7f5; color: #1a2a1f; min-height: 100vh; overflow-x: hidden; }
-    .living-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%); background-size: 200% 200%; animation: gentleShift 18s ease infinite; }
-    @keyframes gentleShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-    .particle-area { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
-    .particle { position: absolute; background: rgba(80,110,70,0.08); border-radius: 50%; animation: floatSoft 24s infinite linear; }
-    .particle:nth-child(1){width:150px;height:150px;left:5%;top:20%;animation-duration:32s}
-    .particle:nth-child(2){width:100px;height:100px;left:80%;top:60%;animation-duration:28s}
-    .particle:nth-child(3){width:200px;height:200px;left:60%;top:10%;animation-duration:40s;opacity:.04}
-    .particle:nth-child(4){width:120px;height:120px;left:15%;top:75%;animation-duration:35s}
-    .particle:nth-child(5){width:80px;height:80px;left:90%;top:30%;animation-duration:26s}
-    .particle:nth-child(6){width:170px;height:170px;left:40%;top:85%;animation-duration:45s;opacity:.05}
-    @keyframes floatSoft { 0%{transform:translateY(0) translateX(0)} 33%{transform:translateY(-40px) translateX(20px)} 66%{transform:translateY(30px) translateX(-15px)} 100%{transform:translateY(0) translateX(0)} }
-    .container { max-width: 860px; margin: 0 auto; padding: 2rem 2rem 3rem; position: relative; }
-    .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-radius: 20px; padding: 0.8rem 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid rgba(60,90,50,0.1); }
-    .logo h1 { font-size: 1.6rem; font-weight: 700; color: #2d5a2c; letter-spacing: -0.3px; }
-    .logo p { font-size: 0.75rem; color: #5a7a4e; letter-spacing: 0.5px; }
-    .nav-links a { color: #2a3a25; text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; transition: 0.2s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
-    .nav-links a:hover, .nav-links a.active { border-bottom-color: #4a7c3f; color: #3a6a2f; }
-    .nav-links a.nav-pay { background: #3a7a30; color: white; padding: 0.45rem 1.2rem; border-radius: 40px; border-bottom: none; font-weight: 600; }
-    .nav-links a.nav-pay:hover { background: #2d6224; transform: translateY(-1px); }
-    .page-header { text-align: center; margin-bottom: 2.5rem; }
-    .page-title { font-size: 2.3rem; font-weight: 700; color: #1a3a15; margin-bottom: 0.4rem; }
-    .page-sub { font-size: 1rem; color: #5a7a4e; }
-    .page-sub:after { content:''; display:block; width:60px; height:3px; background:#8bba7a; margin:0.8rem auto 0; border-radius:2px; }
-    .step-card { background: white; border-radius: 24px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); border: 1px solid rgba(80,110,70,0.1); }
-    .step-card h2 { font-size: 1.15rem; font-weight: 700; color: #1a3a15; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
-    .step-num { background: #3a7a30; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
-    .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-1col { margin-bottom: 1rem; }
-    .fgroup { display: flex; flex-direction: column; gap: 5px; }
-    .fgroup label { font-size: 0.78rem; font-weight: 700; color: #5a7a4e; text-transform: uppercase; letter-spacing: 0.5px; }
-    .fgroup input, .fgroup textarea { padding: 0.75rem 1rem; border: 1.5px solid #d0dbc8; border-radius: 12px; font-size: 0.95rem; font-family: 'Inter', sans-serif; background: #fafbf9; outline: none; transition: 0.15s; color: #1a2a1f; width: 100%; }
-    .fgroup input:focus, .fgroup textarea:focus { border-color: #3a7a30; box-shadow: 0 0 0 3px rgba(58,122,48,0.1); }
-    .req { color: #c23a00; }
-    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .svc-card { border: 2px solid rgba(80,110,70,0.15); border-radius: 18px; padding: 1.2rem; cursor: pointer; transition: 0.2s; background: #f7faf6; position: relative; }
-    .svc-card:hover { border-color: #4a8c3e; transform: translateY(-2px); }
-    .svc-card.selected { border-color: #3a7a30; background: white; box-shadow: 0 0 0 3px rgba(58,122,48,0.12); }
-    .svc-card h4 { font-size: 0.95rem; font-weight: 700; color: #1a3a15; margin-bottom: 4px; }
-    .svc-card .svc-price { font-size: 1.4rem; font-weight: 800; color: #3a7a30; margin: 5px 0; }
-    .svc-card .svc-price span { font-size: 0.78rem; font-weight: 400; color: #7a9a6e; }
-    .svc-card p { font-size: 0.78rem; color: #5a7a4e; line-height: 1.4; }
-    .sel-check { display: none; position: absolute; top: 10px; right: 12px; color: #3a7a30; font-size: 1rem; }
-    .svc-card.selected .sel-check { display: block; }
-    .addon-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: #f7faf6; border-radius: 14px; margin-bottom: 10px; border: 1.5px solid rgba(80,110,70,0.1); transition: 0.15s; }
-    .addon-item:hover { border-color: rgba(80,110,70,0.3); }
-    .addon-left { display: flex; align-items: center; gap: 12px; }
-    .addon-left input[type=checkbox] { width: 18px; height: 18px; accent-color: #3a7a30; cursor: pointer; flex-shrink: 0; }
-    .addon-left label { font-size: 0.95rem; font-weight: 500; color: #1a3a15; cursor: pointer; }
-    .addon-left small { display: block; font-size: 0.78rem; color: #7a9a6e; font-weight: 400; }
-    .addon-price { font-weight: 700; color: #3a7a30; font-size: 0.95rem; white-space: nowrap; }
-    .counter-row { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: #f7faf6; border-radius: 14px; border: 1.5px solid rgba(80,110,70,0.1); }
-    .counter-label { font-size: 0.95rem; font-weight: 500; color: #1a3a15; }
-    .counter-label small { display: block; font-size: 0.78rem; color: #7a9a6e; }
-    .counter { display: flex; align-items: center; gap: 14px; }
-    .counter button { width: 32px; height: 32px; border-radius: 50%; border: none; background: #3a7a30; color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.15s; font-family: 'Inter', sans-serif; line-height: 1; }
-    .counter button:hover { background: #1f4a1a; }
-    .counter span { font-weight: 700; font-size: 1.1rem; min-width: 24px; text-align: center; color: #1a3a15; }
-    .cal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .cal-wrap { background: #e8f0e5; border-radius: 20px; padding: 1.5rem; }
-    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .cal-header h3 { font-size: 1.05rem; font-weight: 700; color: #1a3a15; }
-    .cal-nav-btn { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: #1a3a15; padding: 2px 10px; border-radius: 8px; transition: 0.15s; }
-    .cal-nav-btn:hover { background: rgba(0,0,0,0.07); }
-    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-    .cal-day-lbl { text-align: center; font-size: 0.65rem; font-weight: 700; color: #7a9a6e; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.4px; }
-    .cal-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.8rem; color: #bbb; }
-    .cal-cell.friday { background: #3a7a30; color: white; cursor: pointer; font-weight: 700; transition: 0.15s; }
-    .cal-cell.friday:hover { background: #1f4a1a; transform: scale(1.1); }
-    .cal-cell.friday.selected { background: #1f4a1a; box-shadow: 0 0 0 3px #8bba7a; }
-    .cal-cell.past { opacity: 0.3; cursor: not-allowed; }
-    .slots-panel h4 { font-size: 0.95rem; font-weight: 700; color: #1a3a15; margin-bottom: 0.8rem; }
-    .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
-    .slot-btn { background: #e8f0e5; border: 1.5px solid rgba(60,110,50,0.2); border-radius: 10px; padding: 0.5rem 0.2rem; font-size: 0.73rem; font-weight: 600; color: #1a3a15; cursor: pointer; transition: 0.15s; font-family: 'Inter', sans-serif; }
-    .slot-btn:hover { background: #8bba7a; color: white; border-color: #8bba7a; }
-    .slot-btn.selected { background: #3a7a30; color: white; border-color: #3a7a30; }
-    .slots-placeholder { color: #8aaa7a; font-size: 0.85rem; padding: 0.5rem 0; grid-column: span 3; }
-    .order-lines { margin-bottom: 1rem; }
-    .order-line { display: flex; justify-content: space-between; font-size: 0.9rem; color: #3a4a35; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
-    .order-line:last-child { border-bottom: none; }
-    .order-total { display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 800; color: #1a3a15; padding-top: 0.8rem; border-top: 2px solid #d0dbc8; margin-top: 0.5rem; }
-    .no-service-msg { color: #8aaa7a; font-size: 0.9rem; font-style: italic; }
-    .stripe-setup-note { background: #fff8e8; border: 1.5px solid #f0d080; border-radius: 14px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; font-size: 0.88rem; color: #7a5a10; }
-    .stripe-setup-note strong { color: #5a3a00; }
-    .stripe-setup-note a { color: #3a7a30; font-weight: 600; }
-    #card-element { padding: 0.8rem 1rem; border: 1.5px solid #d0dbc8; border-radius: 12px; background: #fafbf9; }
-    #card-errors { color: #c0392b; font-size: 0.84rem; margin-top: 6px; min-height: 18px; }
-    .pay-btn { width: 100%; padding: 1rem; background: #3a7a30; color: white; border: none; border-radius: 40px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 1.2rem; }
-    .pay-btn:hover:not(:disabled) { background: #1f4a1a; transform: translateY(-1px); }
-    .pay-btn:disabled { background: #aac8a0; cursor: not-allowed; }
-    .stripe-badge { text-align: center; margin-top: 0.8rem; font-size: 0.75rem; color: #8aaa80; }
-    .success-screen { display: none; text-align: center; padding: 3rem 1rem; }
-    .success-screen .check-circle { width: 80px; height: 80px; background: #d4f0cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.2rem; color: #3a7a30; }
-    .success-screen h2 { font-size: 1.8rem; color: #1a3a15; margin-bottom: 0.5rem; }
-    .success-screen p { color: #5a7a4e; margin-bottom: 1.5rem; }
-    .btn-home { display: inline-flex; align-items: center; gap: 8px; background: #3a7a30; color: white; padding: 0.8rem 2rem; border-radius: 40px; font-weight: 600; text-decoration: none; transition: 0.2s; }
-    .btn-home:hover { background: #1f4a1a; }
-    .area-box { background: #e8f0e5; border-radius: 20px; padding: 1.5rem; text-align: center; color: #5a7a4e; }
-    .area-box i { font-size: 2rem; color: #4a8c3e; margin-bottom: 0.5rem; }
-    footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(60,80,50,0.1); font-size: 0.8rem; color: #5a7a4e; }
-    @media(max-width:700px) {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7f5;
+      color: #1a2a1f;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .living-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%);
+      background-size: 200% 200%;
+      animation: gentleShift 18s ease infinite;
+    }
+
+    @keyframes gentleShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .particle-area {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .poop-emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatSoft 24s infinite linear;
+      opacity: 0.12;
+    }
+    .poop-emoji:nth-child(1) { left: 5%; top: 20%; animation-duration: 32s; font-size: 2.5rem; }
+    .poop-emoji:nth-child(2) { left: 80%; top: 60%; animation-duration: 28s; font-size: 2rem; }
+    .poop-emoji:nth-child(3) { left: 60%; top: 10%; animation-duration: 40s; font-size: 3rem; opacity: 0.08; }
+    .poop-emoji:nth-child(4) { left: 15%; top: 75%; animation-duration: 35s; font-size: 1.8rem; }
+    .poop-emoji:nth-child(5) { left: 90%; top: 30%; animation-duration: 26s; font-size: 2.2rem; }
+    .poop-emoji:nth-child(6) { left: 40%; top: 85%; animation-duration: 45s; font-size: 2.8rem; opacity: 0.1; }
+    .poop-emoji:nth-child(7) { left: 70%; top: 45%; animation-duration: 30s; font-size: 1.5rem; }
+    .poop-emoji:nth-child(8) { left: 25%; top: 15%; animation-duration: 38s; font-size: 1.8rem; }
+
+    @keyframes floatSoft {
+      0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+      33% { transform: translateY(-40px) translateX(20px) rotate(10deg); }
+      66% { transform: translateY(30px) translateX(-15px) rotate(-5deg); }
+      100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+      position: relative;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 0.8rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(60, 90, 50, 0.1);
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2d5a2c;
+      letter-spacing: -0.3px;
+    }
+    .logo p {
+      font-size: 0.75rem;
+      color: #5a7a4e;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      color: #2a3a25;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 2rem;
+      font-size: 1rem;
+      transition: 0.2s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: #4a7c3f;
+      color: #3a6a2f;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1a3a15;
+      margin-bottom: 0.5rem;
+    }
+    .page-subtitle {
+      font-size: 1rem;
+      color: #5a7a4e;
+    }
+    .page-subtitle:after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #8bba7a;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    .form-container {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(80, 110, 70, 0.1);
+    }
+
+    .two-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .section-title-form {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a3a15;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e8db;
+    }
+    .section-title-form i {
+      margin-right: 8px;
+      color: #4a8c3e;
+    }
+
+    /* CALENDAR STYLES */
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .month-nav {
+      background: #e8f0e5;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2d5a2c;
+      transition: 0.2s;
+    }
+    .month-nav:hover {
+      background: #d4e2d0;
+    }
+    .current-month {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1a3a15;
+    }
+    .calendar-weekdays, .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+    }
+    .calendar-weekdays div {
+      font-weight: 600;
+      padding: 8px 0;
+      font-size: 0.7rem;
+      color: #5a7a4e;
+    }
+    .calendar-day {
+      padding: 8px 0;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.2s;
+      background: #f5f7f5;
+      margin: 2px;
+    }
+    .calendar-day:hover:not(.disabled-day):not(.selected-day) {
+      background: #d4e2d0;
+    }
+    .friday-available {
+      background: #e8f0e5;
+      color: #2d5a2c;
+      font-weight: 500;
+    }
+    .disabled-day {
+      color: #c0c8bb;
+      cursor: not-allowed;
+      background: #fafbf9;
+    }
+    .selected-day {
+      background: #3a7a30;
+      color: white;
+    }
+
+    .time-slots-section {
+      margin: 1.5rem 0;
+    }
+    .time-slots-section h4 {
+      font-size: 0.9rem;
+      color: #3a4a35;
+      margin-bottom: 0.8rem;
+    }
+    .time-slots-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .time-slot {
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      border: none;
+      background: #e8f0e5;
+      color: #2d5a2c;
+    }
+    .time-slot.available {
+      background: #4a8c3e;
+      color: white;
+      cursor: pointer;
+    }
+    .time-slot.available:hover {
+      background: #3a7a30;
+      transform: scale(1.02);
+    }
+    .time-slot.unavailable {
+      background: #d0d8cc;
+      color: #8a9a85;
+      cursor: not-allowed;
+    }
+    .time-slot.selected-slot {
+      background: #2d6224;
+      color: white;
+      box-shadow: 0 0 0 2px #8bba7a;
+    }
+    .slot-feedback {
+      font-size: 0.75rem;
+      color: #5a7a4e;
+      margin-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #2a3a25;
+      font-size: 0.85rem;
+    }
+    label .required {
+      color: #c23a00;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px 14px;
+      background: #fafbf9;
+      border: 1px solid #d0dbc8;
+      border-radius: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #4a8c3e;
+      box-shadow: 0 0 0 3px rgba(74, 140, 62, 0.1);
+    }
+
+    .price-summary {
+      background: #e8f0e5;
+      border-radius: 20px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+    .price-row.total {
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-top: 1px solid #c0d0b8;
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      color: #1a3a15;
+    }
+
+    .btn-pay {
+      background: #3a7a30;
+      color: white;
+      font-weight: 700;
+      border: none;
+      padding: 14px 20px;
+      width: 100%;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-pay:hover {
+      background: #2d6224;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+    .btn-pay:disabled {
+      background: #b0c4a8;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-message {
+      background: #fce4d6;
+      color: #c23a00;
+      padding: 12px;
+      border-radius: 16px;
+      margin-top: 1rem;
+      text-align: center;
+      display: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(60, 80, 50, 0.1);
+      font-size: 0.8rem;
+      color: #5a7a4e;
+    }
+
+    @media (max-width: 780px) {
       .container { padding: 1rem; }
       .navbar { flex-direction: column; text-align: center; }
-      .nav-links a { margin: 0 0.6rem; }
-      .form-2col { grid-template-columns: 1fr; }
-      .service-grid { grid-template-columns: 1fr; }
-      .cal-layout { grid-template-columns: 1fr; }
-      .slots-grid { grid-template-columns: repeat(2, 1fr); }
-      .slots-placeholder { grid-column: span 2; }
+      .nav-links a { margin: 0 1rem; }
+      .two-columns { flex-direction: column; }
+      .page-title { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 <div class="living-bg"></div>
 <div class="particle-area">
-  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
-  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
+  <div class="poop-emoji">💩</div>
 </div>
 
 <div class="container">
@@ -137,147 +423,122 @@
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html" class="active">Schedule & Pay</a>
     </div>
   </div>
 
-  <div id="mainContent">
-    <div class="page-header">
-      <h1 class="page-title">Book &amp; Pay</h1>
-      <div class="page-sub">Fill out your info, pick your service, choose a Friday, and pay — all right here.</div>
-    </div>
-
-    <!-- STEP 1 -->
-    <div class="step-card">
-      <h2><span class="step-num">1</span> Your information</h2>
-      <div class="form-2col">
-        <div class="fgroup"><label>First name <span class="req">*</span></label><input type="text" id="firstName" placeholder="Jane"></div>
-        <div class="fgroup"><label>Last name <span class="req">*</span></label><input type="text" id="lastName" placeholder="Smith"></div>
-      </div>
-      <div class="form-2col">
-        <div class="fgroup"><label>Email address <span class="req">*</span></label><input type="email" id="payEmail" placeholder="jane@email.com"></div>
-        <div class="fgroup"><label>Phone number</label><input type="tel" id="phone" placeholder="(385) 000-0000"></div>
-      </div>
-      <div class="form-1col">
-        <div class="fgroup"><label>Address / access notes</label><textarea id="notes" rows="2" placeholder="Street address, gate code, special instructions..."></textarea></div>
-      </div>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="step-card">
-      <h2><span class="step-num">2</span> Select your service</h2>
-      <div class="service-grid">
-        <div class="svc-card" data-service="Weekly cleanup" data-base="40" onclick="selectService(this)">
-          <i class="fas fa-check sel-check"></i>
-          <h4>Weekly</h4>
-          <div class="svc-price">$40 <span>/ mo</span></div>
-          <p>Every Friday. Best value for pet owners.</p>
-        </div>
-        <div class="svc-card" data-service="Bi-weekly cleanup" data-base="25" onclick="selectService(this)">
-          <i class="fas fa-check sel-check"></i>
-          <h4>Bi-weekly</h4>
-          <div class="svc-price">$25 <span>/ visit</span></div>
-          <p>Every other Friday. Great middle-ground.</p>
-        </div>
-        <div class="svc-card" data-service="One-time cleanup" data-base="35" onclick="selectService(this)">
-          <i class="fas fa-check sel-check"></i>
-          <h4>One-time</h4>
-          <div class="svc-price">$35 <span>flat</span></div>
-          <p>Single visit, no commitment required.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="step-card">
-      <h2><span class="step-num">3</span> Add-ons &amp; extras</h2>
-      <div class="addon-item">
-        <div class="addon-left">
-          <input type="checkbox" id="addon-sanitation" onchange="updateTotal()">
-          <label for="addon-sanitation">Sanitization treatment<small>Enzyme-based deodorizer applied after cleanup</small></label>
-        </div>
-        <div class="addon-price">+$10</div>
-      </div>
-      <div class="counter-row">
-        <div class="counter-label">Number of pets<small>First pet included · +$5 per additional pet</small></div>
-        <div class="counter">
-          <button type="button" onclick="changePets(-1)">−</button>
-          <span id="petCount">1</span>
-          <button type="button" onclick="changePets(1)">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 4 -->
-    <div class="step-card">
-      <h2><span class="step-num">4</span> Pick your Friday</h2>
-      <p style="font-size:0.88rem;color:#5a7a4e;margin-bottom:1.2rem">We currently service on <strong>Fridays only</strong>. Select a date and 30-minute window.</p>
-      <div class="cal-layout">
-        <div class="cal-wrap">
-          <div class="cal-header">
-            <button class="cal-nav-btn" id="prevMonth">&#8249;</button>
-            <h3 id="calTitle"></h3>
-            <button class="cal-nav-btn" id="nextMonth">&#8250;</button>
-          </div>
-          <div class="cal-grid" id="calGrid"></div>
-        </div>
-        <div class="slots-panel">
-          <h4 id="slotsHeading">Select a Friday to see times</h4>
-          <div class="slots-grid" id="slotsGrid">
-            <p class="slots-placeholder">← Pick a green date first</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 5 -->
-    <div class="step-card">
-      <h2><span class="step-num">5</span> Order summary</h2>
-      <div id="orderLines" class="order-lines"><p class="no-service-msg">Select a service above to see your total.</p></div>
-      <div class="order-total" id="orderTotal" style="display:none">
-        <span>Total due today</span>
-        <span id="totalAmount">$0.00</span>
-      </div>
-    </div>
-
-    <!-- STEP 6 -->
-    <div class="step-card">
-      <h2><span class="step-num">6</span> <i class="fas fa-lock" style="color:#3a7a30;font-size:1rem"></i> Secure payment</h2>
-      <div class="stripe-setup-note">
-        <strong>⚙️ Setup required:</strong> Replace <code>pk_live_YOUR_KEY_HERE</code> with your real Stripe publishable key from <a href="https://dashboard.stripe.com/apikeys" target="_blank">dashboard.stripe.com/apikeys</a>. You'll also need a backend endpoint to create Payment Intents — see <a href="https://stripe.com/docs/payments/accept-a-payment" target="_blank">Stripe's docs</a>.
-      </div>
-      <div class="form-1col">
-        <div class="fgroup">
-          <label>Card details</label>
-          <div id="card-element"></div>
-          <div id="card-errors"></div>
-        </div>
-      </div>
-      <button class="pay-btn" id="payBtn" disabled onclick="handlePayment()">
-        <i class="fas fa-lock"></i> <span id="payBtnText">Complete steps above to continue</span>
-      </button>
-      <div class="stripe-badge"><i class="fas fa-shield-alt"></i> Secured by Stripe · SSL encrypted · We never store your card details</div>
-    </div>
-
-    <!-- SERVICE AREA -->
-    <div class="step-card">
-      <h2><i class="fas fa-map-pin" style="color:#4a8c3e"></i> Our service area &amp; contact</h2>
-      <div class="area-box">
-        <i class="fas fa-mountain"></i>
-        <p style="margin-top:8px;font-weight:600">Eagle Mountain, Utah</p>
-        <p style="margin-top:4px;font-size:0.88rem">The Ranches · City Center · Sage Creek · Hidden Hollow &amp; surrounding neighborhoods</p>
-        <p style="margin-top:12px;font-size:0.88rem">📞 <strong>(385) 338-1939</strong> &nbsp;|&nbsp; ✉️ <strong>contact@scoopthepoop.net</strong></p>
-        <p style="margin-top:6px;font-size:0.82rem;color:#7a9a6e">Monday–Friday 8:00 AM – 5:00 PM</p>
-      </div>
-    </div>
+  <div class="page-header">
+    <h1 class="page-title">Schedule & Pay</h1>
+    <div class="page-subtitle">Pick a Friday, choose your service, and pay online - all in one step</div>
   </div>
 
-  <!-- SUCCESS -->
-  <div class="success-screen" id="successScreen">
-    <div class="check-circle"><i class="fas fa-check"></i></div>
-    <h2>You're all booked!</h2>
-    <p>Payment received. We'll confirm your Friday cleanup via email shortly.<br>See you soon!</p>
-    <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Back to home</a>
+  <div class="form-container">
+    <div class="two-columns">
+      <!-- LEFT COLUMN: Calendar & Time -->
+      <div class="column">
+        <div class="section-title-form"><i class="fas fa-calendar-alt"></i> Select Date & Time</div>
+        
+        <div class="calendar-header">
+          <button class="month-nav" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+          <span class="current-month" id="currentMonthDisplay">March 2026</span>
+          <button class="month-nav" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-weekdays" id="calendarWeekdays"></div>
+        <div class="calendar-days" id="calendarDays"></div>
+
+        <div class="time-slots-section" id="timeSlotsSection" style="display: none;">
+          <h4><i class="fas fa-clock"></i> Available time slots for <span id="selectedDateDisplay"></span></h4>
+          <div class="time-slots-grid" id="timeSlotsGrid"></div>
+          <div class="slot-feedback" id="slotFeedback"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Customer Info & Service Selection -->
+      <div class="column">
+        <div class="section-title-form"><i class="fas fa-user"></i> Your Information</div>
+        
+        <div class="form-group">
+          <label>Full name <span class="required">*</span></label>
+          <input type="text" id="customerName" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email address <span class="required">*</span></label>
+          <input type="email" id="customerEmail" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Phone number</label>
+          <input type="tel" id="customerPhone" placeholder="(385) 338-1939">
+        </div>
+        <div class="form-group">
+          <label>Address <span class="required">*</span></label>
+          <input type="text" id="customerAddress" placeholder="Street address, Eagle Mountain, UT">
+        </div>
+
+        <div class="section-title-form" style="margin-top: 1rem;"><i class="fas fa-paw"></i> Service Selection</div>
+        
+        <div class="form-group">
+          <label>Service type <span class="required">*</span></label>
+          <select id="serviceType">
+            <option value="weekly" data-price="25">Weekly cleanup - $25/week</option>
+            <option value="biweekly" data-price="35">Bi-weekly cleanup - $35/visit</option>
+            <option value="onetime" data-price="45">One-time cleanup - $45</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Number of pets <span class="required">*</span></label>
+          <select id="petCount">
+            <option value="1">1 pet</option>
+            <option value="2">2 pets (+$5)</option>
+            <option value="3">3 pets (+$10)</option>
+            <option value="4">4 pets (+$15)</option>
+            <option value="5">5+ pets (+$20)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Add sanitation station</label>
+          <select id="sanitation">
+            <option value="no">No, thank you</option>
+            <option value="yes">Yes (+$15)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Notes (gate code, access instructions, etc.)</label>
+          <textarea id="notes" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
+        </div>
+
+        <!-- Hidden fields -->
+        <input type="hidden" id="selectedDate" value="">
+        <input type="hidden" id="selectedTimeSlot" value="">
+
+        <!-- Price Summary -->
+        <div class="price-summary">
+          <div class="price-row">
+            <span>Base service:</span>
+            <span id="basePriceDisplay">$25.00</span>
+          </div>
+          <div class="price-row" id="petExtraRow" style="display: none;">
+            <span>Extra pets:</span>
+            <span id="petExtraDisplay">$0</span>
+          </div>
+          <div class="price-row" id="sanitationRow" style="display: none;">
+            <span>Sanitation station:</span>
+            <span id="sanitationDisplay">$0</span>
+          </div>
+          <div class="price-row total">
+            <span>Total due today:</span>
+            <span id="totalAmount">$25.00</span>
+          </div>
+        </div>
+
+        <button class="btn-pay" id="payButton">
+          <i class="fas fa-credit-card"></i> Pay Now - Secure Checkout
+        </button>
+        <div class="error-message" id="errorMessage"></div>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -287,165 +548,304 @@
 </div>
 
 <script>
-  // ---- REPLACE THIS WITH YOUR REAL STRIPE PUBLISHABLE KEY ----
-  const STRIPE_KEY = 'pk_live_YOUR_KEY_HERE';
-  const stripe = Stripe(STRIPE_KEY);
-  const elements = stripe.elements();
-  const cardElement = elements.create('card', {
-    style: {
-      base: { fontFamily: 'Inter, sans-serif', fontSize: '16px', color: '#1a2a1f', '::placeholder': { color: '#9ab09a' } },
-      invalid: { color: '#c0392b' }
+  // ============================================================
+  // PRICING CONFIGURATION - EDIT THESE NUMBERS TO CHANGE PRICES
+  // ============================================================
+  const PRICING = {
+    weekly: 25,
+    biweekly: 35,
+    onetime: 45,
+    extraPet: 5,
+    sanitation: 15
+  };
+  // ============================================================
+  
+  // Generate time slots (8:00 AM to 6:00 PM every 30 minutes)
+  const timeSlots = [];
+  for (let hour = 8; hour <= 18; hour++) {
+    for (let minute of [0, 30]) {
+      if (hour === 18 && minute === 30) continue;
+      const displayHour = hour > 12 ? hour - 12 : hour;
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+      timeSlots.push(timeString);
     }
-  });
-  cardElement.mount('#card-element');
-  cardElement.on('change', e => {
-    document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
-  });
-
-  let selectedServiceName = null, selectedBasePrice = 0, petCount = 1, selectedDate = null, selectedSlot = null;
-
-  function selectService(el) {
-    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedServiceName = el.dataset.service;
-    selectedBasePrice = parseInt(el.dataset.base);
-    updateTotal();
   }
 
-  function changePets(delta) {
-    petCount = Math.max(1, petCount + delta);
-    document.getElementById('petCount').textContent = petCount;
-    updateTotal();
+  // Booked slots - add dates here to mark as unavailable
+  const bookedSlots = [];
+
+  let currentDate = new Date();
+  let selectedCalendarDate = null;
+  let selectedSlot = null;
+
+  // DOM elements
+  const serviceTypeSelect = document.getElementById('serviceType');
+  const petCountSelect = document.getElementById('petCount');
+  const sanitationSelect = document.getElementById('sanitation');
+  const basePriceDisplay = document.getElementById('basePriceDisplay');
+  const petExtraRow = document.getElementById('petExtraRow');
+  const petExtraDisplay = document.getElementById('petExtraDisplay');
+  const sanitationRow = document.getElementById('sanitationRow');
+  const sanitationDisplay = document.getElementById('sanitationDisplay');
+  const totalAmountSpan = document.getElementById('totalAmount');
+  const payButton = document.getElementById('payButton');
+  const errorMessage = document.getElementById('errorMessage');
+
+  function formatDateKey(date) {
+    return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
   }
 
-  function calcTotal() {
-    const hasSan = document.getElementById('addon-sanitation').checked;
-    const extraPets = Math.max(0, petCount - 1);
-    return selectedBasePrice + (hasSan ? 10 : 0) + (extraPets * 5);
+  function formatDisplayDate(date) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   }
 
-  function updateTotal() {
-    if (!selectedServiceName) return;
-    const hasSan = document.getElementById('addon-sanitation').checked;
-    const extraPets = Math.max(0, petCount - 1);
-    const total = calcTotal();
-    const lines = document.getElementById('orderLines');
-    lines.innerHTML = '';
-    addLine(lines, selectedServiceName, '$' + selectedBasePrice + '.00');
-    if (hasSan) addLine(lines, 'Sanitization treatment', '+$10.00');
-    if (extraPets > 0) addLine(lines, extraPets + ' additional pet' + (extraPets > 1 ? 's' : ''), '+$' + (extraPets * 5) + '.00');
-    if (selectedDate && selectedSlot) addLine(lines, '📅 ' + formatDate(selectedDate) + ' at ' + selectedSlot, '');
-    document.getElementById('orderTotal').style.display = 'flex';
-    document.getElementById('totalAmount').textContent = '$' + total + '.00';
-    checkReady(total);
+  function isFriday(date) {
+    return date.getDay() === 5;
   }
 
-  function addLine(container, label, value) {
-    const div = document.createElement('div');
-    div.className = 'order-line';
-    div.innerHTML = '<span>' + label + '</span><span>' + value + '</span>';
-    container.appendChild(div);
+  function isPastDate(date) {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return date < today;
   }
 
-  function checkReady(total) {
-    const firstName = document.getElementById('firstName').value.trim();
-    const email = document.getElementById('payEmail').value.trim();
-    const ready = firstName && email && selectedServiceName && selectedDate && selectedSlot;
-    const btn = document.getElementById('payBtn');
-    btn.disabled = !ready;
-    document.getElementById('payBtnText').textContent = ready ? 'Pay Now — $' + (total || calcTotal()) + '.00' : 'Complete steps above to continue';
+  function isSlotAvailable(dateStr, slot) {
+    const key = `${dateStr}:${slot}`;
+    return !bookedSlots.includes(key);
   }
 
-  ['firstName','lastName','payEmail','phone'].forEach(id => {
-    document.getElementById(id).addEventListener('input', () => { if (selectedServiceName) updateTotal(); else checkReady(0); });
-  });
+  function calculateTotal() {
+    const serviceType = serviceTypeSelect.value;
+    let basePrice = PRICING[serviceType] || 25;
+    
+    let petCount = parseInt(petCountSelect.value);
+    let extraPetCost = (petCount - 1) * PRICING.extraPet;
+    if (extraPetCost < 0) extraPetCost = 0;
+    
+    let sanitationCost = sanitationSelect.value === 'yes' ? PRICING.sanitation : 0;
+    
+    let total = basePrice + extraPetCost + sanitationCost;
+    
+    basePriceDisplay.textContent = `$${basePrice.toFixed(2)}`;
+    
+    if (extraPetCost > 0) {
+      petExtraRow.style.display = 'flex';
+      petExtraDisplay.textContent = `+$${extraPetCost.toFixed(2)}`;
+    } else {
+      petExtraRow.style.display = 'none';
+    }
+    
+    if (sanitationCost > 0) {
+      sanitationRow.style.display = 'flex';
+      sanitationDisplay.textContent = `+$${sanitationCost.toFixed(2)}`;
+    } else {
+      sanitationRow.style.display = 'none';
+    }
+    
+    totalAmountSpan.textContent = `$${total.toFixed(2)}`;
+    return total;
+  }
 
-  // CALENDAR
-  const SLOTS = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
-  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const today = new Date();
-  let viewYear = today.getFullYear(), viewMonth = today.getMonth();
-
-  function renderCal() {
-    document.getElementById('calTitle').textContent = MONTHS[viewMonth] + ' ' + viewYear;
-    const grid = document.getElementById('calGrid');
-    grid.innerHTML = '';
-    DAYS.forEach(d => { const l = document.createElement('div'); l.className = 'cal-day-lbl'; l.textContent = d; grid.appendChild(l); });
-    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
-    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-    for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); e.className = 'cal-cell'; grid.appendChild(e); }
+  function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    const firstDay = new Date(year, month, 1);
+    const startDayOfWeek = firstDay.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    document.getElementById('currentMonthDisplay').textContent = `${monthNames[month]} ${year}`;
+    
+    const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const weekdayHtml = weekdays.map(day => `<div>${day}</div>`).join('');
+    document.getElementById('calendarWeekdays').innerHTML = weekdayHtml;
+    
+    let daysHtml = '';
+    
+    for (let i = 0; i < startDayOfWeek; i++) {
+      daysHtml += '<div class="calendar-day disabled-day"></div>';
+    }
+    
     for (let d = 1; d <= daysInMonth; d++) {
-      const cell = document.createElement('div');
-      const thisDate = new Date(viewYear, viewMonth, d);
-      const isFri = thisDate.getDay() === 5;
-      const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-      cell.className = 'cal-cell' + (isFri && !isPast ? ' friday' : '') + (isPast ? ' past' : '');
-      cell.textContent = d;
-      const dateStr = viewYear + '-' + String(viewMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-      if (selectedDate === dateStr) cell.classList.add('selected');
-      if (isFri && !isPast) cell.addEventListener('click', () => pickDate(dateStr, cell));
-      grid.appendChild(cell);
+      const dateObj = new Date(year, month, d);
+      const isFri = isFriday(dateObj);
+      const isPast = isPastDate(dateObj);
+      const isAvailable = isFri && !isPast;
+      const isSelected = selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
+      
+      let dayClass = 'calendar-day';
+      if (!isFri || isPast) {
+        dayClass += ' disabled-day';
+      } else if (isAvailable) {
+        dayClass += ' friday-available';
+      }
+      if (isSelected) {
+        dayClass += ' selected-day';
+      }
+      
+      const onclickAttr = isAvailable ? `onclick="selectDate('${formatDateKey(dateObj)}', ${dateObj.getFullYear()}, ${dateObj.getMonth()}, ${dateObj.getDate()})"` : '';
+      
+      daysHtml += `<div class="${dayClass}" ${onclickAttr}>${d}</div>`;
     }
+    
+    document.getElementById('calendarDays').innerHTML = daysHtml;
   }
-
-  function formatDate(ds) {
-    const [y,m,d] = ds.split('-');
-    return MONTHS[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
-  }
-
-  function pickDate(dateStr, cell) {
-    selectedDate = dateStr; selectedSlot = null;
-    document.querySelectorAll('.cal-cell.friday').forEach(c => c.classList.remove('selected'));
-    cell.classList.add('selected');
-    document.getElementById('slotsHeading').textContent = formatDate(dateStr);
-    const sg = document.getElementById('slotsGrid');
-    sg.innerHTML = '';
-    SLOTS.forEach(slot => {
-      const btn = document.createElement('button');
-      btn.className = 'slot-btn'; btn.textContent = slot;
-      btn.addEventListener('click', () => pickSlot(slot, btn));
-      sg.appendChild(btn);
+  
+  window.selectDate = function(dateKey, year, month, day) {
+    selectedCalendarDate = new Date(year, month, day);
+    document.getElementById('selectedDate').value = dateKey;
+    
+    document.getElementById('selectedDateDisplay').textContent = formatDisplayDate(selectedCalendarDate);
+    
+    const slotsContainer = document.getElementById('timeSlotsGrid');
+    slotsContainer.innerHTML = '';
+    
+    timeSlots.forEach(slot => {
+      const isAvail = isSlotAvailable(dateKey, slot);
+      const slotClass = `time-slot ${isAvail ? 'available' : 'unavailable'}`;
+      const isSelectedSlot = (selectedSlot === slot);
+      const selectedClass = isSelectedSlot ? 'selected-slot' : '';
+      
+      const button = document.createElement('button');
+      button.className = `${slotClass} ${selectedClass}`;
+      button.textContent = slot;
+      if (isAvail) {
+        button.onclick = () => selectTimeSlot(slot);
+      }
+      slotsContainer.appendChild(button);
     });
-    if (selectedServiceName) updateTotal(); else checkReady(0);
-  }
-
-  function pickSlot(slot, btn) {
+    
+    document.getElementById('timeSlotsSection').style.display = 'block';
+    renderCalendar();
+  };
+  
+  function selectTimeSlot(slot) {
     selectedSlot = slot;
-    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    if (selectedServiceName) updateTotal(); else checkReady(0);
+    document.getElementById('selectedTimeSlot').value = slot;
+    
+    const allSlots = document.querySelectorAll('.time-slot');
+    allSlots.forEach(slotEl => {
+      slotEl.classList.remove('selected-slot');
+    });
+    event.target.classList.add('selected-slot');
+    
+    document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
   }
-
-  document.getElementById('prevMonth').addEventListener('click', () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } renderCal(); });
-  document.getElementById('nextMonth').addEventListener('click', () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } renderCal(); });
-  renderCal();
-
-  // PAYMENT
-  async function handlePayment() {
-    const btn = document.getElementById('payBtn');
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('payEmail').value.trim();
-    if (!firstName || !email) { document.getElementById('card-errors').textContent = 'Please fill in your name and email.'; return; }
-    if (!selectedServiceName) { document.getElementById('card-errors').textContent = 'Please select a service.'; return; }
-    if (!selectedDate || !selectedSlot) { document.getElementById('card-errors').textContent = 'Please pick a Friday and time slot.'; return; }
-    btn.disabled = true;
-    document.getElementById('payBtnText').textContent = 'Processing...';
-
-    // NOTE: In production, call YOUR backend to create a PaymentIntent and get a clientSecret.
-    // Example: const res = await fetch('/create-payment-intent', { method: 'POST', body: JSON.stringify({ amount: calcTotal() * 100 }) });
-    // const { clientSecret } = await res.json();
-    // Then: const result = await stripe.confirmCardPayment(clientSecret, { payment_method: { card: cardElement, billing_details: { name: firstName + ' ' + lastName, email } } });
-    // if (result.error) { document.getElementById('card-errors').textContent = result.error.message; btn.disabled = false; }
-    // else { show success }
-
-    setTimeout(() => {
-      document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('successScreen').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 2000);
+  
+  document.getElementById('prevMonthBtn').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+  });
+  
+  document.getElementById('nextMonthBtn').addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+  });
+  
+  function hideError() {
+    errorMessage.style.display = 'none';
+    errorMessage.textContent = '';
   }
+  
+  function showError(msg) {
+    errorMessage.textContent = msg;
+    errorMessage.style.display = 'block';
+  }
+  
+  // Event listeners for price recalculation
+  serviceTypeSelect.addEventListener('change', calculateTotal);
+  petCountSelect.addEventListener('change', calculateTotal);
+  sanitationSelect.addEventListener('change', calculateTotal);
+  
+  // STRIPE PAYMENT - Calls your existing Cloudflare Worker
+  const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
+  
+  payButton.addEventListener('click', async () => {
+    hideError();
+    
+    // Validate form
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const address = document.getElementById('customerAddress').value.trim();
+    const selectedDate = document.getElementById('selectedDate').value;
+    const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+    
+    if (!name) { showError('Please enter your full name.'); return; }
+    if (!email) { showError('Please enter your email address.'); return; }
+    if (!address) { showError('Please enter your address.'); return; }
+    if (!selectedDate) { showError('Please select a Friday date.'); return; }
+    if (!selectedTimeSlot) { showError('Please select a time slot.'); return; }
+    
+    const total = calculateTotal();
+    const serviceType = serviceTypeSelect.value;
+    const petCount = parseInt(petCountSelect.value);
+    const extraPets = petCount - 1;
+    const hasSanitation = sanitationSelect.value === 'yes';
+    const notes = document.getElementById('notes').value;
+    
+    // Disable button while processing
+    payButton.disabled = true;
+    payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Redirecting to Stripe...';
+    
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          serviceType: serviceType,
+          extraPets: extraPets > 0 ? extraPets : 0,
+          sanitation: hasSanitation,
+          totalAmount: total,
+          customerName: name,
+          customerEmail: email,
+          customerPhone: document.getElementById('customerPhone').value,
+          customerAddress: address,
+          preferredDate: selectedDate,
+          preferredTime: selectedTimeSlot,
+          notes: notes
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.url) {
+        // Also submit to Formspree for your records
+        const formspreeData = new FormData();
+        formspreeData.append('name', name);
+        formspreeData.append('email', email);
+        formspreeData.append('phone', document.getElementById('customerPhone').value);
+        formspreeData.append('address', address);
+        formspreeData.append('service_type', serviceType);
+        formspreeData.append('pet_count', petCount);
+        formspreeData.append('sanitation', hasSanitation ? 'yes' : 'no');
+        formspreeData.append('preferred_date', selectedDate);
+        formspreeData.append('preferred_time', selectedTimeSlot);
+        formspreeData.append('message', notes);
+        
+        fetch('https://formspree.io/f/mzdovywq', {
+          method: 'POST',
+          body: formspreeData,
+          mode: 'no-cors'
+        }).catch(err => console.log('Formspree error:', err));
+        
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      showError('Payment error: ' + error.message + '\n\nPlease try again or contact us at (385)338-1939');
+      payButton.disabled = false;
+      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now - Secure Checkout';
+    }
+  });
+  
+  // Initial render
+  renderCalendar();
+  calculateTotal();
 </script>
 </body>
 </html>
