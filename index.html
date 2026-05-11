@@ -1,290 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Scoop The Poop | Professional Pet Waste Removal | Eagle Mountain, UT</title>
-<meta name="description" content="Professional, reliable pet waste removal serving Eagle Mountain, Utah. Weekly, bi-weekly, and one-time cleanup services. Family-owned, fully insured.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-body {
-font-family: 'Inter', sans-serif;
-background: #f5f7f5;
-color: #1a2a1f;
-min-height: 100vh;
-overflow-x: hidden;
-position: relative;
-}
-.living-bg {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -2;
-background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%);
-background-size: 200% 200%;
-animation: gentleShift 18s ease infinite;
-}
-@keyframes gentleShift {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
-.particle-area {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
-overflow: hidden;
-pointer-events: none;
-}
-.particle {
-position: absolute;
-background: rgba(80, 110, 70, 0.08);
-border-radius: 50%;
-width: 80px;
-height: 80px;
-animation: floatSoft 24s infinite linear;
-}
-.particle:nth-child(1) { width: 150px; height: 150px; left: 5%; top: 20%; animation-duration: 32s; }
-.particle:nth-child(2) { width: 100px; height: 100px; left: 80%; top: 60%; animation-duration: 28s; }
-.particle:nth-child(3) { width: 200px; height: 200px; left: 60%; top: 10%; animation-duration: 40s; opacity: 0.04; }
-.particle:nth-child(4) { width: 120px; height: 120px; left: 15%; top: 75%; animation-duration: 35s; }
-.particle:nth-child(5) { width: 80px; height: 80px; left: 90%; top: 30%; animation-duration: 26s; }
-.particle:nth-child(6) { width: 170px; height: 170px; left: 40%; top: 85%; animation-duration: 45s; opacity: 0.05; }
-@keyframes floatSoft {
-0% { transform: translateY(0px) translateX(0px); }
-33% { transform: translateY(-40px) translateX(20px); }
-66% { transform: translateY(30px) translateX(-15px); }
-100% { transform: translateY(0px) translateX(0px); }
-}
-.container {
-max-width: 1280px;
-margin: 0 auto;
-padding: 2rem 2rem 3rem;
-position: relative;
-}
-.navbar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 1.5rem;
-background: rgba(255, 255, 255, 0.96);
-backdrop-filter: blur(8px);
-border-radius: 20px;
-padding: 0.8rem 2rem;
-margin-bottom: 2.5rem;
-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-border: 1px solid rgba(60, 90, 50, 0.1);
-}
-.logo h1 {
-font-size: 1.6rem;
-font-weight: 700;
-color: #2d5a2c;
-letter-spacing: -0.3px;
-}
-.logo p {
-font-size: 0.75rem;
-color: #5a7a4e;
-letter-spacing: 0.5px;
-}
-.nav-links a {
-color: #2a3a25;
-text-decoration: none;
-font-weight: 500;
-margin-left: 2rem;
-font-size: 1rem;
-transition: 0.2s;
-padding-bottom: 4px;
-border-bottom: 2px solid transparent;
-}
-.nav-links a:hover, .nav-links a.active {
-border-bottom-color: #4a7c3f;
-color: #3a6a2f;
-}
-.hero {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-between;
-gap: 3rem;
-margin: 2rem 0 3rem;
-}
-.hero-text {
-flex: 1.2;
-}
-.hero-badge {
-background: #e8f0e5;
-display: inline-block;
-padding: 0.3rem 1rem;
-border-radius: 40px;
-font-size: 0.75rem;
-font-weight: 600;
-color: #3a6a2f;
-margin-bottom: 1.2rem;
-}
-.hero-text h2 {
-font-size: 3.2rem;
-font-weight: 700;
-line-height: 1.2;
-margin-bottom: 1.2rem;
-color: #1a3a15;
-}
-.hero-text .highlight {
-color: #4a8c3e;
-border-bottom: 3px solid #bdd8b0;
-}
-.hero-text p {
-font-size: 1.1rem;
-margin: 1.2rem 0 1.8rem;
-color: #3a4a35;
-line-height: 1.5;
-max-width: 90%;
-}
-.btn-primary {
-display: inline-block;
-background: #3a7a30;
-color: white;
-padding: 0.9rem 2rem;
-border-radius: 40px;
-font-weight: 600;
-text-decoration: none;
-transition: 0.2s;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-font-size: 1rem;
-border: none;
-cursor: pointer;
-}
-.btn-primary i {
-margin-right: 8px;
-}
-.btn-primary:hover {
-background: #2d6224;
-transform: translateY(-1px);
-box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-}
-.hero-image {
-flex: 0.9;
-text-align: center;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.hero-image img {
-max-width: 340px;
-width: 100%;
-filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
-}
-.section-title {
-text-align: center;
-font-size: 2rem;
-margin: 3rem 0 2rem;
-font-weight: 600;
-color: #1a3a15;
-}
-.section-title:after {
-content: '';
-display: block;
-width: 60px;
-height: 3px;
-background: #8bba7a;
-margin: 0.8rem auto 0;
-border-radius: 2px;
-}
-.features {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 2rem;
-margin: 1.5rem 0 2rem;
-}
-.card {
-background: white;
-border-radius: 24px;
-padding: 2rem 1.5rem;
-text-align: center;
-transition: 0.25s;
-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-border: 1px solid rgba(80, 110, 70, 0.1);
-}
-.card i {
-font-size: 2.4rem;
-color: #4a8c3e;
-margin-bottom: 1rem;
-}
-.card h3 {
-font-size: 1.4rem;
-margin-bottom: 0.7rem;
-font-weight: 600;
-color: #1a3a15;
-}
-.card p {
-color: #4a5a45;
-line-height: 1.5;
-font-size: 0.95rem;
-}
-.card:hover {
-transform: translateY(-4px);
-box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-border-color: rgba(74, 140, 62, 0.3);
-}
-.trust-badge {
-background: white;
-border-radius: 20px;
-padding: 2rem;
-text-align: center;
-margin: 2rem 0;
-border: 1px solid rgba(0,0,0,0.05);
-}
-.trust-badge p {
-font-style: italic;
-color: #3a5a35;
-max-width: 600px;
-margin: 0 auto;
-}
-.cta-section {
-background: #e8f0e5;
-border-radius: 28px;
-padding: 2.5rem;
-text-align: center;
-margin: 3rem 0;
-}
-.cta-section h3 {
-font-size: 1.8rem;
-margin-bottom: 0.8rem;
-color: #1a3a15;
-}
-.cta-section .btn-primary {
-margin-top: 1rem;
-}
-footer {
-text-align: center;
-margin-top: 3rem;
-padding-top: 2rem;
-border-top: 1px solid rgba(60, 80, 50, 0.1);
-font-size: 0.8rem;
-color: #5a7a4e;
-}
-@media (max-width: 780px) {
-.container { padding: 1rem; }
-.hero-text h2 { font-size: 2.2rem; }
-.navbar { flex-direction: column; border-radius: 20px; text-align: center; }
-.nav-links a { margin: 0 1rem; }
-.hero-image img { max-width: 240px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Book & Pay | Scoop The Poop | Eagle Mountain, UT</title>
+  <meta name="description" content="Book and pay for pet waste removal in Eagle Mountain, Utah. Weekly, bi-weekly, and one-time cleanup services.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f5f7f5; color: #1a2a1f; min-height: 100vh; overflow-x: hidden; }
+    .living-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%); background-size: 200% 200%; animation: gentleShift 18s ease infinite; }
+    @keyframes gentleShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .particle-area { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
+    .particle { position: absolute; background: rgba(80,110,70,0.08); border-radius: 50%; animation: floatSoft 24s infinite linear; }
+    .particle:nth-child(1){width:150px;height:150px;left:5%;top:20%;animation-duration:32s}
+    .particle:nth-child(2){width:100px;height:100px;left:80%;top:60%;animation-duration:28s}
+    .particle:nth-child(3){width:200px;height:200px;left:60%;top:10%;animation-duration:40s;opacity:.04}
+    .particle:nth-child(4){width:120px;height:120px;left:15%;top:75%;animation-duration:35s}
+    .particle:nth-child(5){width:80px;height:80px;left:90%;top:30%;animation-duration:26s}
+    .particle:nth-child(6){width:170px;height:170px;left:40%;top:85%;animation-duration:45s;opacity:.05}
+    @keyframes floatSoft { 0%{transform:translateY(0) translateX(0)} 33%{transform:translateY(-40px) translateX(20px)} 66%{transform:translateY(30px) translateX(-15px)} 100%{transform:translateY(0) translateX(0)} }
+    .container { max-width: 860px; margin: 0 auto; padding: 2rem 2rem 3rem; position: relative; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-radius: 20px; padding: 0.8rem 2rem; margin-bottom: 2.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid rgba(60,90,50,0.1); }
+    .logo h1 { font-size: 1.6rem; font-weight: 700; color: #2d5a2c; letter-spacing: -0.3px; }
+    .logo p { font-size: 0.75rem; color: #5a7a4e; letter-spacing: 0.5px; }
+    .nav-links a { color: #2a3a25; text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; transition: 0.2s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a.active { border-bottom-color: #4a7c3f; color: #3a6a2f; }
+    .nav-links a.nav-pay { background: #3a7a30; color: white; padding: 0.45rem 1.2rem; border-radius: 40px; border-bottom: none; font-weight: 600; }
+    .nav-links a.nav-pay:hover { background: #2d6224; transform: translateY(-1px); }
+    .page-header { text-align: center; margin-bottom: 2.5rem; }
+    .page-title { font-size: 2.3rem; font-weight: 700; color: #1a3a15; margin-bottom: 0.4rem; }
+    .page-sub { font-size: 1rem; color: #5a7a4e; }
+    .page-sub:after { content:''; display:block; width:60px; height:3px; background:#8bba7a; margin:0.8rem auto 0; border-radius:2px; }
+    .step-card { background: white; border-radius: 24px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); border: 1px solid rgba(80,110,70,0.1); }
+    .step-card h2 { font-size: 1.15rem; font-weight: 700; color: #1a3a15; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .step-num { background: #3a7a30; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-1col { margin-bottom: 1rem; }
+    .fgroup { display: flex; flex-direction: column; gap: 5px; }
+    .fgroup label { font-size: 0.78rem; font-weight: 700; color: #5a7a4e; text-transform: uppercase; letter-spacing: 0.5px; }
+    .fgroup input, .fgroup textarea { padding: 0.75rem 1rem; border: 1.5px solid #d0dbc8; border-radius: 12px; font-size: 0.95rem; font-family: 'Inter', sans-serif; background: #fafbf9; outline: none; transition: 0.15s; color: #1a2a1f; width: 100%; }
+    .fgroup input:focus, .fgroup textarea:focus { border-color: #3a7a30; box-shadow: 0 0 0 3px rgba(58,122,48,0.1); }
+    .req { color: #c23a00; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .svc-card { border: 2px solid rgba(80,110,70,0.15); border-radius: 18px; padding: 1.2rem; cursor: pointer; transition: 0.2s; background: #f7faf6; position: relative; }
+    .svc-card:hover { border-color: #4a8c3e; transform: translateY(-2px); }
+    .svc-card.selected { border-color: #3a7a30; background: white; box-shadow: 0 0 0 3px rgba(58,122,48,0.12); }
+    .svc-card h4 { font-size: 0.95rem; font-weight: 700; color: #1a3a15; margin-bottom: 4px; }
+    .svc-card .svc-price { font-size: 1.4rem; font-weight: 800; color: #3a7a30; margin: 5px 0; }
+    .svc-card .svc-price span { font-size: 0.78rem; font-weight: 400; color: #7a9a6e; }
+    .svc-card p { font-size: 0.78rem; color: #5a7a4e; line-height: 1.4; }
+    .sel-check { display: none; position: absolute; top: 10px; right: 12px; color: #3a7a30; font-size: 1rem; }
+    .svc-card.selected .sel-check { display: block; }
+    .addon-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: #f7faf6; border-radius: 14px; margin-bottom: 10px; border: 1.5px solid rgba(80,110,70,0.1); transition: 0.15s; }
+    .addon-item:hover { border-color: rgba(80,110,70,0.3); }
+    .addon-left { display: flex; align-items: center; gap: 12px; }
+    .addon-left input[type=checkbox] { width: 18px; height: 18px; accent-color: #3a7a30; cursor: pointer; flex-shrink: 0; }
+    .addon-left label { font-size: 0.95rem; font-weight: 500; color: #1a3a15; cursor: pointer; }
+    .addon-left small { display: block; font-size: 0.78rem; color: #7a9a6e; font-weight: 400; }
+    .addon-price { font-weight: 700; color: #3a7a30; font-size: 0.95rem; white-space: nowrap; }
+    .counter-row { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: #f7faf6; border-radius: 14px; border: 1.5px solid rgba(80,110,70,0.1); }
+    .counter-label { font-size: 0.95rem; font-weight: 500; color: #1a3a15; }
+    .counter-label small { display: block; font-size: 0.78rem; color: #7a9a6e; }
+    .counter { display: flex; align-items: center; gap: 14px; }
+    .counter button { width: 32px; height: 32px; border-radius: 50%; border: none; background: #3a7a30; color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.15s; font-family: 'Inter', sans-serif; line-height: 1; }
+    .counter button:hover { background: #1f4a1a; }
+    .counter span { font-weight: 700; font-size: 1.1rem; min-width: 24px; text-align: center; color: #1a3a15; }
+    .cal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cal-wrap { background: #e8f0e5; border-radius: 20px; padding: 1.5rem; }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .cal-header h3 { font-size: 1.05rem; font-weight: 700; color: #1a3a15; }
+    .cal-nav-btn { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: #1a3a15; padding: 2px 10px; border-radius: 8px; transition: 0.15s; }
+    .cal-nav-btn:hover { background: rgba(0,0,0,0.07); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .cal-day-lbl { text-align: center; font-size: 0.65rem; font-weight: 700; color: #7a9a6e; padding: 4px 0; text-transform: uppercase; letter-spacing: 0.4px; }
+    .cal-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 0.8rem; color: #bbb; }
+    .cal-cell.friday { background: #3a7a30; color: white; cursor: pointer; font-weight: 700; transition: 0.15s; }
+    .cal-cell.friday:hover { background: #1f4a1a; transform: scale(1.1); }
+    .cal-cell.friday.selected { background: #1f4a1a; box-shadow: 0 0 0 3px #8bba7a; }
+    .cal-cell.past { opacity: 0.3; cursor: not-allowed; }
+    .slots-panel h4 { font-size: 0.95rem; font-weight: 700; color: #1a3a15; margin-bottom: 0.8rem; }
+    .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .slot-btn { background: #e8f0e5; border: 1.5px solid rgba(60,110,50,0.2); border-radius: 10px; padding: 0.5rem 0.2rem; font-size: 0.73rem; font-weight: 600; color: #1a3a15; cursor: pointer; transition: 0.15s; font-family: 'Inter', sans-serif; }
+    .slot-btn:hover { background: #8bba7a; color: white; border-color: #8bba7a; }
+    .slot-btn.selected { background: #3a7a30; color: white; border-color: #3a7a30; }
+    .slots-placeholder { color: #8aaa7a; font-size: 0.85rem; padding: 0.5rem 0; grid-column: span 3; }
+    .order-lines { margin-bottom: 1rem; }
+    .order-line { display: flex; justify-content: space-between; font-size: 0.9rem; color: #3a4a35; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+    .order-line:last-child { border-bottom: none; }
+    .order-total { display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 800; color: #1a3a15; padding-top: 0.8rem; border-top: 2px solid #d0dbc8; margin-top: 0.5rem; }
+    .no-service-msg { color: #8aaa7a; font-size: 0.9rem; font-style: italic; }
+    .stripe-setup-note { background: #fff8e8; border: 1.5px solid #f0d080; border-radius: 14px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; font-size: 0.88rem; color: #7a5a10; }
+    .stripe-setup-note strong { color: #5a3a00; }
+    .stripe-setup-note a { color: #3a7a30; font-weight: 600; }
+    #card-element { padding: 0.8rem 1rem; border: 1.5px solid #d0dbc8; border-radius: 12px; background: #fafbf9; }
+    #card-errors { color: #c0392b; font-size: 0.84rem; margin-top: 6px; min-height: 18px; }
+    .pay-btn { width: 100%; padding: 1rem; background: #3a7a30; color: white; border: none; border-radius: 40px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 1.2rem; }
+    .pay-btn:hover:not(:disabled) { background: #1f4a1a; transform: translateY(-1px); }
+    .pay-btn:disabled { background: #aac8a0; cursor: not-allowed; }
+    .stripe-badge { text-align: center; margin-top: 0.8rem; font-size: 0.75rem; color: #8aaa80; }
+    .success-screen { display: none; text-align: center; padding: 3rem 1rem; }
+    .success-screen .check-circle { width: 80px; height: 80px; background: #d4f0cc; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.2rem; color: #3a7a30; }
+    .success-screen h2 { font-size: 1.8rem; color: #1a3a15; margin-bottom: 0.5rem; }
+    .success-screen p { color: #5a7a4e; margin-bottom: 1.5rem; }
+    .btn-home { display: inline-flex; align-items: center; gap: 8px; background: #3a7a30; color: white; padding: 0.8rem 2rem; border-radius: 40px; font-weight: 600; text-decoration: none; transition: 0.2s; }
+    .btn-home:hover { background: #1f4a1a; }
+    .area-box { background: #e8f0e5; border-radius: 20px; padding: 1.5rem; text-align: center; color: #5a7a4e; }
+    .area-box i { font-size: 2rem; color: #4a8c3e; margin-bottom: 0.5rem; }
+    footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(60,80,50,0.1); font-size: 0.8rem; color: #5a7a4e; }
+    @media(max-width:700px) {
+      .container { padding: 1rem; }
+      .navbar { flex-direction: column; text-align: center; }
+      .nav-links a { margin: 0 0.6rem; }
+      .form-2col { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .cal-layout { grid-template-columns: 1fr; }
+      .slots-grid { grid-template-columns: repeat(2, 1fr); }
+      .slots-placeholder { grid-column: span 2; }
+    }
+  </style>
 </head>
 <body>
-
 <div class="living-bg"></div>
 <div class="particle-area">
   <div class="particle"></div><div class="particle"></div><div class="particle"></div>
@@ -298,47 +136,316 @@ color: #5a7a4e;
       <p>Eagle Mountain, Utah</p>
     </div>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="contact.html">Contact</a>
-      <a href="payment.html">Pay</a>
+      <a href="index.html">Home</a>
+      <a href="contact.html" class="active">Contact</a>
     </div>
   </div>
 
-  <div class="hero">
-    <div class="hero-text">
-      <div class="hero-badge"><i class="fas fa-paw"></i> Eagle Mountain's trusted pet waste removal</div>
-      <h2>A clean yard. <span class="highlight">Every time.</span></h2>
-      <p>Reliable, professional service that keeps your outdoor space safe and enjoyable. Weekly, bi-weekly, or one-time cleanup — we've got you covered.</p>
-      <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Request a free quote</a>
+  <div id="mainContent">
+    <div class="page-header">
+      <h1 class="page-title">Book &amp; Pay</h1>
+      <div class="page-sub">Fill out your info, pick your service, choose a Friday, and pay — all right here.</div>
     </div>
-    <div class="hero-image">
-      <img src="dog-cartoon.png" alt="Cute cartoon dog">
+
+    <!-- STEP 1 -->
+    <div class="step-card">
+      <h2><span class="step-num">1</span> Your information</h2>
+      <div class="form-2col">
+        <div class="fgroup"><label>First name <span class="req">*</span></label><input type="text" id="firstName" placeholder="Jane"></div>
+        <div class="fgroup"><label>Last name <span class="req">*</span></label><input type="text" id="lastName" placeholder="Smith"></div>
+      </div>
+      <div class="form-2col">
+        <div class="fgroup"><label>Email address <span class="req">*</span></label><input type="email" id="payEmail" placeholder="jane@email.com"></div>
+        <div class="fgroup"><label>Phone number</label><input type="tel" id="phone" placeholder="(385) 000-0000"></div>
+      </div>
+      <div class="form-1col">
+        <div class="fgroup"><label>Address / access notes</label><textarea id="notes" rows="2" placeholder="Street address, gate code, special instructions..."></textarea></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-card">
+      <h2><span class="step-num">2</span> Select your service</h2>
+      <div class="service-grid">
+        <div class="svc-card" data-service="Weekly cleanup" data-base="40" onclick="selectService(this)">
+          <i class="fas fa-check sel-check"></i>
+          <h4>Weekly</h4>
+          <div class="svc-price">$40 <span>/ mo</span></div>
+          <p>Every Friday. Best value for pet owners.</p>
+        </div>
+        <div class="svc-card" data-service="Bi-weekly cleanup" data-base="25" onclick="selectService(this)">
+          <i class="fas fa-check sel-check"></i>
+          <h4>Bi-weekly</h4>
+          <div class="svc-price">$25 <span>/ visit</span></div>
+          <p>Every other Friday. Great middle-ground.</p>
+        </div>
+        <div class="svc-card" data-service="One-time cleanup" data-base="35" onclick="selectService(this)">
+          <i class="fas fa-check sel-check"></i>
+          <h4>One-time</h4>
+          <div class="svc-price">$35 <span>flat</span></div>
+          <p>Single visit, no commitment required.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-card">
+      <h2><span class="step-num">3</span> Add-ons &amp; extras</h2>
+      <div class="addon-item">
+        <div class="addon-left">
+          <input type="checkbox" id="addon-sanitation" onchange="updateTotal()">
+          <label for="addon-sanitation">Sanitization treatment<small>Enzyme-based deodorizer applied after cleanup</small></label>
+        </div>
+        <div class="addon-price">+$10</div>
+      </div>
+      <div class="counter-row">
+        <div class="counter-label">Number of pets<small>First pet included · +$5 per additional pet</small></div>
+        <div class="counter">
+          <button type="button" onclick="changePets(-1)">−</button>
+          <span id="petCount">1</span>
+          <button type="button" onclick="changePets(1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-card">
+      <h2><span class="step-num">4</span> Pick your Friday</h2>
+      <p style="font-size:0.88rem;color:#5a7a4e;margin-bottom:1.2rem">We currently service on <strong>Fridays only</strong>. Select a date and 30-minute window.</p>
+      <div class="cal-layout">
+        <div class="cal-wrap">
+          <div class="cal-header">
+            <button class="cal-nav-btn" id="prevMonth">&#8249;</button>
+            <h3 id="calTitle"></h3>
+            <button class="cal-nav-btn" id="nextMonth">&#8250;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="slots-panel">
+          <h4 id="slotsHeading">Select a Friday to see times</h4>
+          <div class="slots-grid" id="slotsGrid">
+            <p class="slots-placeholder">← Pick a green date first</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-card">
+      <h2><span class="step-num">5</span> Order summary</h2>
+      <div id="orderLines" class="order-lines"><p class="no-service-msg">Select a service above to see your total.</p></div>
+      <div class="order-total" id="orderTotal" style="display:none">
+        <span>Total due today</span>
+        <span id="totalAmount">$0.00</span>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-card">
+      <h2><span class="step-num">6</span> <i class="fas fa-lock" style="color:#3a7a30;font-size:1rem"></i> Secure payment</h2>
+      <div class="stripe-setup-note">
+        <strong>⚙️ Setup required:</strong> Replace <code>pk_live_YOUR_KEY_HERE</code> with your real Stripe publishable key from <a href="https://dashboard.stripe.com/apikeys" target="_blank">dashboard.stripe.com/apikeys</a>. You'll also need a backend endpoint to create Payment Intents — see <a href="https://stripe.com/docs/payments/accept-a-payment" target="_blank">Stripe's docs</a>.
+      </div>
+      <div class="form-1col">
+        <div class="fgroup">
+          <label>Card details</label>
+          <div id="card-element"></div>
+          <div id="card-errors"></div>
+        </div>
+      </div>
+      <button class="pay-btn" id="payBtn" disabled onclick="handlePayment()">
+        <i class="fas fa-lock"></i> <span id="payBtnText">Complete steps above to continue</span>
+      </button>
+      <div class="stripe-badge"><i class="fas fa-shield-alt"></i> Secured by Stripe · SSL encrypted · We never store your card details</div>
+    </div>
+
+    <!-- SERVICE AREA -->
+    <div class="step-card">
+      <h2><i class="fas fa-map-pin" style="color:#4a8c3e"></i> Our service area &amp; contact</h2>
+      <div class="area-box">
+        <i class="fas fa-mountain"></i>
+        <p style="margin-top:8px;font-weight:600">Eagle Mountain, Utah</p>
+        <p style="margin-top:4px;font-size:0.88rem">The Ranches · City Center · Sage Creek · Hidden Hollow &amp; surrounding neighborhoods</p>
+        <p style="margin-top:12px;font-size:0.88rem">📞 <strong>(385) 338-1939</strong> &nbsp;|&nbsp; ✉️ <strong>contact@scoopthepoop.net</strong></p>
+        <p style="margin-top:6px;font-size:0.82rem;color:#7a9a6e">Monday–Friday 8:00 AM – 5:00 PM</p>
+      </div>
     </div>
   </div>
 
-  <div class="section-title">Why homeowners choose us</div>
-  <div class="features">
-    <div class="card"><i class="fas fa-bolt"></i><h3>Fast, Friendly Service</h3><p>We show up when we say we will — no surprises.</p></div>
-    <div class="card"><i class="fas fa-recycle"></i><h3>Eco-friendly disposal</h3><p>Biodegradable bags and responsible waste management.</p></div>
-    <div class="card"><i class="fas fa-shield-alt"></i><h3>Fully insured</h3><p>Peace of mind for you and your family.</p></div>
-    <div class="card"><i class="fas fa-smile"></i><h3>We Think You Will Be Satisfied</h3><p>We don't leave until you're happy with the result.</p></div>
-  </div>
-
-  <div class="trust-badge">
-    <p><i class="fas fa-check-circle" style="color: #8bba7a; margin-right: 8px;"></i> Let us earn your trust, one scoop at a time.</p>
-  </div>
-
-  <div class="cta-section">
-    <h3>Ready for a cleaner yard?</h3>
-    <p>Get a free, no-obligation quote today.</p>
-    <a href="contact.html" class="btn-primary"><i class="fas fa-envelope"></i> Get your quote</a>
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="check-circle"><i class="fas fa-check"></i></div>
+    <h2>You're all booked!</h2>
+    <p>Payment received. We'll confirm your Friday cleanup via email shortly.<br>See you soon!</p>
+    <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Back to home</a>
   </div>
 
   <footer>
     <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal. All rights reserved.</p>
-    <p>Website Created By Darkbloom Industries™</p>
+    <p>Website Created by Darkbloom Industries™</p>
   </footer>
 </div>
 
+<script>
+  // ---- REPLACE THIS WITH YOUR REAL STRIPE PUBLISHABLE KEY ----
+  const STRIPE_KEY = 'pk_live_YOUR_KEY_HERE';
+  const stripe = Stripe(STRIPE_KEY);
+  const elements = stripe.elements();
+  const cardElement = elements.create('card', {
+    style: {
+      base: { fontFamily: 'Inter, sans-serif', fontSize: '16px', color: '#1a2a1f', '::placeholder': { color: '#9ab09a' } },
+      invalid: { color: '#c0392b' }
+    }
+  });
+  cardElement.mount('#card-element');
+  cardElement.on('change', e => {
+    document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
+  });
+
+  let selectedServiceName = null, selectedBasePrice = 0, petCount = 1, selectedDate = null, selectedSlot = null;
+
+  function selectService(el) {
+    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedServiceName = el.dataset.service;
+    selectedBasePrice = parseInt(el.dataset.base);
+    updateTotal();
+  }
+
+  function changePets(delta) {
+    petCount = Math.max(1, petCount + delta);
+    document.getElementById('petCount').textContent = petCount;
+    updateTotal();
+  }
+
+  function calcTotal() {
+    const hasSan = document.getElementById('addon-sanitation').checked;
+    const extraPets = Math.max(0, petCount - 1);
+    return selectedBasePrice + (hasSan ? 10 : 0) + (extraPets * 5);
+  }
+
+  function updateTotal() {
+    if (!selectedServiceName) return;
+    const hasSan = document.getElementById('addon-sanitation').checked;
+    const extraPets = Math.max(0, petCount - 1);
+    const total = calcTotal();
+    const lines = document.getElementById('orderLines');
+    lines.innerHTML = '';
+    addLine(lines, selectedServiceName, '$' + selectedBasePrice + '.00');
+    if (hasSan) addLine(lines, 'Sanitization treatment', '+$10.00');
+    if (extraPets > 0) addLine(lines, extraPets + ' additional pet' + (extraPets > 1 ? 's' : ''), '+$' + (extraPets * 5) + '.00');
+    if (selectedDate && selectedSlot) addLine(lines, '📅 ' + formatDate(selectedDate) + ' at ' + selectedSlot, '');
+    document.getElementById('orderTotal').style.display = 'flex';
+    document.getElementById('totalAmount').textContent = '$' + total + '.00';
+    checkReady(total);
+  }
+
+  function addLine(container, label, value) {
+    const div = document.createElement('div');
+    div.className = 'order-line';
+    div.innerHTML = '<span>' + label + '</span><span>' + value + '</span>';
+    container.appendChild(div);
+  }
+
+  function checkReady(total) {
+    const firstName = document.getElementById('firstName').value.trim();
+    const email = document.getElementById('payEmail').value.trim();
+    const ready = firstName && email && selectedServiceName && selectedDate && selectedSlot;
+    const btn = document.getElementById('payBtn');
+    btn.disabled = !ready;
+    document.getElementById('payBtnText').textContent = ready ? 'Pay Now — $' + (total || calcTotal()) + '.00' : 'Complete steps above to continue';
+  }
+
+  ['firstName','lastName','payEmail','phone'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => { if (selectedServiceName) updateTotal(); else checkReady(0); });
+  });
+
+  // CALENDAR
+  const SLOTS = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const today = new Date();
+  let viewYear = today.getFullYear(), viewMonth = today.getMonth();
+
+  function renderCal() {
+    document.getElementById('calTitle').textContent = MONTHS[viewMonth] + ' ' + viewYear;
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+    DAYS.forEach(d => { const l = document.createElement('div'); l.className = 'cal-day-lbl'; l.textContent = d; grid.appendChild(l); });
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); e.className = 'cal-cell'; grid.appendChild(e); }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement('div');
+      const thisDate = new Date(viewYear, viewMonth, d);
+      const isFri = thisDate.getDay() === 5;
+      const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      cell.className = 'cal-cell' + (isFri && !isPast ? ' friday' : '') + (isPast ? ' past' : '');
+      cell.textContent = d;
+      const dateStr = viewYear + '-' + String(viewMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+      if (selectedDate === dateStr) cell.classList.add('selected');
+      if (isFri && !isPast) cell.addEventListener('click', () => pickDate(dateStr, cell));
+      grid.appendChild(cell);
+    }
+  }
+
+  function formatDate(ds) {
+    const [y,m,d] = ds.split('-');
+    return MONTHS[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
+  }
+
+  function pickDate(dateStr, cell) {
+    selectedDate = dateStr; selectedSlot = null;
+    document.querySelectorAll('.cal-cell.friday').forEach(c => c.classList.remove('selected'));
+    cell.classList.add('selected');
+    document.getElementById('slotsHeading').textContent = formatDate(dateStr);
+    const sg = document.getElementById('slotsGrid');
+    sg.innerHTML = '';
+    SLOTS.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.className = 'slot-btn'; btn.textContent = slot;
+      btn.addEventListener('click', () => pickSlot(slot, btn));
+      sg.appendChild(btn);
+    });
+    if (selectedServiceName) updateTotal(); else checkReady(0);
+  }
+
+  function pickSlot(slot, btn) {
+    selectedSlot = slot;
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    if (selectedServiceName) updateTotal(); else checkReady(0);
+  }
+
+  document.getElementById('prevMonth').addEventListener('click', () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } renderCal(); });
+  document.getElementById('nextMonth').addEventListener('click', () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } renderCal(); });
+  renderCal();
+
+  // PAYMENT
+  async function handlePayment() {
+    const btn = document.getElementById('payBtn');
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('payEmail').value.trim();
+    if (!firstName || !email) { document.getElementById('card-errors').textContent = 'Please fill in your name and email.'; return; }
+    if (!selectedServiceName) { document.getElementById('card-errors').textContent = 'Please select a service.'; return; }
+    if (!selectedDate || !selectedSlot) { document.getElementById('card-errors').textContent = 'Please pick a Friday and time slot.'; return; }
+    btn.disabled = true;
+    document.getElementById('payBtnText').textContent = 'Processing...';
+
+    // NOTE: In production, call YOUR backend to create a PaymentIntent and get a clientSecret.
+    // Example: const res = await fetch('/create-payment-intent', { method: 'POST', body: JSON.stringify({ amount: calcTotal() * 100 }) });
+    // const { clientSecret } = await res.json();
+    // Then: const result = await stripe.confirmCardPayment(clientSecret, { payment_method: { card: cardElement, billing_details: { name: firstName + ' ' + lastName, email } } });
+    // if (result.error) { document.getElementById('card-errors').textContent = result.error.message; btn.disabled = false; }
+    // else { show success }
+
+    setTimeout(() => {
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
+  }
+</script>
 </body>
 </html>
