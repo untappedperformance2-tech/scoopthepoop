@@ -1,408 +1,326 @@
-this is my code from my backup:                <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Schedule & Pay | Scoop The Poop | Eagle Mountain, UT</title>
   <meta name="description" content="Schedule your pet waste removal service. Pick a Friday, choose your service, and pay online - all in one place.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --green-deep: #1e4620;
+      --green-mid: #2d6b30;
+      --green-soft: #4a8c3e;
+      --green-muted: #7ab56b;
+      --green-pale: #c8dfc2;
+      --green-bg: #edf4ea;
+      --green-light: #f4f9f2;
+      --accent: #f5a623;
+      --accent-light: #fef3dc;
+      --text-dark: #0f2412;
+      --text-mid: #2d4a30;
+      --text-soft: #577a50;
+      --text-muted: #8aaa82;
+      --border: rgba(46, 100, 50, 0.14);
+      --white: #ffffff;
+      --error: #c0392b;
+      --error-bg: #fdecea;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7f5;
-      color: #1a2a1f;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--green-light);
+      color: var(--text-dark);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
 
+    /* === ANIMATED BACKGROUND === */
     .living-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -2;
-      background: linear-gradient(135deg, #e8f0e5 0%, #d4e2d0 50%, #e2ecd8 100%);
-      background-size: 200% 200%;
-      animation: gentleShift 18s ease infinite;
+      background: radial-gradient(ellipse at 20% 30%, #d8ecd3 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 70%, #cce5c5 0%, transparent 55%),
+                  radial-gradient(ellipse at 50% 90%, #e2f0dc 0%, transparent 50%),
+                  #edf4ea;
+      animation: bgBreath 20s ease infinite;
     }
-
-    @keyframes gentleShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes bgBreath {
+      0%,100% { filter: brightness(1); }
+      50% { filter: brightness(0.97); }
     }
 
     .particle-area {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; overflow: hidden; pointer-events: none;
     }
-
     .poop-emoji {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatSoft 24s infinite linear;
-      opacity: 0.12;
+      position: absolute; font-size: 2rem;
+      animation: floatSoft 24s infinite linear; opacity: 0.09;
+      user-select: none;
     }
     .poop-emoji:nth-child(1) { left: 5%; top: 20%; animation-duration: 32s; font-size: 2.5rem; }
     .poop-emoji:nth-child(2) { left: 80%; top: 60%; animation-duration: 28s; font-size: 2rem; }
-    .poop-emoji:nth-child(3) { left: 60%; top: 10%; animation-duration: 40s; font-size: 3rem; opacity: 0.08; }
+    .poop-emoji:nth-child(3) { left: 60%; top: 10%; animation-duration: 40s; font-size: 3rem; opacity: 0.06; }
     .poop-emoji:nth-child(4) { left: 15%; top: 75%; animation-duration: 35s; font-size: 1.8rem; }
     .poop-emoji:nth-child(5) { left: 90%; top: 30%; animation-duration: 26s; font-size: 2.2rem; }
-    .poop-emoji:nth-child(6) { left: 40%; top: 85%; animation-duration: 45s; font-size: 2.8rem; opacity: 0.1; }
+    .poop-emoji:nth-child(6) { left: 40%; top: 85%; animation-duration: 45s; font-size: 2.8rem; opacity: 0.07; }
     .poop-emoji:nth-child(7) { left: 70%; top: 45%; animation-duration: 30s; font-size: 1.5rem; }
     .poop-emoji:nth-child(8) { left: 25%; top: 15%; animation-duration: 38s; font-size: 1.8rem; }
-
     @keyframes floatSoft {
-      0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-      33% { transform: translateY(-40px) translateX(20px) rotate(10deg); }
-      66% { transform: translateY(30px) translateX(-15px) rotate(-5deg); }
+      0%   { transform: translateY(0px) translateX(0px) rotate(0deg); }
+      33%  { transform: translateY(-40px) translateX(20px) rotate(10deg); }
+      66%  { transform: translateY(30px) translateX(-15px) rotate(-5deg); }
       100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
     }
 
+    /* === CONTACT BANNER === */
+    .contact-banner {
+      background: var(--green-deep);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .contact-banner a {
+      color: var(--green-pale);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .contact-banner a:hover { color: var(--white); }
+    .contact-banner i { margin-right: 5px; opacity: 0.8; }
+    .banner-sep { opacity: 0.35; }
+
+    /* === LAYOUT === */
     .container {
-      max-width: 1280px;
+      max-width: 1260px;
       margin: 0 auto;
-      padding: 2rem 2rem 3rem;
-      position: relative;
+      padding: 1.5rem 2rem 3rem;
     }
 
+    /* === NAVBAR === */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 0.8rem 2rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(60, 90, 50, 0.1);
+      gap: 1rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 0.85rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
     }
-
-    .logo h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #2d5a2c;
-      letter-spacing: -0.3px;
-    }
-    .logo p {
-      font-size: 0.75rem;
-      color: #5a7a4e;
-      letter-spacing: 0.5px;
-    }
-
+    .logo h1 { font-size: 1.55rem; font-weight: 800; color: var(--green-deep); letter-spacing: -0.5px; }
+    .logo p { font-size: 0.72rem; color: var(--text-soft); letter-spacing: 0.6px; text-transform: uppercase; margin-top: 1px; }
     .nav-links a {
-      color: #2a3a25;
-      text-decoration: none;
-      font-weight: 500;
-      margin-left: 2rem;
-      font-size: 1rem;
-      transition: 0.2s;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
+      color: var(--text-mid); text-decoration: none; font-weight: 600;
+      margin-left: 2rem; font-size: 0.95rem; transition: 0.2s;
+      padding-bottom: 3px; border-bottom: 2px solid transparent;
     }
     .nav-links a:hover, .nav-links a.active {
-      border-bottom-color: #4a7c3f;
-      color: #3a6a2f;
+      border-bottom-color: var(--green-soft); color: var(--green-deep);
     }
 
-    .page-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .page-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #1a3a15;
-      margin-bottom: 0.5rem;
-    }
-    .page-subtitle {
-      font-size: 1rem;
-      color: #5a7a4e;
-    }
-    .page-subtitle:after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #8bba7a;
-      margin: 1rem auto 0;
-      border-radius: 2px;
+    /* === PAGE HEADER === */
+    .page-header { text-align: center; margin-bottom: 1.8rem; }
+    .page-title { font-size: 2.1rem; font-weight: 800; color: var(--green-deep); margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+    .page-subtitle { font-size: 0.95rem; color: var(--text-soft); }
+    .page-subtitle::after {
+      content: ''; display: block; width: 50px; height: 3px;
+      background: var(--green-muted); margin: 0.9rem auto 0; border-radius: 2px;
     }
 
-    .form-container {
-      background: white;
-      border-radius: 28px;
-      padding: 2rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(80, 110, 70, 0.1);
-    }
-
-    .two-columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .column {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .section-title-form {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #1a3a15;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #e0e8db;
-    }
-    .section-title-form i {
-      margin-right: 8px;
-      color: #4a8c3e;
-    }
-
-    /* CALENDAR STYLES */
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    .month-nav {
-      background: #e8f0e5;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #2d5a2c;
-      transition: 0.2s;
-    }
-    .month-nav:hover {
-      background: #d4e2d0;
-    }
-    .current-month {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #1a3a15;
-    }
-    .calendar-weekdays, .calendar-days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      text-align: center;
-    }
-    .calendar-weekdays div {
-      font-weight: 600;
-      padding: 8px 0;
-      font-size: 0.7rem;
-      color: #5a7a4e;
-    }
-    .calendar-day {
-      padding: 8px 0;
-      border-radius: 40px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.2s;
-      background: #f5f7f5;
-      margin: 2px;
-    }
-    .calendar-day:hover:not(.disabled-day):not(.selected-day) {
-      background: #d4e2d0;
-    }
-    .friday-available {
-      background: #e8f0e5;
-      color: #2d5a2c;
-      font-weight: 500;
-    }
-    .disabled-day {
-      color: #c0c8bb;
-      cursor: not-allowed;
-      background: #fafbf9;
-    }
-    .selected-day {
-      background: #3a7a30;
-      color: white;
-    }
-
-    .time-slots-section {
-      margin: 1.5rem 0;
-    }
-    .time-slots-section h4 {
-      font-size: 0.9rem;
-      color: #3a4a35;
-      margin-bottom: 0.8rem;
-    }
-    .time-slots-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .time-slot {
-      padding: 6px 12px;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.2s;
-      border: none;
-      background: #e8f0e5;
-      color: #2d5a2c;
-    }
-    .time-slot.available {
-      background: #4a8c3e;
-      color: white;
-      cursor: pointer;
-    }
-    .time-slot.available:hover {
-      background: #3a7a30;
-      transform: scale(1.02);
-    }
-    .time-slot.unavailable {
-      background: #d0d8cc;
-      color: #8a9a85;
-      cursor: not-allowed;
-    }
-    .time-slot.selected-slot {
-      background: #2d6224;
-      color: white;
-      box-shadow: 0 0 0 2px #8bba7a;
-    }
-    .slot-feedback {
-      font-size: 0.75rem;
-      color: #5a7a4e;
-      margin-top: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #2a3a25;
-      font-size: 0.85rem;
-    }
-    label .required {
-      color: #c23a00;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 10px 14px;
-      background: #fafbf9;
-      border: 1px solid #d0dbc8;
+    /* === POLICY BANNER === */
+    .policy-banner {
+      background: linear-gradient(135deg, #1e4620 0%, #2d6b30 100%);
+      color: var(--white);
       border-radius: 16px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: 0.2s;
-    }
-    input:focus, textarea:focus, select:focus {
-      border-color: #4a8c3e;
-      box-shadow: 0 0 0 3px rgba(74, 140, 62, 0.1);
-    }
-
-    .price-summary {
-      background: #e8f0e5;
-      border-radius: 20px;
-      padding: 1rem;
-      margin: 1rem 0;
-    }
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
-    }
-    .price-row.total {
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-top: 1px solid #c0d0b8;
-      margin-top: 0.5rem;
-      padding-top: 0.75rem;
-      color: #1a3a15;
-    }
-
-    .btn-pay {
-      background: #3a7a30;
-      color: white;
-      font-weight: 700;
-      border: none;
-      padding: 14px 20px;
-      width: 100%;
-      border-radius: 40px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 1rem;
+      padding: 14px 24px;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 0.6rem 2rem;
+      box-shadow: 0 4px 14px rgba(30,70,32,0.22);
     }
-    .btn-pay:hover {
-      background: #2d6224;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-    }
-    .btn-pay:disabled {
-      background: #b0c4a8;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .error-message {
-      background: #fce4d6;
-      color: #c23a00;
-      padding: 12px;
-      border-radius: 16px;
-      margin-top: 1rem;
-      text-align: center;
-      display: none;
-      font-weight: 500;
+    .policy-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
       font-size: 0.85rem;
+      letter-spacing: 0.2px;
+    }
+    .policy-item i { font-size: 0.95rem; opacity: 0.85; }
+
+    /* === MAIN FORM CARD === */
+    .form-container {
+      background: var(--white);
+      border-radius: 26px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
     }
 
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(60, 80, 50, 0.1);
+    .two-columns { display: flex; flex-wrap: wrap; gap: 2.5rem; }
+    .column { flex: 1; min-width: 270px; }
+
+    .section-title-form {
+      font-size: 1.15rem; font-weight: 700; color: var(--green-deep);
+      margin-bottom: 1.4rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--green-bg);
+    }
+    .section-title-form i { margin-right: 8px; color: var(--green-soft); }
+
+    /* === CALENDAR === */
+    .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
+    .month-nav {
+      background: var(--green-bg); border: none; padding: 8px 13px;
+      border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 600;
+      color: var(--green-deep); transition: 0.2s; font-family: inherit;
+    }
+    .month-nav:hover { background: var(--green-pale); }
+    .current-month { font-weight: 700; font-size: 0.95rem; color: var(--green-deep); }
+
+    .calendar-weekdays, .calendar-days {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center;
+    }
+    .calendar-weekdays div {
+      font-weight: 700; padding: 7px 0; font-size: 0.67rem;
+      color: var(--text-muted); letter-spacing: 0.5px;
+    }
+    .calendar-day {
+      padding: 8px 0; border-radius: 50%; cursor: pointer;
+      font-size: 0.78rem; font-weight: 500; transition: 0.15s;
+      background: transparent; margin: 1px;
+    }
+    .calendar-day:hover:not(.disabled-day):not(.selected-day) { background: var(--green-bg); }
+    .friday-available { background: var(--green-bg); color: var(--green-deep); font-weight: 700; }
+    .disabled-day { color: #cdd5ca; cursor: not-allowed; }
+    .selected-day { background: var(--green-deep) !important; color: var(--white) !important; font-weight: 700; }
+
+    /* === TIME SLOTS === */
+    .time-slots-section { margin-top: 1.5rem; }
+    .time-slots-section h4 { font-size: 0.82rem; color: var(--text-mid); font-weight: 600; margin-bottom: 0.7rem; }
+    .time-slots-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .time-slot {
+      padding: 5px 10px; border-radius: 30px; font-size: 0.72rem;
+      font-weight: 600; cursor: pointer; transition: 0.15s; border: none;
+      font-family: inherit;
+    }
+    .time-slot.available { background: var(--green-bg); color: var(--green-deep); }
+    .time-slot.available:hover { background: var(--green-pale); transform: translateY(-1px); }
+    .time-slot.unavailable { background: #f0f0f0; color: #bbb; cursor: not-allowed; }
+    .time-slot.selected-slot { background: var(--green-deep); color: white; box-shadow: 0 0 0 2px var(--green-muted); }
+    .slot-feedback { font-size: 0.73rem; color: var(--green-soft); margin-top: 8px; font-weight: 600; }
+
+    /* === FORM FIELDS === */
+    .form-group { margin-bottom: 1.1rem; }
+    label { display: block; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-mid); font-size: 0.82rem; }
+    label .required { color: var(--error); margin-left: 2px; }
+    input, textarea, select {
+      width: 100%; padding: 10px 14px;
+      background: var(--green-light); border: 1.5px solid var(--green-pale);
+      border-radius: 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; outline: none; transition: 0.2s; color: var(--text-dark);
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--green-soft);
+      box-shadow: 0 0 0 3px rgba(74,140,62,0.12);
+      background: white;
+    }
+    textarea { resize: vertical; }
+
+    /* Last cleanup dropdown hidden by default */
+    .last-cleanup-group { display: none; }
+
+    /* === PRICE DISPLAY === */
+    .price-summary {
+      background: var(--green-bg);
+      border-radius: 18px;
+      padding: 1.1rem 1.2rem;
+      margin: 1.2rem 0 0.5rem;
+      border: 1px solid var(--green-pale);
+    }
+    .price-row {
+      display: flex; justify-content: space-between;
+      padding: 5px 0; font-size: 0.88rem; color: var(--text-mid);
+    }
+    .price-row.total {
+      font-weight: 800; font-size: 1.05rem; color: var(--green-deep);
+      border-top: 1.5px solid var(--green-pale); margin-top: 6px; padding-top: 10px;
+    }
+    .recurring-note {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 10px 14px;
       font-size: 0.8rem;
-      color: #5a7a4e;
+      color: #7a5000;
+      font-weight: 500;
+      margin-top: 0.6rem;
+      display: none;
+    }
+    .recurring-note strong { color: #5a3a00; }
+
+    /* === PAY BUTTON === */
+    .btn-pay {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+      color: white; font-weight: 700; border: none; padding: 15px 20px;
+      width: 100%; border-radius: 40px; font-size: 1rem; cursor: pointer;
+      transition: 0.2s; margin-top: 1rem; display: flex;
+      align-items: center; justify-content: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif; letter-spacing: 0.2px;
+      box-shadow: 0 4px 14px rgba(30,70,32,0.25);
+    }
+    .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,70,32,0.3); }
+    .btn-pay:active { transform: translateY(0); }
+    .btn-pay:disabled { background: #b8ccb4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* === ERROR === */
+    .error-message {
+      background: var(--error-bg); color: var(--error);
+      padding: 12px 16px; border-radius: 14px; margin-top: 1rem;
+      text-align: center; display: none; font-weight: 600; font-size: 0.83rem;
+      border-left: 3px solid var(--error);
     }
 
-    @media (max-width: 780px) {
-      .container { padding: 1rem; }
+    /* === FOOTER === */
+    footer {
+      text-align: center; margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted);
+    }
+    footer p + p { margin-top: 4px; }
+
+    @media (max-width: 800px) {
+      .container { padding: 1rem 1rem 2.5rem; }
       .navbar { flex-direction: column; text-align: center; }
-      .nav-links a { margin: 0 1rem; }
+      .nav-links a { margin: 0 0.8rem; }
       .two-columns { flex-direction: column; }
-      .page-title { font-size: 1.6rem; }
+      .page-title { font-size: 1.7rem; }
+      .policy-banner { text-align: center; }
+      .contact-banner { font-size: 0.82rem; }
     }
   </style>
 </head>
 <body>
+
+<!-- FLOATING POOP BACKGROUND -->
 <div class="living-bg"></div>
 <div class="particle-area">
   <div class="poop-emoji">💩</div>
@@ -415,7 +333,17 @@ this is my code from my backup:                <!DOCTYPE html>
   <div class="poop-emoji">💩</div>
 </div>
 
+<!-- CONTACT BANNER -->
+<div class="contact-banner">
+  <span>💬 Questions? We're here to help!</span>
+  <span class="banner-sep">|</span>
+  <span><i class="fas fa-envelope"></i><a href="mailto:contact@scoopthepoop.net">contact@scoopthepoop.net</a></span>
+  <span class="banner-sep">|</span>
+  <span><i class="fas fa-phone"></i><a href="tel:+13853381939">(385) 338-1939</a></span>
+</div>
+
 <div class="container">
+  <!-- NAV -->
   <div class="navbar">
     <div class="logo">
       <h1>Scoop The Poop</h1>
@@ -423,47 +351,57 @@ this is my code from my backup:                <!DOCTYPE html>
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="contact.html" class="active">Schedule & Pay</a>
+      <a href="contact.html" class="active">Schedule &amp; Pay</a>
     </div>
   </div>
 
+  <!-- PAGE HEADER -->
   <div class="page-header">
-    <h1 class="page-title">Schedule & Pay</h1>
-    <div class="page-subtitle">Pick a Friday, choose your service, and pay online - all in one step</div>
+    <h1 class="page-title">Schedule &amp; Pay</h1>
+    <div class="page-subtitle">Pick a Friday, choose your service, and pay online — all in one step</div>
   </div>
 
+  <!-- POLICY BANNER -->
+  <div class="policy-banner">
+    <div class="policy-item"><i class="fas fa-file-contract"></i> NO CONTRACTS</div>
+    <div class="policy-item"><i class="fas fa-lock"></i> Security gates will be locked</div>
+    <div class="policy-item"><i class="fas fa-heart"></i> We care about your pets</div>
+  </div>
+
+  <!-- MAIN FORM -->
   <div class="form-container">
     <div class="two-columns">
-      <!-- LEFT COLUMN: Calendar & Time -->
+
+      <!-- LEFT: Calendar & Time -->
       <div class="column">
-        <div class="section-title-form"><i class="fas fa-calendar-alt"></i> Select Date & Time</div>
-        
+        <div class="section-title-form"><i class="fas fa-calendar-alt"></i> Select Date &amp; Time</div>
+
         <div class="calendar-header">
           <button class="month-nav" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
-          <span class="current-month" id="currentMonthDisplay">March 2026</span>
+          <span class="current-month" id="currentMonthDisplay"></span>
           <button class="month-nav" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="calendar-weekdays" id="calendarWeekdays"></div>
         <div class="calendar-days" id="calendarDays"></div>
 
-        <div class="time-slots-section" id="timeSlotsSection" style="display: none;">
+        <div class="time-slots-section" id="timeSlotsSection" style="display:none;">
           <h4><i class="fas fa-clock"></i> Available time slots for <span id="selectedDateDisplay"></span></h4>
           <div class="time-slots-grid" id="timeSlotsGrid"></div>
           <div class="slot-feedback" id="slotFeedback"></div>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Customer Info & Service Selection -->
+      <!-- RIGHT: Info & Service -->
       <div class="column">
         <div class="section-title-form"><i class="fas fa-user"></i> Your Information</div>
-        
+
         <div class="form-group">
           <label>Full name <span class="required">*</span></label>
-          <input type="text" id="customerName" placeholder="John Doe">
+          <input type="text" id="customerName" placeholder="Jane Smith">
         </div>
         <div class="form-group">
           <label>Email address <span class="required">*</span></label>
-          <input type="email" id="customerEmail" placeholder="john@example.com">
+          <input type="email" id="customerEmail" placeholder="jane@example.com">
         </div>
         <div class="form-group">
           <label>Phone number</label>
@@ -474,25 +412,37 @@ this is my code from my backup:                <!DOCTYPE html>
           <input type="text" id="customerAddress" placeholder="Street address, Eagle Mountain, UT">
         </div>
 
-        <div class="section-title-form" style="margin-top: 1rem;"><i class="fas fa-paw"></i> Service Selection</div>
-        
+        <div class="section-title-form" style="margin-top:1.2rem;"><i class="fas fa-paw"></i> Service Selection</div>
+
         <div class="form-group">
           <label>Service type <span class="required">*</span></label>
           <select id="serviceType">
-            <option value="weekly" data-price="25">Weekly cleanup - $25/week</option>
-            <option value="biweekly" data-price="35">Bi-weekly cleanup - $35/visit</option>
-            <option value="onetime" data-price="45">One-time cleanup - $45</option>
+            <option value="weekly">Weekly cleanup</option>
+            <option value="biweekly">Bi-weekly cleanup</option>
+            <option value="onetime">One-time cleanup</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Number of pets <span class="required">*</span></label>
+          <label>Number of dogs <span class="required">*</span></label>
           <select id="petCount">
-            <option value="1">1 pet</option>
-            <option value="2">2 pets (+$5)</option>
-            <option value="3">3 pets (+$10)</option>
-            <option value="4">4 pets (+$15)</option>
-            <option value="5">5+ pets (+$20)</option>
+            <option value="1">1 dog</option>
+            <option value="2">2 dogs</option>
+            <option value="3">3 dogs</option>
+            <option value="4">4 dogs</option>
+            <option value="5">5 dogs</option>
+          </select>
+        </div>
+
+        <!-- Last cleanup — only shown for one-time OR to calculate initial visit cost -->
+        <div class="form-group last-cleanup-group" id="lastCleanupGroup">
+          <label>When was the last cleanup? <span class="required">*</span></label>
+          <select id="lastCleanup">
+            <option value="within1mo">Within the last month</option>
+            <option value="1to2mo">1–2 months ago</option>
+            <option value="2to3mo">2–3 months ago</option>
+            <option value="3to4mo">3–4 months ago</option>
+            <option value="4plus">4+ months ago (or never)</option>
           </select>
         </div>
 
@@ -500,7 +450,7 @@ this is my code from my backup:                <!DOCTYPE html>
           <label>Add sanitation station</label>
           <select id="sanitation">
             <option value="no">No, thank you</option>
-            <option value="yes">Yes (+$15)</option>
+            <option value="yes">Yes (+$10)</option>
           </select>
         </div>
 
@@ -515,26 +465,29 @@ this is my code from my backup:                <!DOCTYPE html>
 
         <!-- Price Summary -->
         <div class="price-summary">
-          <div class="price-row">
-            <span>Base service:</span>
-            <span id="basePriceDisplay">$25.00</span>
+          <div class="price-row" id="initialPriceRow">
+            <span id="initialPriceLabel">Initial cleanup:</span>
+            <span id="initialPriceDisplay">$40.00</span>
           </div>
-          <div class="price-row" id="petExtraRow" style="display: none;">
-            <span>Extra pets:</span>
-            <span id="petExtraDisplay">$0</span>
-          </div>
-          <div class="price-row" id="sanitationRow" style="display: none;">
+          <div class="price-row" id="sanitationRow" style="display:none;">
             <span>Sanitation station:</span>
-            <span id="sanitationDisplay">$0</span>
+            <span id="sanitationDisplay">+$10.00</span>
           </div>
           <div class="price-row total">
             <span>Total due today:</span>
-            <span id="totalAmount">$25.00</span>
+            <span id="totalAmount">$40.00</span>
           </div>
         </div>
 
+        <!-- Recurring price info note -->
+        <div class="recurring-note" id="recurringNote">
+          <strong>📅 After this initial visit:</strong> Your recurring rate will be
+          <strong id="recurringRateDisplay">$15/visit</strong>.
+          No contracts — cancel anytime.
+        </div>
+
         <button class="btn-pay" id="payButton">
-          <i class="fas fa-credit-card"></i> Pay Now - Secure Checkout
+          <i class="fas fa-credit-card"></i> Pay Now — Secure Checkout
         </button>
         <div class="error-message" id="errorMessage"></div>
       </div>
@@ -543,307 +496,318 @@ this is my code from my backup:                <!DOCTYPE html>
 
   <footer>
     <p>© 2026 Scoop The Poop — Eagle Mountain, Utah. Professional pet waste removal. All rights reserved.</p>
-    <p>Website Created by Darkbloom Industries™</p>
+    <p>Website Created by <strong>Darkbloom Industries™</strong></p>
   </footer>
 </div>
 
 <script>
   // ============================================================
-  // PRICING CONFIGURATION - EDIT THESE NUMBERS TO CHANGE PRICES
+  // PRICING CONFIGURATION
   // ============================================================
-  const PRICING = {
-    weekly: 25,
-    biweekly: 35,
-    onetime: 45,
-    extraPet: 5,
-    sanitation: 15
+
+  // Initial cleanup prices [dogs 1-5][period index 0-4]
+  // Periods: 0=within1mo, 1=1-2mo, 2=2-3mo, 3=3-4mo, 4=4+mo
+  const INITIAL_PRICES = {
+    1: [40,  60,  80,  100, 120],
+    2: [50,  75,  100, 125, 150],
+    3: [60,  90,  120, 150, 180],
+    4: [70,  105, 140, 175, 210],
+    5: [80,  120, 160, 200, 235]
   };
+
+  // Recurring prices after initial cleanup (per visit)
+  const RECURRING_PRICES = {
+    1: 15, 2: 20, 3: 25, 4: 30, 5: 35
+  };
+
+  const PERIOD_INDEX = {
+    within1mo: 0,
+    '1to2mo':  1,
+    '2to3mo':  2,
+    '3to4mo':  3,
+    '4plus':   4
+  };
+
+  const SANITATION_PRICE = 10;
+  const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
+
   // ============================================================
-  
-  // Generate time slots (8:00 AM to 6:00 PM every 30 minutes)
+  // TIME SLOTS
+  // ============================================================
   const timeSlots = [];
   for (let hour = 8; hour <= 18; hour++) {
     for (let minute of [0, 30]) {
       if (hour === 18 && minute === 30) continue;
-      const displayHour = hour > 12 ? hour - 12 : hour;
+      const displayHour = hour > 12 ? hour - 12 : (hour === 0 ? 12 : hour);
       const ampm = hour >= 12 ? 'PM' : 'AM';
-      const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
-      timeSlots.push(timeString);
+      timeSlots.push(`${displayHour}:${minute.toString().padStart(2,'0')} ${ampm}`);
     }
   }
 
-  // Booked slots - add dates here to mark as unavailable
+  // Add booked slots here: e.g. ['2026-05-23:9:00 AM']
   const bookedSlots = [];
 
+  // ============================================================
+  // STATE
+  // ============================================================
   let currentDate = new Date();
   let selectedCalendarDate = null;
   let selectedSlot = null;
 
-  // DOM elements
-  const serviceTypeSelect = document.getElementById('serviceType');
-  const petCountSelect = document.getElementById('petCount');
-  const sanitationSelect = document.getElementById('sanitation');
-  const basePriceDisplay = document.getElementById('basePriceDisplay');
-  const petExtraRow = document.getElementById('petExtraRow');
-  const petExtraDisplay = document.getElementById('petExtraDisplay');
-  const sanitationRow = document.getElementById('sanitationRow');
-  const sanitationDisplay = document.getElementById('sanitationDisplay');
-  const totalAmountSpan = document.getElementById('totalAmount');
-  const payButton = document.getElementById('payButton');
-  const errorMessage = document.getElementById('errorMessage');
+  // ============================================================
+  // DOM REFS
+  // ============================================================
+  const serviceTypeSelect  = document.getElementById('serviceType');
+  const petCountSelect     = document.getElementById('petCount');
+  const lastCleanupSelect  = document.getElementById('lastCleanup');
+  const sanitationSelect   = document.getElementById('sanitation');
+  const lastCleanupGroup   = document.getElementById('lastCleanupGroup');
+  const initialPriceLabel  = document.getElementById('initialPriceLabel');
+  const initialPriceDisplay= document.getElementById('initialPriceDisplay');
+  const sanitationRow      = document.getElementById('sanitationRow');
+  const sanitationDisplay  = document.getElementById('sanitationDisplay');
+  const totalAmountSpan    = document.getElementById('totalAmount');
+  const recurringNote      = document.getElementById('recurringNote');
+  const recurringRateDisplay = document.getElementById('recurringRateDisplay');
+  const payButton          = document.getElementById('payButton');
+  const errorMessage       = document.getElementById('errorMessage');
 
+  // ============================================================
+  // HELPERS
+  // ============================================================
   function formatDateKey(date) {
     return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
   }
-
   function formatDisplayDate(date) {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   }
-
-  function isFriday(date) {
-    return date.getDay() === 5;
-  }
-
+  function isFriday(date) { return date.getDay() === 5; }
   function isPastDate(date) {
-    const today = new Date();
-    today.setHours(0,0,0,0);
+    const today = new Date(); today.setHours(0,0,0,0);
     return date < today;
   }
-
   function isSlotAvailable(dateStr, slot) {
-    const key = `${dateStr}:${slot}`;
-    return !bookedSlots.includes(key);
+    return !bookedSlots.includes(`${dateStr}:${slot}`);
   }
 
+  // ============================================================
+  // PRICE CALCULATION
+  // ============================================================
   function calculateTotal() {
+    const dogs        = parseInt(petCountSelect.value) || 1;
     const serviceType = serviceTypeSelect.value;
-    let basePrice = PRICING[serviceType] || 25;
-    
-    let petCount = parseInt(petCountSelect.value);
-    let extraPetCost = (petCount - 1) * PRICING.extraPet;
-    if (extraPetCost < 0) extraPetCost = 0;
-    
-    let sanitationCost = sanitationSelect.value === 'yes' ? PRICING.sanitation : 0;
-    
-    let total = basePrice + extraPetCost + sanitationCost;
-    
-    basePriceDisplay.textContent = `$${basePrice.toFixed(2)}`;
-    
-    if (extraPetCost > 0) {
-      petExtraRow.style.display = 'flex';
-      petExtraDisplay.textContent = `+$${extraPetCost.toFixed(2)}`;
+    const period      = lastCleanupSelect.value;
+    const hasSanitation = sanitationSelect.value === 'yes';
+
+    // Always show last cleanup dropdown (affects initial price for all service types)
+    lastCleanupGroup.style.display = 'block';
+
+    // Initial price (what they pay today)
+    const periodIdx = PERIOD_INDEX[period] ?? 0;
+    const initialPrice = INITIAL_PRICES[dogs]?.[periodIdx] ?? 40;
+
+    // Sanitation
+    const sanitationCost = hasSanitation ? SANITATION_PRICE : 0;
+
+    const total = initialPrice + sanitationCost;
+
+    // Update labels
+    if (serviceType === 'onetime') {
+      initialPriceLabel.textContent = 'One-time cleanup:';
+      recurringNote.style.display = 'none';
     } else {
-      petExtraRow.style.display = 'none';
+      initialPriceLabel.textContent = 'Initial cleanup (today):';
+      recurringNote.style.display = 'block';
+      const recurringRate = RECURRING_PRICES[dogs] ?? 15;
+      const label = serviceType === 'weekly' ? 'week' : 'visit';
+      recurringRateDisplay.textContent = `$${recurringRate}/${label}`;
     }
-    
+
+    initialPriceDisplay.textContent = `$${initialPrice.toFixed(2)}`;
+
     if (sanitationCost > 0) {
       sanitationRow.style.display = 'flex';
       sanitationDisplay.textContent = `+$${sanitationCost.toFixed(2)}`;
     } else {
       sanitationRow.style.display = 'none';
     }
-    
+
     totalAmountSpan.textContent = `$${total.toFixed(2)}`;
     return total;
   }
 
+  // ============================================================
+  // CALENDAR
+  // ============================================================
   function renderCalendar() {
-    const year = currentDate.getFullYear();
+    const year  = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    
-    const firstDay = new Date(year, month, 1);
+
+    const firstDay      = new Date(year, month, 1);
     const startDayOfWeek = firstDay.getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const daysInMonth   = new Date(year, month+1, 0).getDate();
+
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('currentMonthDisplay').textContent = `${monthNames[month]} ${year}`;
-    
-    const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    const weekdayHtml = weekdays.map(day => `<div>${day}</div>`).join('');
-    document.getElementById('calendarWeekdays').innerHTML = weekdayHtml;
-    
-    let daysHtml = '';
-    
-    for (let i = 0; i < startDayOfWeek; i++) {
-      daysHtml += '<div class="calendar-day disabled-day"></div>';
-    }
-    
+
+    const weekdays = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    document.getElementById('calendarWeekdays').innerHTML = weekdays.map(d=>`<div>${d}</div>`).join('');
+
+    let html = '';
+    for (let i = 0; i < startDayOfWeek; i++) html += '<div class="calendar-day disabled-day"></div>';
+
     for (let d = 1; d <= daysInMonth; d++) {
       const dateObj = new Date(year, month, d);
-      const isFri = isFriday(dateObj);
-      const isPast = isPastDate(dateObj);
-      const isAvailable = isFri && !isPast;
-      const isSelected = selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
-      
-      let dayClass = 'calendar-day';
-      if (!isFri || isPast) {
-        dayClass += ' disabled-day';
-      } else if (isAvailable) {
-        dayClass += ' friday-available';
-      }
-      if (isSelected) {
-        dayClass += ' selected-day';
-      }
-      
-      const onclickAttr = isAvailable ? `onclick="selectDate('${formatDateKey(dateObj)}', ${dateObj.getFullYear()}, ${dateObj.getMonth()}, ${dateObj.getDate()})"` : '';
-      
-      daysHtml += `<div class="${dayClass}" ${onclickAttr}>${d}</div>`;
+      const isFri   = isFriday(dateObj);
+      const isPast  = isPastDate(dateObj);
+      const avail   = isFri && !isPast;
+      const selected= selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
+
+      let cls = 'calendar-day';
+      if (!isFri || isPast) cls += ' disabled-day';
+      else if (avail) cls += ' friday-available';
+      if (selected) cls += ' selected-day';
+
+      const onclick = avail
+        ? `onclick="selectDate('${formatDateKey(dateObj)}', ${year}, ${month}, ${d})"`
+        : '';
+      html += `<div class="${cls}" ${onclick}>${d}</div>`;
     }
-    
-    document.getElementById('calendarDays').innerHTML = daysHtml;
+
+    document.getElementById('calendarDays').innerHTML = html;
   }
-  
+
   window.selectDate = function(dateKey, year, month, day) {
     selectedCalendarDate = new Date(year, month, day);
     document.getElementById('selectedDate').value = dateKey;
-    
     document.getElementById('selectedDateDisplay').textContent = formatDisplayDate(selectedCalendarDate);
-    
-    const slotsContainer = document.getElementById('timeSlotsGrid');
-    slotsContainer.innerHTML = '';
-    
+
+    const grid = document.getElementById('timeSlotsGrid');
+    grid.innerHTML = '';
+
     timeSlots.forEach(slot => {
-      const isAvail = isSlotAvailable(dateKey, slot);
-      const slotClass = `time-slot ${isAvail ? 'available' : 'unavailable'}`;
-      const isSelectedSlot = (selectedSlot === slot);
-      const selectedClass = isSelectedSlot ? 'selected-slot' : '';
-      
-      const button = document.createElement('button');
-      button.className = `${slotClass} ${selectedClass}`;
-      button.textContent = slot;
-      if (isAvail) {
-        button.onclick = () => selectTimeSlot(slot);
-      }
-      slotsContainer.appendChild(button);
+      const avail = isSlotAvailable(dateKey, slot);
+      const isSelected = selectedSlot === slot;
+      const btn = document.createElement('button');
+      btn.className = `time-slot ${avail ? 'available' : 'unavailable'}${isSelected ? ' selected-slot' : ''}`;
+      btn.textContent = slot;
+      if (avail) btn.onclick = (e) => selectTimeSlot(slot, e.target);
+      grid.appendChild(btn);
     });
-    
+
     document.getElementById('timeSlotsSection').style.display = 'block';
     renderCalendar();
   };
-  
-  function selectTimeSlot(slot) {
+
+  function selectTimeSlot(slot, el) {
     selectedSlot = slot;
     document.getElementById('selectedTimeSlot').value = slot;
-    
-    const allSlots = document.querySelectorAll('.time-slot');
-    allSlots.forEach(slotEl => {
-      slotEl.classList.remove('selected-slot');
-    });
-    event.target.classList.add('selected-slot');
-    
-    document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected-slot'));
+    el.classList.add('selected-slot');
+    document.getElementById('slotFeedback').textContent = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
   }
-  
+
   document.getElementById('prevMonthBtn').addEventListener('click', () => {
     currentDate.setMonth(currentDate.getMonth() - 1);
     renderCalendar();
   });
-  
   document.getElementById('nextMonthBtn').addEventListener('click', () => {
     currentDate.setMonth(currentDate.getMonth() + 1);
     renderCalendar();
   });
-  
-  function hideError() {
-    errorMessage.style.display = 'none';
-    errorMessage.textContent = '';
-  }
-  
-  function showError(msg) {
-    errorMessage.textContent = msg;
-    errorMessage.style.display = 'block';
-  }
-  
-  // Event listeners for price recalculation
-  serviceTypeSelect.addEventListener('change', calculateTotal);
-  petCountSelect.addEventListener('change', calculateTotal);
-  sanitationSelect.addEventListener('change', calculateTotal);
-  
-  // STRIPE PAYMENT - Calls your existing Cloudflare Worker
-  const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
-  
+
+  // ============================================================
+  // ERROR HELPERS
+  // ============================================================
+  function showError(msg) { errorMessage.textContent = msg; errorMessage.style.display = 'block'; }
+  function hideError() { errorMessage.textContent = ''; errorMessage.style.display = 'none'; }
+
+  // ============================================================
+  // PAY BUTTON
+  // ============================================================
   payButton.addEventListener('click', async () => {
     hideError();
-    
-    // Validate form
-    const name = document.getElementById('customerName').value.trim();
-    const email = document.getElementById('customerEmail').value.trim();
-    const address = document.getElementById('customerAddress').value.trim();
-    const selectedDate = document.getElementById('selectedDate').value;
-    const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
-    
-    if (!name) { showError('Please enter your full name.'); return; }
-    if (!email) { showError('Please enter your email address.'); return; }
-    if (!address) { showError('Please enter your address.'); return; }
-    if (!selectedDate) { showError('Please select a Friday date.'); return; }
-    if (!selectedTimeSlot) { showError('Please select a time slot.'); return; }
-    
-    const total = calculateTotal();
+
+    const name      = document.getElementById('customerName').value.trim();
+    const email     = document.getElementById('customerEmail').value.trim();
+    const address   = document.getElementById('customerAddress').value.trim();
+    const date      = document.getElementById('selectedDate').value;
+    const timeSlot  = document.getElementById('selectedTimeSlot').value;
+
+    if (!name)     { showError('Please enter your full name.');       return; }
+    if (!email)    { showError('Please enter your email address.');   return; }
+    if (!address)  { showError('Please enter your address.');         return; }
+    if (!date)     { showError('Please select a Friday date.');       return; }
+    if (!timeSlot) { showError('Please select a time slot.');         return; }
+
+    const total       = calculateTotal();
     const serviceType = serviceTypeSelect.value;
-    const petCount = parseInt(petCountSelect.value);
-    const extraPets = petCount - 1;
-    const hasSanitation = sanitationSelect.value === 'yes';
-    const notes = document.getElementById('notes').value;
-    
-    // Disable button while processing
+    const dogs        = parseInt(petCountSelect.value);
+    const lastCleanup = lastCleanupSelect.value;
+    const hasSan      = sanitationSelect.value === 'yes';
+    const notes       = document.getElementById('notes').value;
+    const phone       = document.getElementById('customerPhone').value;
+
     payButton.disabled = true;
     payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Redirecting to Stripe...';
-    
+
     try {
       const response = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          serviceType: serviceType,
-          extraPets: extraPets > 0 ? extraPets : 0,
-          sanitation: hasSanitation,
+          serviceType,
+          dogs,
+          lastCleanup,
+          sanitation: hasSan,
           totalAmount: total,
           customerName: name,
           customerEmail: email,
-          customerPhone: document.getElementById('customerPhone').value,
+          customerPhone: phone,
           customerAddress: address,
-          preferredDate: selectedDate,
-          preferredTime: selectedTimeSlot,
-          notes: notes
-        }),
+          preferredDate: date,
+          preferredTime: timeSlot,
+          notes
+        })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.url) {
-        // Also submit to Formspree for your records
-        const formspreeData = new FormData();
-        formspreeData.append('name', name);
-        formspreeData.append('email', email);
-        formspreeData.append('phone', document.getElementById('customerPhone').value);
-        formspreeData.append('address', address);
-        formspreeData.append('service_type', serviceType);
-        formspreeData.append('pet_count', petCount);
-        formspreeData.append('sanitation', hasSanitation ? 'yes' : 'no');
-        formspreeData.append('preferred_date', selectedDate);
-        formspreeData.append('preferred_time', selectedTimeSlot);
-        formspreeData.append('message', notes);
-        
-        fetch('https://formspree.io/f/mzdovywq', {
-          method: 'POST',
-          body: formspreeData,
-          mode: 'no-cors'
-        }).catch(err => console.log('Formspree error:', err));
-        
+        // Also ping Formspree for records
+        const fd = new FormData();
+        fd.append('name', name); fd.append('email', email);
+        fd.append('phone', phone); fd.append('address', address);
+        fd.append('service_type', serviceType); fd.append('dog_count', dogs);
+        fd.append('last_cleanup', lastCleanup); fd.append('sanitation', hasSan ? 'yes' : 'no');
+        fd.append('preferred_date', date); fd.append('preferred_time', timeSlot);
+        fd.append('message', notes);
+        fetch('https://formspree.io/f/mzdovywq', { method: 'POST', body: fd, mode: 'no-cors' })
+          .catch(e => console.log('Formspree error:', e));
+
         window.location.href = data.url;
       } else {
-        throw new Error(data.error || 'Something went wrong');
+        throw new Error(data.error || 'Something went wrong. Please try again.');
       }
-    } catch (error) {
-      console.error('Payment error:', error);
-      showError('Payment error: ' + error.message + '\n\nPlease try again or contact us at (385)338-1939');
+    } catch (err) {
+      console.error('Payment error:', err);
+      showError('Payment error: ' + err.message + '\n\nPlease try again or call (385) 338-1939');
       payButton.disabled = false;
-      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now - Secure Checkout';
+      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now — Secure Checkout';
     }
   });
-  
-  // Initial render
+
+  // ============================================================
+  // LIVE PRICE UPDATES
+  // ============================================================
+  serviceTypeSelect.addEventListener('change', calculateTotal);
+  petCountSelect.addEventListener('change', calculateTotal);
+  lastCleanupSelect.addEventListener('change', calculateTotal);
+  sanitationSelect.addEventListener('change', calculateTotal);
+
+  // ============================================================
+  // INIT
+  // ============================================================
   renderCalendar();
   calculateTotal();
 </script>
