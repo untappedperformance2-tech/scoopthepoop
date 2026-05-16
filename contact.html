@@ -38,7 +38,6 @@
       overflow-x: hidden;
     }
 
-    /* === ANIMATED BACKGROUND === */
     .living-bg {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -2;
@@ -62,7 +61,7 @@
       animation: floatSoft 24s infinite linear; opacity: 0.09;
       user-select: none;
     }
-    .poop-emoji:nth-child(1) { left: 5%; top: 20%; animation-duration: 32s; font-size: 2.5rem; }
+    .poop-emoji:nth-child(1) { left: 5%;  top: 20%; animation-duration: 32s; font-size: 2.5rem; }
     .poop-emoji:nth-child(2) { left: 80%; top: 60%; animation-duration: 28s; font-size: 2rem; }
     .poop-emoji:nth-child(3) { left: 60%; top: 10%; animation-duration: 40s; font-size: 3rem; opacity: 0.06; }
     .poop-emoji:nth-child(4) { left: 15%; top: 75%; animation-duration: 35s; font-size: 1.8rem; }
@@ -92,52 +91,33 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-    .contact-banner a {
-      color: var(--green-pale);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
+    .contact-banner a { color: var(--green-pale); text-decoration: none; font-weight: 600; transition: color 0.2s; }
     .contact-banner a:hover { color: var(--white); }
     .contact-banner i { margin-right: 5px; opacity: 0.8; }
     .banner-sep { opacity: 0.35; }
 
-    /* === LAYOUT === */
-    .container {
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 1.5rem 2rem 3rem;
-    }
+    .container { max-width: 1260px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
 
     /* === NAVBAR === */
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 18px;
-      padding: 0.85rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-radius: 18px; padding: 0.85rem 2rem; margin-bottom: 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05); border: 1px solid var(--border);
     }
     .logo h1 { font-size: 1.55rem; font-weight: 800; color: var(--green-deep); letter-spacing: -0.5px; }
-    .logo p { font-size: 0.72rem; color: var(--text-soft); letter-spacing: 0.6px; text-transform: uppercase; margin-top: 1px; }
+    .logo p  { font-size: 0.72rem; color: var(--text-soft); letter-spacing: 0.6px; text-transform: uppercase; margin-top: 1px; }
     .nav-links a {
       color: var(--text-mid); text-decoration: none; font-weight: 600;
       margin-left: 2rem; font-size: 0.95rem; transition: 0.2s;
       padding-bottom: 3px; border-bottom: 2px solid transparent;
     }
-    .nav-links a:hover, .nav-links a.active {
-      border-bottom-color: var(--green-soft); color: var(--green-deep);
-    }
+    .nav-links a:hover, .nav-links a.active { border-bottom-color: var(--green-soft); color: var(--green-deep); }
 
     /* === PAGE HEADER === */
     .page-header { text-align: center; margin-bottom: 1.8rem; }
-    .page-title { font-size: 2.1rem; font-weight: 800; color: var(--green-deep); margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+    .page-title  { font-size: 2.1rem; font-weight: 800; color: var(--green-deep); margin-bottom: 0.4rem; letter-spacing: -0.5px; }
     .page-subtitle { font-size: 0.95rem; color: var(--text-soft); }
     .page-subtitle::after {
       content: ''; display: block; width: 50px; height: 3px;
@@ -147,86 +127,61 @@
     /* === POLICY BANNER === */
     .policy-banner {
       background: linear-gradient(135deg, #1e4620 0%, #2d6b30 100%);
-      color: var(--white);
-      border-radius: 16px;
-      padding: 14px 24px;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.6rem 2rem;
+      color: var(--white); border-radius: 16px; padding: 14px 24px;
+      margin-bottom: 1.5rem; display: flex; align-items: center;
+      justify-content: center; flex-wrap: wrap; gap: 0.6rem 2rem;
       box-shadow: 0 4px 14px rgba(30,70,32,0.22);
     }
-    .policy-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.2px;
-    }
+    .policy-item { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.2px; }
     .policy-item i { font-size: 0.95rem; opacity: 0.85; }
 
-    /* === MAIN FORM CARD === */
+    /* === FORM CARD === */
     .form-container {
-      background: var(--white);
-      border-radius: 26px;
-      padding: 2rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-      border: 1px solid var(--border);
+      background: var(--white); border-radius: 26px; padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06); border: 1px solid var(--border);
     }
-
     .two-columns { display: flex; flex-wrap: wrap; gap: 2.5rem; }
     .column { flex: 1; min-width: 270px; }
 
     .section-title-form {
       font-size: 1.15rem; font-weight: 700; color: var(--green-deep);
-      margin-bottom: 1.4rem; padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--green-bg);
+      margin-bottom: 1.4rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--green-bg);
     }
     .section-title-form i { margin-right: 8px; color: var(--green-soft); }
 
     /* === CALENDAR === */
     .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
     .month-nav {
-      background: var(--green-bg); border: none; padding: 8px 13px;
-      border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 600;
-      color: var(--green-deep); transition: 0.2s; font-family: inherit;
+      background: var(--green-bg); border: none; padding: 8px 13px; border-radius: 30px;
+      cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--green-deep);
+      transition: 0.2s; font-family: inherit;
     }
     .month-nav:hover { background: var(--green-pale); }
-    .current-month { font-weight: 700; font-size: 0.95rem; color: var(--green-deep); }
+    .current-month  { font-weight: 700; font-size: 0.95rem; color: var(--green-deep); }
 
-    .calendar-weekdays, .calendar-days {
-      display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center;
-    }
-    .calendar-weekdays div {
-      font-weight: 700; padding: 7px 0; font-size: 0.67rem;
-      color: var(--text-muted); letter-spacing: 0.5px;
-    }
+    .calendar-weekdays, .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; }
+    .calendar-weekdays div { font-weight: 700; padding: 7px 0; font-size: 0.67rem; color: var(--text-muted); letter-spacing: 0.5px; }
     .calendar-day {
-      padding: 8px 0; border-radius: 50%; cursor: pointer;
-      font-size: 0.78rem; font-weight: 500; transition: 0.15s;
-      background: transparent; margin: 1px;
+      padding: 8px 0; border-radius: 50%; cursor: pointer; font-size: 0.78rem;
+      font-weight: 500; transition: 0.15s; background: transparent; margin: 1px;
     }
     .calendar-day:hover:not(.disabled-day):not(.selected-day) { background: var(--green-bg); }
     .friday-available { background: var(--green-bg); color: var(--green-deep); font-weight: 700; }
-    .disabled-day { color: #cdd5ca; cursor: not-allowed; }
-    .selected-day { background: var(--green-deep) !important; color: var(--white) !important; font-weight: 700; }
+    .disabled-day     { color: #cdd5ca; cursor: not-allowed; }
+    .selected-day     { background: var(--green-deep) !important; color: var(--white) !important; font-weight: 700; }
 
     /* === TIME SLOTS === */
     .time-slots-section { margin-top: 1.5rem; }
     .time-slots-section h4 { font-size: 0.82rem; color: var(--text-mid); font-weight: 600; margin-bottom: 0.7rem; }
     .time-slots-grid { display: flex; flex-wrap: wrap; gap: 6px; }
     .time-slot {
-      padding: 5px 10px; border-radius: 30px; font-size: 0.72rem;
-      font-weight: 600; cursor: pointer; transition: 0.15s; border: none;
-      font-family: inherit;
+      padding: 5px 10px; border-radius: 30px; font-size: 0.72rem; font-weight: 600;
+      cursor: pointer; transition: 0.15s; border: none; font-family: inherit;
     }
-    .time-slot.available { background: var(--green-bg); color: var(--green-deep); }
-    .time-slot.available:hover { background: var(--green-pale); transform: translateY(-1px); }
-    .time-slot.unavailable { background: #f0f0f0; color: #bbb; cursor: not-allowed; }
-    .time-slot.selected-slot { background: var(--green-deep); color: white; box-shadow: 0 0 0 2px var(--green-muted); }
+    .time-slot.available      { background: var(--green-bg); color: var(--green-deep); }
+    .time-slot.available:hover{ background: var(--green-pale); transform: translateY(-1px); }
+    .time-slot.unavailable    { background: #f0f0f0; color: #bbb; cursor: not-allowed; }
+    .time-slot.selected-slot  { background: var(--green-deep); color: white; box-shadow: 0 0 0 2px var(--green-muted); }
     .slot-feedback { font-size: 0.73rem; color: var(--green-soft); margin-top: 8px; font-weight: 600; }
 
     /* === FORM FIELDS === */
@@ -240,67 +195,46 @@
       font-size: 0.88rem; outline: none; transition: 0.2s; color: var(--text-dark);
     }
     input:focus, textarea:focus, select:focus {
-      border-color: var(--green-soft);
-      box-shadow: 0 0 0 3px rgba(74,140,62,0.12);
-      background: white;
+      border-color: var(--green-soft); box-shadow: 0 0 0 3px rgba(74,140,62,0.12); background: white;
     }
     textarea { resize: vertical; }
 
-    /* Last cleanup dropdown hidden by default */
-    .last-cleanup-group { display: none; }
-
-    /* === PRICE DISPLAY === */
+    /* === PRICE SUMMARY === */
     .price-summary {
-      background: var(--green-bg);
-      border-radius: 18px;
-      padding: 1.1rem 1.2rem;
-      margin: 1.2rem 0 0.5rem;
-      border: 1px solid var(--green-pale);
+      background: var(--green-bg); border-radius: 18px; padding: 1.1rem 1.2rem;
+      margin: 1.2rem 0 0.5rem; border: 1px solid var(--green-pale);
     }
-    .price-row {
-      display: flex; justify-content: space-between;
-      padding: 5px 0; font-size: 0.88rem; color: var(--text-mid);
-    }
+    .price-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.88rem; color: var(--text-mid); }
     .price-row.total {
       font-weight: 800; font-size: 1.05rem; color: var(--green-deep);
       border-top: 1.5px solid var(--green-pale); margin-top: 6px; padding-top: 10px;
     }
     .recurring-note {
-      background: var(--accent-light);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 12px 12px 0;
-      padding: 10px 14px;
-      font-size: 0.8rem;
-      color: #7a5000;
-      font-weight: 500;
-      margin-top: 0.6rem;
-      display: none;
+      background: var(--accent-light); border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 10px 14px; font-size: 0.8rem;
+      color: #7a5000; font-weight: 500; margin-top: 0.6rem; display: none;
     }
     .recurring-note strong { color: #5a3a00; }
 
     /* === PAY BUTTON === */
     .btn-pay {
       background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
-      color: white; font-weight: 700; border: none; padding: 15px 20px;
-      width: 100%; border-radius: 40px; font-size: 1rem; cursor: pointer;
-      transition: 0.2s; margin-top: 1rem; display: flex;
-      align-items: center; justify-content: center; gap: 10px;
-      font-family: 'DM Sans', sans-serif; letter-spacing: 0.2px;
-      box-shadow: 0 4px 14px rgba(30,70,32,0.25);
+      color: white; font-weight: 700; border: none; padding: 15px 20px; width: 100%;
+      border-radius: 40px; font-size: 1rem; cursor: pointer; transition: 0.2s; margin-top: 1rem;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif; letter-spacing: 0.2px; box-shadow: 0 4px 14px rgba(30,70,32,0.25);
     }
-    .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,70,32,0.3); }
-    .btn-pay:active { transform: translateY(0); }
+    .btn-pay:hover    { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,70,32,0.3); }
+    .btn-pay:active   { transform: translateY(0); }
     .btn-pay:disabled { background: #b8ccb4; cursor: not-allowed; transform: none; box-shadow: none; }
 
     /* === ERROR === */
     .error-message {
-      background: var(--error-bg); color: var(--error);
-      padding: 12px 16px; border-radius: 14px; margin-top: 1rem;
-      text-align: center; display: none; font-weight: 600; font-size: 0.83rem;
-      border-left: 3px solid var(--error);
+      background: var(--error-bg); color: var(--error); padding: 12px 16px;
+      border-radius: 14px; margin-top: 1rem; text-align: center; display: none;
+      font-weight: 600; font-size: 0.83rem; border-left: 3px solid var(--error);
     }
 
-    /* === FOOTER === */
     footer {
       text-align: center; margin-top: 3rem; padding-top: 2rem;
       border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text-muted);
@@ -320,7 +254,6 @@
 </head>
 <body>
 
-<!-- FLOATING POOP BACKGROUND -->
 <div class="living-bg"></div>
 <div class="particle-area">
   <div class="poop-emoji">💩</div>
@@ -343,7 +276,6 @@
 </div>
 
 <div class="container">
-  <!-- NAV -->
   <div class="navbar">
     <div class="logo">
       <h1>Scoop The Poop</h1>
@@ -355,27 +287,23 @@
     </div>
   </div>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
     <h1 class="page-title">Schedule &amp; Pay</h1>
     <div class="page-subtitle">Pick a Friday, choose your service, and pay online — all in one step</div>
   </div>
 
-  <!-- POLICY BANNER -->
   <div class="policy-banner">
     <div class="policy-item"><i class="fas fa-file-contract"></i> NO CONTRACTS</div>
     <div class="policy-item"><i class="fas fa-lock"></i> Security gates will be locked</div>
     <div class="policy-item"><i class="fas fa-heart"></i> We care about your pets</div>
   </div>
 
-  <!-- MAIN FORM -->
   <div class="form-container">
     <div class="two-columns">
 
       <!-- LEFT: Calendar & Time -->
       <div class="column">
         <div class="section-title-form"><i class="fas fa-calendar-alt"></i> Select Date &amp; Time</div>
-
         <div class="calendar-header">
           <button class="month-nav" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
           <span class="current-month" id="currentMonthDisplay"></span>
@@ -434,8 +362,7 @@
           </select>
         </div>
 
-        <!-- Last cleanup — only shown for one-time OR to calculate initial visit cost -->
-        <div class="form-group last-cleanup-group" id="lastCleanupGroup">
+        <div class="form-group" id="lastCleanupGroup">
           <label>When was the last cleanup? <span class="required">*</span></label>
           <select id="lastCleanup">
             <option value="within1mo">Within the last month</option>
@@ -459,13 +386,11 @@
           <textarea id="notes" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
         </div>
 
-        <!-- Hidden fields -->
         <input type="hidden" id="selectedDate" value="">
         <input type="hidden" id="selectedTimeSlot" value="">
 
-        <!-- Price Summary -->
         <div class="price-summary">
-          <div class="price-row" id="initialPriceRow">
+          <div class="price-row">
             <span id="initialPriceLabel">Initial cleanup:</span>
             <span id="initialPriceDisplay">$40.00</span>
           </div>
@@ -479,7 +404,6 @@
           </div>
         </div>
 
-        <!-- Recurring price info note -->
         <div class="recurring-note" id="recurringNote">
           <strong>📅 After this initial visit:</strong> Your recurring rate will be
           <strong id="recurringRateDisplay">$15/visit</strong>.
@@ -504,9 +428,6 @@
   // ============================================================
   // PRICING CONFIGURATION
   // ============================================================
-
-  // Initial cleanup prices [dogs 1-5][period index 0-4]
-  // Periods: 0=within1mo, 1=1-2mo, 2=2-3mo, 3=3-4mo, 4=4+mo
   const INITIAL_PRICES = {
     1: [40,  60,  80,  100, 120],
     2: [50,  75,  100, 125, 150],
@@ -514,25 +435,15 @@
     4: [70,  105, 140, 175, 210],
     5: [80,  120, 160, 200, 235]
   };
-
-  // Recurring prices after initial cleanup (per visit)
-  const RECURRING_PRICES = {
-    1: 15, 2: 20, 3: 25, 4: 30, 5: 35
-  };
-
+  const RECURRING_PRICES = { 1: 15, 2: 20, 3: 25, 4: 30, 5: 35 };
   const PERIOD_INDEX = {
-    within1mo: 0,
-    '1to2mo':  1,
-    '2to3mo':  2,
-    '3to4mo':  3,
-    '4plus':   4
+    within1mo: 0, '1to2mo': 1, '2to3mo': 2, '3to4mo': 3, '4plus': 4
   };
-
   const SANITATION_PRICE = 10;
   const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
 
   // ============================================================
-  // TIME SLOTS
+  // TIME SLOTS (8 AM – 6 PM, every 30 min)
   // ============================================================
   const timeSlots = [];
   for (let hour = 8; hour <= 18; hour++) {
@@ -544,33 +455,32 @@
     }
   }
 
-  // Add booked slots here: e.g. ['2026-05-23:9:00 AM']
+  // Mark booked slots here: e.g. ['2026-05-23:9:00 AM']
   const bookedSlots = [];
 
   // ============================================================
   // STATE
   // ============================================================
-  let currentDate = new Date();
+  let currentDate          = new Date();
   let selectedCalendarDate = null;
-  let selectedSlot = null;
+  let selectedSlot         = null;
 
   // ============================================================
   // DOM REFS
   // ============================================================
-  const serviceTypeSelect  = document.getElementById('serviceType');
-  const petCountSelect     = document.getElementById('petCount');
-  const lastCleanupSelect  = document.getElementById('lastCleanup');
-  const sanitationSelect   = document.getElementById('sanitation');
-  const lastCleanupGroup   = document.getElementById('lastCleanupGroup');
-  const initialPriceLabel  = document.getElementById('initialPriceLabel');
-  const initialPriceDisplay= document.getElementById('initialPriceDisplay');
-  const sanitationRow      = document.getElementById('sanitationRow');
-  const sanitationDisplay  = document.getElementById('sanitationDisplay');
-  const totalAmountSpan    = document.getElementById('totalAmount');
-  const recurringNote      = document.getElementById('recurringNote');
+  const serviceTypeSelect    = document.getElementById('serviceType');
+  const petCountSelect       = document.getElementById('petCount');
+  const lastCleanupSelect    = document.getElementById('lastCleanup');
+  const sanitationSelect     = document.getElementById('sanitation');
+  const initialPriceLabel    = document.getElementById('initialPriceLabel');
+  const initialPriceDisplay  = document.getElementById('initialPriceDisplay');
+  const sanitationRow        = document.getElementById('sanitationRow');
+  const sanitationDisplay    = document.getElementById('sanitationDisplay');
+  const totalAmountSpan      = document.getElementById('totalAmount');
+  const recurringNote        = document.getElementById('recurringNote');
   const recurringRateDisplay = document.getElementById('recurringRateDisplay');
-  const payButton          = document.getElementById('payButton');
-  const errorMessage       = document.getElementById('errorMessage');
+  const payButton            = document.getElementById('payButton');
+  const errorMessage         = document.getElementById('errorMessage');
 
   // ============================================================
   // HELPERS
@@ -581,52 +491,38 @@
   function formatDisplayDate(date) {
     return date.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   }
-  function isFriday(date) { return date.getDay() === 5; }
-  function isPastDate(date) {
-    const today = new Date(); today.setHours(0,0,0,0);
-    return date < today;
-  }
-  function isSlotAvailable(dateStr, slot) {
-    return !bookedSlots.includes(`${dateStr}:${slot}`);
-  }
+  function isFriday(date)   { return date.getDay() === 5; }
+  function isPastDate(date) { const t = new Date(); t.setHours(0,0,0,0); return date < t; }
+  function isSlotAvailable(dateStr, slot) { return !bookedSlots.includes(`${dateStr}:${slot}`); }
 
   // ============================================================
   // PRICE CALCULATION
   // ============================================================
   function calculateTotal() {
-    const dogs        = parseInt(petCountSelect.value) || 1;
-    const serviceType = serviceTypeSelect.value;
-    const period      = lastCleanupSelect.value;
+    const dogs          = parseInt(petCountSelect.value) || 1;
+    const serviceType   = serviceTypeSelect.value;
+    const period        = lastCleanupSelect.value;
     const hasSanitation = sanitationSelect.value === 'yes';
 
-    // Always show last cleanup dropdown (affects initial price for all service types)
-    lastCleanupGroup.style.display = 'block';
-
-    // Initial price (what they pay today)
-    const periodIdx = PERIOD_INDEX[period] ?? 0;
-    const initialPrice = INITIAL_PRICES[dogs]?.[periodIdx] ?? 40;
-
-    // Sanitation
+    const periodIdx      = PERIOD_INDEX[period] ?? 0;
+    const initialPrice   = INITIAL_PRICES[dogs]?.[periodIdx] ?? 40;
     const sanitationCost = hasSanitation ? SANITATION_PRICE : 0;
+    const total          = initialPrice + sanitationCost;
 
-    const total = initialPrice + sanitationCost;
-
-    // Update labels
     if (serviceType === 'onetime') {
       initialPriceLabel.textContent = 'One-time cleanup:';
-      recurringNote.style.display = 'none';
+      recurringNote.style.display   = 'none';
     } else {
       initialPriceLabel.textContent = 'Initial cleanup (today):';
-      recurringNote.style.display = 'block';
-      const recurringRate = RECURRING_PRICES[dogs] ?? 15;
+      recurringNote.style.display   = 'block';
       const label = serviceType === 'weekly' ? 'week' : 'visit';
-      recurringRateDisplay.textContent = `$${recurringRate}/${label}`;
+      recurringRateDisplay.textContent = `$${RECURRING_PRICES[dogs] ?? 15}/${label}`;
     }
 
     initialPriceDisplay.textContent = `$${initialPrice.toFixed(2)}`;
 
     if (sanitationCost > 0) {
-      sanitationRow.style.display = 'flex';
+      sanitationRow.style.display   = 'flex';
       sanitationDisplay.textContent = `+$${sanitationCost.toFixed(2)}`;
     } else {
       sanitationRow.style.display = 'none';
@@ -642,38 +538,27 @@
   function renderCalendar() {
     const year  = currentDate.getFullYear();
     const month = currentDate.getMonth();
-
-    const firstDay      = new Date(year, month, 1);
+    const firstDay       = new Date(year, month, 1);
     const startDayOfWeek = firstDay.getDay();
-    const daysInMonth   = new Date(year, month+1, 0).getDate();
+    const daysInMonth    = new Date(year, month+1, 0).getDate();
 
     const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('currentMonthDisplay').textContent = `${monthNames[month]} ${year}`;
-
-    const weekdays = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-    document.getElementById('calendarWeekdays').innerHTML = weekdays.map(d=>`<div>${d}</div>`).join('');
+    document.getElementById('calendarWeekdays').innerHTML = ['SUN','MON','TUE','WED','THU','FRI','SAT'].map(d=>`<div>${d}</div>`).join('');
 
     let html = '';
     for (let i = 0; i < startDayOfWeek; i++) html += '<div class="calendar-day disabled-day"></div>';
-
     for (let d = 1; d <= daysInMonth; d++) {
-      const dateObj = new Date(year, month, d);
-      const isFri   = isFriday(dateObj);
-      const isPast  = isPastDate(dateObj);
-      const avail   = isFri && !isPast;
-      const selected= selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
-
+      const dateObj  = new Date(year, month, d);
+      const avail    = isFriday(dateObj) && !isPastDate(dateObj);
+      const selected = selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
       let cls = 'calendar-day';
-      if (!isFri || isPast) cls += ' disabled-day';
+      if (!isFriday(dateObj) || isPastDate(dateObj)) cls += ' disabled-day';
       else if (avail) cls += ' friday-available';
       if (selected) cls += ' selected-day';
-
-      const onclick = avail
-        ? `onclick="selectDate('${formatDateKey(dateObj)}', ${year}, ${month}, ${d})"`
-        : '';
+      const onclick = avail ? `onclick="selectDate('${formatDateKey(dateObj)}', ${year}, ${month}, ${d})"` : '';
       html += `<div class="${cls}" ${onclick}>${d}</div>`;
     }
-
     document.getElementById('calendarDays').innerHTML = html;
   }
 
@@ -684,12 +569,10 @@
 
     const grid = document.getElementById('timeSlotsGrid');
     grid.innerHTML = '';
-
     timeSlots.forEach(slot => {
       const avail = isSlotAvailable(dateKey, slot);
-      const isSelected = selectedSlot === slot;
-      const btn = document.createElement('button');
-      btn.className = `time-slot ${avail ? 'available' : 'unavailable'}${isSelected ? ' selected-slot' : ''}`;
+      const btn   = document.createElement('button');
+      btn.className   = `time-slot ${avail ? 'available' : 'unavailable'}${selectedSlot === slot ? ' selected-slot' : ''}`;
       btn.textContent = slot;
       if (avail) btn.onclick = (e) => selectTimeSlot(slot, e.target);
       grid.appendChild(btn);
@@ -707,20 +590,14 @@
     document.getElementById('slotFeedback').textContent = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
   }
 
-  document.getElementById('prevMonthBtn').addEventListener('click', () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-  });
-  document.getElementById('nextMonthBtn').addEventListener('click', () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-  });
+  document.getElementById('prevMonthBtn').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); });
+  document.getElementById('nextMonthBtn').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); });
 
   // ============================================================
   // ERROR HELPERS
   // ============================================================
   function showError(msg) { errorMessage.textContent = msg; errorMessage.style.display = 'block'; }
-  function hideError() { errorMessage.textContent = ''; errorMessage.style.display = 'none'; }
+  function hideError()    { errorMessage.textContent = ''; errorMessage.style.display = 'none'; }
 
   // ============================================================
   // PAY BUTTON
@@ -728,17 +605,17 @@
   payButton.addEventListener('click', async () => {
     hideError();
 
-    const name      = document.getElementById('customerName').value.trim();
-    const email     = document.getElementById('customerEmail').value.trim();
-    const address   = document.getElementById('customerAddress').value.trim();
-    const date      = document.getElementById('selectedDate').value;
-    const timeSlot  = document.getElementById('selectedTimeSlot').value;
+    const name     = document.getElementById('customerName').value.trim();
+    const email    = document.getElementById('customerEmail').value.trim();
+    const address  = document.getElementById('customerAddress').value.trim();
+    const date     = document.getElementById('selectedDate').value;
+    const timeSlot = document.getElementById('selectedTimeSlot').value;
 
-    if (!name)     { showError('Please enter your full name.');       return; }
-    if (!email)    { showError('Please enter your email address.');   return; }
-    if (!address)  { showError('Please enter your address.');         return; }
-    if (!date)     { showError('Please select a Friday date.');       return; }
-    if (!timeSlot) { showError('Please select a time slot.');         return; }
+    if (!name)     { showError('Please enter your full name.');     return; }
+    if (!email)    { showError('Please enter your email address.'); return; }
+    if (!address)  { showError('Please enter your address.');       return; }
+    if (!date)     { showError('Please select a Friday date.');     return; }
+    if (!timeSlot) { showError('Please select a time slot.');       return; }
 
     const total       = calculateTotal();
     const serviceType = serviceTypeSelect.value;
@@ -756,36 +633,32 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          serviceType,
-          dogs,
-          lastCleanup,
-          sanitation: hasSan,
-          totalAmount: total,
-          customerName: name,
-          customerEmail: email,
-          customerPhone: phone,
-          customerAddress: address,
-          preferredDate: date,
-          preferredTime: timeSlot,
-          notes
+          serviceType, dogs, lastCleanup, sanitation: hasSan,
+          totalAmount: total, customerName: name, customerEmail: email,
+          customerPhone: phone, customerAddress: address,
+          preferredDate: date, preferredTime: timeSlot, notes
         })
       });
 
       const data = await response.json();
 
       if (data.url) {
-        // Also ping Formspree for records
-        const fd = new FormData();
-        fd.append('name', name); fd.append('email', email);
-        fd.append('phone', phone); fd.append('address', address);
-        fd.append('service_type', serviceType); fd.append('dog_count', dogs);
-        fd.append('last_cleanup', lastCleanup); fd.append('sanitation', hasSan ? 'yes' : 'no');
-        fd.append('preferred_date', date); fd.append('preferred_time', timeSlot);
-        fd.append('message', notes);
-        fetch('https://formspree.io/f/mzdovywq', { method: 'POST', body: fd, mode: 'no-cors' })
-          .catch(e => console.log('Formspree error:', e));
+        // -----------------------------------------------------------
+        // Store booking in sessionStorage so thank-you-payment.html
+        // can send the Formspree notification ONLY after Stripe
+        // confirms payment. Nothing is emailed until then.
+        // -----------------------------------------------------------
+        sessionStorage.setItem('pendingBooking', JSON.stringify({
+          name, email, phone, address,
+          serviceType, dogs, lastCleanup,
+          sanitation: hasSan ? 'yes' : 'no',
+          preferredDate: date, preferredTime: timeSlot,
+          notes, total
+        }));
 
+        // Send customer to Stripe — Formspree fires on success page
         window.location.href = data.url;
+
       } else {
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
