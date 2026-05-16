@@ -498,7 +498,21 @@
         <div class="form-group"><label>Service Address <span class="required">*</span></label><input type="text" id="customerAddress" placeholder="Street address, Eagle Mountain, UT"></div>
 
         <div class="section-title-form" style="margin-top: 0.5rem;"><i class="fas fa-paw"></i> Service Details</div>
-        <div class="form-group"><label>Service type <span class="required">*</span></label>
+        
+        <!-- ALWAYS ASK FOR LAST CLEANUP (for initial pricing) -->
+        <div class="form-group">
+          <label>When was the last time you had your yard cleaned? <span class="required">*</span></label>
+          <select id="lastCleanup">
+            <option value="within1mo">Within 1 month</option>
+            <option value="1to2mo">1-2 months ago</option>
+            <option value="2to3mo">2-3 months ago</option>
+            <option value="3to4mo">3-4 months ago</option>
+            <option value="4plus">4+ months ago / Never</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Service type <span class="required">*</span></label>
           <select id="serviceType">
             <option value="weekly">Weekly cleanup (recurring)</option>
             <option value="biweekly">Bi-weekly cleanup (recurring)</option>
@@ -506,29 +520,21 @@
           </select>
         </div>
 
-        <div class="form-group"><label>Number of dogs <span class="required">*</span></label>
+        <div class="form-group">
+          <label>Number of dogs <span class="required">*</span></label>
           <select id="dogCount">
             <option value="1">1 dog</option><option value="2">2 dogs</option><option value="3">3 dogs</option>
             <option value="4">4 dogs</option><option value="5">5 dogs</option>
           </select>
         </div>
 
-        <div class="form-group" id="lastCleanupGroup" style="display: none;">
-          <label>When was the last cleanup? <span class="required">*</span></label>
-          <select id="lastCleanup">
-            <option value="within1mo">Within 1 month</option>
-            <option value="1to2mo">1-2 months ago</option>
-            <option value="2to3mo">2-3 months ago</option>
-            <option value="3to4mo">3-4 months ago</option>
-            <option value="4plus">4+ months ago</option>
-          </select>
-        </div>
-
-        <div class="form-group"><label>Add sanitation station (+$10)</label>
+        <div class="form-group">
+          <label>Add sanitation station (+$10)</label>
           <select id="sanitation"><option value="no">No, thank you</option><option value="yes">Yes, add sanitation (+$10)</option></select>
         </div>
 
-        <div class="form-group"><label>Notes (gate code, access instructions, etc.)</label>
+        <div class="form-group">
+          <label>Notes (gate code, access instructions, etc.)</label>
           <textarea id="notes" rows="2" placeholder="Gate code, yard access notes, special requests..."></textarea>
         </div>
 
@@ -571,7 +577,6 @@
   // DOM elements
   const serviceTypeEl = document.getElementById('serviceType');
   const dogCountEl = document.getElementById('dogCount');
-  const lastCleanupGroup = document.getElementById('lastCleanupGroup');
   const lastCleanupEl = document.getElementById('lastCleanup');
   const sanitationEl = document.getElementById('sanitation');
   const initialPriceSpan = document.getElementById('initialPriceDisplay');
@@ -597,10 +602,22 @@
   }
   const bookedSlots = [];
 
-  function formatDateKey(d) { return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`; }
-  function formatDisplayDate(d) { return d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
+  function formatDateKey(d) { 
+    return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`; 
+  }
+  
+  function formatDisplayDate(d) { 
+    return d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); 
+  }
+  
   function isFriday(d) { return d.getDay() === 5; }
-  function isPastDate(d) { let today = new Date(); today.setHours(0,0,0,0); return d < today; }
+  
+  function isPastDate(d) { 
+    let today = new Date(); 
+    today.setHours(0,0,0,0); 
+    return d < today; 
+  }
+  
   function isSlotAvailable(dateStr, slot) { return !bookedSlots.includes(`${dateStr}:${slot}`); }
 
   // Calculate total based on selections
@@ -608,19 +625,16 @@
     const dogs = parseInt(dogCountEl.value);
     const service = serviceTypeEl.value;
     const sanitation = sanitationEl.value === 'yes';
-    let initialPrice = 0;
+    const lastCleanup = lastCleanupEl.value;
+    
+    // Get initial price based on dogs and last cleanup
+    const initialPrice = INITIAL_PRICES[dogs]?.[lastCleanup] || 100;
+    
     let recurringText = '';
-
-    if (service === 'onetime') {
-      const last = lastCleanupEl.value;
-      initialPrice = INITIAL_PRICES[dogs]?.[last] || 100;
-      recurringText = '';
-    } else {
+    if (service !== 'onetime') {
       const recurringPrice = RECURRING_PRICES[dogs] || 25;
-      const last = lastCleanupEl.value || 'within1mo';
-      initialPrice = INITIAL_PRICES[dogs]?.[last] || 100;
-      const serviceLabel = service === 'weekly' ? 'weekly' : 'bi‑weekly';
-      recurringText = `✓ After initial cleanup, you'll pay $${recurringPrice} per ${serviceLabel} visit. No contracts.`;
+      const serviceLabel = service === 'weekly' ? 'weekly' : 'bi-weekly';
+      recurringText = `✓ After your initial cleanup, you'll pay $${recurringPrice} per ${serviceLabel} visit. No contracts, cancel anytime.`;
     }
 
     let sanitationCost = sanitation ? SANITATION_FEE : 0;
@@ -635,24 +649,13 @@
     }
     totalSpan.innerText = `$${total.toFixed(2)}`;
     recurringNoteDiv.innerText = recurringText;
-    return { initialPrice, sanitationCost, total };
   }
 
-  // Show/hide "last cleanup" dropdown based on service type
-  function toggleLastCleanup() {
-    if (serviceTypeEl.value === 'onetime') {
-      lastCleanupGroup.style.display = 'block';
-    } else {
-      lastCleanupGroup.style.display = 'none';
-    }
-    calculateTotal();
-  }
-
-  // Attach event listeners
-  serviceTypeEl.addEventListener('change', toggleLastCleanup);
-  dogCountEl.addEventListener('change', () => calculateTotal());
-  lastCleanupEl.addEventListener('change', () => calculateTotal());
-  sanitationEl.addEventListener('change', () => calculateTotal());
+  // Attach event listeners for price recalculation
+  serviceTypeEl.addEventListener('change', calculateTotal);
+  dogCountEl.addEventListener('change', calculateTotal);
+  lastCleanupEl.addEventListener('change', calculateTotal);
+  sanitationEl.addEventListener('change', calculateTotal);
 
   // ---------- CALENDAR RENDERING ----------
   function renderCalendar() {
@@ -665,23 +668,34 @@
     document.getElementById('currentMonthDisplay').innerText = `${monthNames[month]} ${year}`;
     const weekdays = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
     document.getElementById('calendarWeekdays').innerHTML = weekdays.map(d => `<div>${d}</div>`).join('');
+    
     let daysHtml = '';
-    for (let i=0; i<startWeekday; i++) daysHtml += '<div class="calendar-day disabled-day"></div>';
+    for (let i=0; i<startWeekday; i++) {
+      daysHtml += '<div class="calendar-day disabled-day"></div>';
+    }
+    
     for (let d=1; d<=daysInMonth; d++) {
       const dateObj = new Date(year, month, d);
       const isFri = isFriday(dateObj);
       const isPast = isPastDate(dateObj);
       const isAvailable = isFri && !isPast;
       const isSelected = selectedCalendarDate && formatDateKey(dateObj) === formatDateKey(selectedCalendarDate);
+      
       let cls = 'calendar-day';
-      if (!isFri || isPast) cls += ' disabled-day';
-      else if (isAvailable) cls += ' friday-available';
-      if (isSelected) cls += ' selected-day';
+      if (!isFri || isPast) {
+        cls += ' disabled-day';
+      } else if (isAvailable) {
+        cls += ' friday-available';
+      }
+      if (isSelected) {
+        cls += ' selected-day';
+      }
+      
       daysHtml += `<div class="${cls}" data-date="${formatDateKey(dateObj)}" data-year="${year}" data-month="${month}" data-day="${d}">${d}</div>`;
     }
     document.getElementById('calendarDays').innerHTML = daysHtml;
     
-    // Attach click events to calendar days
+    // Attach click events
     document.querySelectorAll('.calendar-day').forEach(dayEl => {
       if (!dayEl.classList.contains('disabled-day') && dayEl.classList.contains('friday-available')) {
         const dateStr = dayEl.getAttribute('data-date');
@@ -699,23 +713,26 @@
     selectedCalendarDate = new Date(year, month, day);
     document.getElementById('selectedDate').value = dateKey;
     document.getElementById('selectedDateDisplay').innerText = formatDisplayDate(selectedCalendarDate);
+    
     const container = document.getElementById('timeSlotsGrid');
     container.innerHTML = '';
+    
     timeSlots.forEach(slot => {
       const avail = isSlotAvailable(dateKey, slot);
       const btn = document.createElement('button');
       btn.className = `time-slot ${avail ? 'available' : 'unavailable'}`;
       btn.innerText = slot;
       if (avail) {
-        btn.onclick = () => selectTimeSlot(slot, dateKey);
+        btn.onclick = () => selectTimeSlot(slot);
       }
       container.appendChild(btn);
     });
+    
     document.getElementById('timeSlotsSection').style.display = 'block';
     renderCalendar();
   }
 
-  function selectTimeSlot(slot, dateKey) {
+  function selectTimeSlot(slot) {
     selectedSlot = slot;
     document.getElementById('selectedTimeSlot').value = slot;
     document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected-slot'));
@@ -727,22 +744,25 @@
     currentDate.setMonth(currentDate.getMonth()-1); 
     renderCalendar(); 
   };
+  
   document.getElementById('nextMonthBtn').onclick = () => { 
     currentDate.setMonth(currentDate.getMonth()+1); 
     renderCalendar(); 
   };
 
-  // ---------- STRIPE PAYMENT (calls existing Worker) ----------
+  // ---------- STRIPE PAYMENT ----------
   const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
 
   async function handlePayment() {
     const errorMsgDiv = document.getElementById('errorMessage');
     errorMsgDiv.style.display = 'none';
+    
     const name = document.getElementById('customerName').value.trim();
     const email = document.getElementById('customerEmail').value.trim();
     const address = document.getElementById('customerAddress').value.trim();
     const selectedDate = document.getElementById('selectedDate').value;
     const selectedTime = document.getElementById('selectedTimeSlot').value;
+    
     if (!name) { showError('Please enter your full name.'); return; }
     if (!email) { showError('Please enter your email address.'); return; }
     if (!address) { showError('Please enter your service address.'); return; }
@@ -751,8 +771,7 @@
     const dogs = parseInt(dogCountEl.value);
     const service = serviceTypeEl.value;
     const sanitation = sanitationEl.value === 'yes';
-    let lastCleanup = lastCleanupEl.value;
-    if (service !== 'onetime') lastCleanup = 'within1mo';
+    const lastCleanup = lastCleanupEl.value;
     const initialPrice = INITIAL_PRICES[dogs]?.[lastCleanup] || 100;
     const sanitationCost = sanitation ? SANITATION_FEE : 0;
     const total = initialPrice + sanitationCost;
@@ -767,6 +786,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceType: service,
+          dogCount: dogs,
           extraPets: dogs > 1 ? dogs-1 : 0,
           sanitation: sanitation,
           totalAmount: total,
@@ -777,14 +797,16 @@
           preferredDate: selectedDate,
           preferredTime: selectedTime,
           notes: document.getElementById('notes').value,
-          dogCount: dogs,
           lastCleanupPeriod: lastCleanup,
           initialCleanupPrice: initialPrice
         })
       });
       const data = await response.json();
-      if (data.url) window.location.href = data.url;
-      else throw new Error(data.error || 'Payment setup failed');
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Payment setup failed');
+      }
     } catch (err) {
       showError('Payment error: ' + err.message + ' — please call (385) 338-1939');
       payBtn.disabled = false;
@@ -800,10 +822,9 @@
   
   document.getElementById('payButton').onclick = handlePayment;
 
-  // INIT
-  toggleLastCleanup();
-  renderCalendar();
+  // INITIALIZE
   calculateTotal();
+  renderCalendar();
 </script>
 </body>
 </html>
