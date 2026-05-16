@@ -91,7 +91,7 @@
       backdrop-filter: blur(8px);
       border-radius: 20px;
       padding: 0.8rem 2rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(60, 90, 50, 0.1);
     }
@@ -123,9 +123,33 @@
       color: #3a6a2f;
     }
 
+    /* CONTACT BANNER - NEW */
+    .contact-banner {
+      background: #fef9e6;
+      border-left: 5px solid #e6b422;
+      padding: 0.8rem 1.2rem;
+      border-radius: 16px;
+      margin-bottom: 1.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6a5a2a;
+    }
+    .contact-banner i {
+      margin-right: 8px;
+      color: #e6b422;
+    }
+    .contact-banner a {
+      color: #3a7a30;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .contact-banner a:hover {
+      text-decoration: underline;
+    }
+
     .page-header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .page-title {
       font-size: 2.2rem;
@@ -151,7 +175,7 @@
       background: white;
       border-radius: 28px;
       padding: 2rem;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(80, 110, 70, 0.1);
     }
@@ -164,14 +188,14 @@
 
     .column {
       flex: 1;
-      min-width: 250px;
+      min-width: 260px;
     }
 
     .section-title-form {
       font-size: 1.3rem;
       font-weight: 600;
       color: #1a3a15;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid #e0e8db;
     }
@@ -190,20 +214,19 @@
     .month-nav {
       background: #e8f0e5;
       border: none;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 30px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: #2d5a2c;
-      transition: 0.2s;
     }
     .month-nav:hover {
       background: #d4e2d0;
     }
     .current-month {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #1a3a15;
     }
     .calendar-weekdays, .calendar-days {
@@ -214,15 +237,15 @@
     }
     .calendar-weekdays div {
       font-weight: 600;
-      padding: 8px 0;
+      padding: 6px 0;
       font-size: 0.7rem;
       color: #5a7a4e;
     }
     .calendar-day {
-      padding: 8px 0;
+      padding: 6px 0;
       border-radius: 40px;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       transition: 0.2s;
       background: #f5f7f5;
       margin: 2px;
@@ -246,22 +269,22 @@
     }
 
     .time-slots-section {
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
     .time-slots-section h4 {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #3a4a35;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
     .time-slots-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
     .time-slot {
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 30px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       cursor: pointer;
       transition: 0.2s;
@@ -289,34 +312,33 @@
       box-shadow: 0 0 0 2px #8bba7a;
     }
     .slot-feedback {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #5a7a4e;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
     label {
       display: block;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
       color: #2a3a25;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
     label .required {
       color: #c23a00;
     }
     input, textarea, select {
       width: 100%;
-      padding: 10px 14px;
+      padding: 8px 12px;
       background: #fafbf9;
       border: 1px solid #d0dbc8;
-      border-radius: 16px;
+      border-radius: 14px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       outline: none;
-      transition: 0.2s;
     }
     input:focus, textarea:focus, select:focus {
       border-color: #4a8c3e;
@@ -332,16 +354,37 @@
     .price-row {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
     }
     .price-row.total {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1rem;
       border-top: 1px solid #c0d0b8;
       margin-top: 0.5rem;
-      padding-top: 0.75rem;
+      padding-top: 0.6rem;
       color: #1a3a15;
+    }
+
+    /* NEW STYLES */
+    .recurring-note {
+      background: #e0e8db;
+      border-radius: 12px;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #3a5a35;
+    }
+    .policy-note {
+      background: #f0f4ee;
+      border-radius: 12px;
+      padding: 0.6rem;
+      margin: 1rem 0 0.5rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #2d5a2c;
     }
 
     .btn-pay {
@@ -349,13 +392,12 @@
       color: white;
       font-weight: 700;
       border: none;
-      padding: 14px 20px;
+      padding: 12px 16px;
       width: 100%;
       border-radius: 40px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.2s;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -364,24 +406,22 @@
     .btn-pay:hover {
       background: #2d6224;
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
     }
     .btn-pay:disabled {
       background: #b0c4a8;
       cursor: not-allowed;
-      transform: none;
     }
 
     .error-message {
       background: #fce4d6;
       color: #c23a00;
-      padding: 12px;
-      border-radius: 16px;
-      margin-top: 1rem;
+      padding: 10px;
+      border-radius: 14px;
+      margin-top: 0.8rem;
       text-align: center;
       display: none;
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     footer {
@@ -389,16 +429,16 @@
       margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid rgba(60, 80, 50, 0.1);
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #5a7a4e;
     }
 
     @media (max-width: 780px) {
       .container { padding: 1rem; }
       .navbar { flex-direction: column; text-align: center; }
-      .nav-links a { margin: 0 1rem; }
+      .nav-links a { margin: 0 0.8rem; }
       .two-columns { flex-direction: column; }
-      .page-title { font-size: 1.6rem; }
+      .page-title { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -427,9 +467,16 @@
     </div>
   </div>
 
+  <!-- NEW: Contact Banner -->
+  <div class="contact-banner">
+    <i class="fas fa-phone-alt"></i> Questions? Contact us directly at 
+    <a href="mailto:contact@scoopthepoop.net">contact@scoopthepoop.net</a> or 
+    <a href="tel:3853381939">(385) 338-1939</a> — we're happy to help!
+  </div>
+
   <div class="page-header">
     <h1 class="page-title">Schedule & Pay</h1>
-    <div class="page-subtitle">Pick a Friday, choose your service, and pay online - all in one step</div>
+    <div class="page-subtitle">Pick a Friday, choose your service, and pay online — all in one step</div>
   </div>
 
   <div class="form-container">
@@ -474,25 +521,37 @@
           <input type="text" id="customerAddress" placeholder="Street address, Eagle Mountain, UT">
         </div>
 
-        <div class="section-title-form" style="margin-top: 1rem;"><i class="fas fa-paw"></i> Service Selection</div>
+        <!-- NEW: Last Cleanup Dropdown -->
+        <div class="form-group" id="lastCleanupGroup">
+          <label>When was the last time you had your yard cleaned? <span class="required">*</span></label>
+          <select id="lastCleanup">
+            <option value="within1mo">Within 1 month</option>
+            <option value="1to2mo">1-2 months ago</option>
+            <option value="2to3mo">2-3 months ago</option>
+            <option value="3to4mo">3-4 months ago</option>
+            <option value="4plus">4+ months ago / Never</option>
+          </select>
+        </div>
+
+        <div class="section-title-form" style="margin-top: 0.5rem;"><i class="fas fa-paw"></i> Service Selection</div>
         
         <div class="form-group">
           <label>Service type <span class="required">*</span></label>
           <select id="serviceType">
-            <option value="weekly" data-price="25">Weekly cleanup - $25/week</option>
-            <option value="biweekly" data-price="35">Bi-weekly cleanup - $35/visit</option>
-            <option value="onetime" data-price="45">One-time cleanup - $45</option>
+            <option value="weekly">Weekly cleanup (recurring)</option>
+            <option value="biweekly">Bi-weekly cleanup (recurring)</option>
+            <option value="onetime">One-time cleanup</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label>Number of pets <span class="required">*</span></label>
+          <label>Number of dogs <span class="required">*</span></label>
           <select id="petCount">
-            <option value="1">1 pet</option>
-            <option value="2">2 pets (+$5)</option>
-            <option value="3">3 pets (+$10)</option>
-            <option value="4">4 pets (+$15)</option>
-            <option value="5">5+ pets (+$20)</option>
+            <option value="1">1 dog</option>
+            <option value="2">2 dogs</option>
+            <option value="3">3 dogs</option>
+            <option value="4">4 dogs</option>
+            <option value="5">5 dogs</option>
           </select>
         </div>
 
@@ -500,7 +559,7 @@
           <label>Add sanitation station</label>
           <select id="sanitation">
             <option value="no">No, thank you</option>
-            <option value="yes">Yes (+$15)</option>
+            <option value="yes">Yes (+$10)</option>
           </select>
         </div>
 
@@ -516,12 +575,8 @@
         <!-- Price Summary -->
         <div class="price-summary">
           <div class="price-row">
-            <span>Base service:</span>
-            <span id="basePriceDisplay">$25.00</span>
-          </div>
-          <div class="price-row" id="petExtraRow" style="display: none;">
-            <span>Extra pets:</span>
-            <span id="petExtraDisplay">$0</span>
+            <span>Initial cleanup (first visit):</span>
+            <span id="basePriceDisplay">$0</span>
           </div>
           <div class="price-row" id="sanitationRow" style="display: none;">
             <span>Sanitation station:</span>
@@ -529,12 +584,20 @@
           </div>
           <div class="price-row total">
             <span>Total due today:</span>
-            <span id="totalAmount">$25.00</span>
+            <span id="totalAmount">$0.00</span>
           </div>
         </div>
 
+        <!-- NEW: Recurring Note -->
+        <div id="recurringNote" class="recurring-note" style="display: none;"></div>
+
+        <!-- NEW: Policy Note -->
+        <div class="policy-note">
+          <i class="fas fa-shield-alt"></i> NO CONTRACTS • Security gates will be locked • We care about your pets!
+        </div>
+
         <button class="btn-pay" id="payButton">
-          <i class="fas fa-credit-card"></i> Pay Now - Secure Checkout
+          <i class="fas fa-credit-card"></i> Pay Now — Secure Checkout
         </button>
         <div class="error-message" id="errorMessage"></div>
       </div>
@@ -549,16 +612,17 @@
 
 <script>
   // ============================================================
-  // PRICING CONFIGURATION - EDIT THESE NUMBERS TO CHANGE PRICES
+  // PRICING TABLES - UPDATED with mom's exact numbers
   // ============================================================
-  const PRICING = {
-    weekly: 25,
-    biweekly: 35,
-    onetime: 45,
-    extraPet: 5,
-    sanitation: 15
+  const INITIAL_PRICES = {
+    1: { within1mo:40, 1to2mo:60, 2to3mo:80, 3to4mo:100, 4plus:120 },
+    2: { within1mo:50, 1to2mo:75, 2to3mo:100, 3to4mo:125, 4plus:150 },
+    3: { within1mo:60, 1to2mo:90, 2to3mo:120, 3to4mo:150, 4plus:180 },
+    4: { within1mo:70, 1to2mo:105, 2to3mo:140, 3to4mo:175, 4plus:210 },
+    5: { within1mo:80, 1to2mo:120, 2to3mo:160, 3to4mo:200, 4plus:235 }
   };
-  // ============================================================
+  const RECURRING_PRICES = { 1:15, 2:20, 3:25, 4:30, 5:35 };
+  const SANITATION_FEE = 10;
   
   // Generate time slots (8:00 AM to 6:00 PM every 30 minutes)
   const timeSlots = [];
@@ -583,14 +647,14 @@
   const serviceTypeSelect = document.getElementById('serviceType');
   const petCountSelect = document.getElementById('petCount');
   const sanitationSelect = document.getElementById('sanitation');
+  const lastCleanupSelect = document.getElementById('lastCleanup');
   const basePriceDisplay = document.getElementById('basePriceDisplay');
-  const petExtraRow = document.getElementById('petExtraRow');
-  const petExtraDisplay = document.getElementById('petExtraDisplay');
   const sanitationRow = document.getElementById('sanitationRow');
   const sanitationDisplay = document.getElementById('sanitationDisplay');
   const totalAmountSpan = document.getElementById('totalAmount');
   const payButton = document.getElementById('payButton');
   const errorMessage = document.getElementById('errorMessage');
+  const recurringNoteDiv = document.getElementById('recurringNote');
 
   function formatDateKey(date) {
     return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
@@ -616,30 +680,38 @@
     return !bookedSlots.includes(key);
   }
 
+  // UPDATED calculateTotal function
   function calculateTotal() {
+    const dogs = parseInt(petCountSelect.value);
+    const lastCleanup = lastCleanupSelect.value;
     const serviceType = serviceTypeSelect.value;
-    let basePrice = PRICING[serviceType] || 25;
+    const sanitation = sanitationSelect.value === 'yes';
     
-    let petCount = parseInt(petCountSelect.value);
-    let extraPetCost = (petCount - 1) * PRICING.extraPet;
-    if (extraPetCost < 0) extraPetCost = 0;
+    // Get initial price based on dogs and last cleanup
+    const initialPrice = INITIAL_PRICES[dogs][lastCleanup];
     
-    let sanitationCost = sanitationSelect.value === 'yes' ? PRICING.sanitation : 0;
+    // Get recurring price for note
+    const recurringPrice = RECURRING_PRICES[dogs];
     
-    let total = basePrice + extraPetCost + sanitationCost;
+    // Calculate sanitation cost
+    const sanitationCost = sanitation ? SANITATION_FEE : 0;
+    const total = initialPrice + sanitationCost;
     
-    basePriceDisplay.textContent = `$${basePrice.toFixed(2)}`;
+    // Update displays
+    basePriceDisplay.textContent = `$${initialPrice}`;
     
-    if (extraPetCost > 0) {
-      petExtraRow.style.display = 'flex';
-      petExtraDisplay.textContent = `+$${extraPetCost.toFixed(2)}`;
+    // Show recurring note for weekly/bi-weekly
+    if (serviceType !== 'onetime') {
+      const serviceLabel = serviceType === 'weekly' ? 'weekly' : 'bi-weekly';
+      recurringNoteDiv.innerHTML = `✓ After your initial cleanup, you'll pay $${recurringPrice} per ${serviceLabel} visit. No contracts, cancel anytime.`;
+      recurringNoteDiv.style.display = 'block';
     } else {
-      petExtraRow.style.display = 'none';
+      recurringNoteDiv.style.display = 'none';
     }
     
     if (sanitationCost > 0) {
       sanitationRow.style.display = 'flex';
-      sanitationDisplay.textContent = `+$${sanitationCost.toFixed(2)}`;
+      sanitationDisplay.textContent = `+$${sanitationCost}`;
     } else {
       sanitationRow.style.display = 'none';
     }
@@ -759,6 +831,7 @@
   serviceTypeSelect.addEventListener('change', calculateTotal);
   petCountSelect.addEventListener('change', calculateTotal);
   sanitationSelect.addEventListener('change', calculateTotal);
+  lastCleanupSelect.addEventListener('change', calculateTotal);
   
   // STRIPE PAYMENT - Calls your existing Cloudflare Worker
   const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
@@ -772,6 +845,7 @@
     const address = document.getElementById('customerAddress').value.trim();
     const selectedDate = document.getElementById('selectedDate').value;
     const selectedTimeSlot = document.getElementById('selectedTimeSlot').value;
+    const lastCleanup = document.getElementById('lastCleanup').value;
     
     if (!name) { showError('Please enter your full name.'); return; }
     if (!email) { showError('Please enter your email address.'); return; }
@@ -785,6 +859,7 @@
     const extraPets = petCount - 1;
     const hasSanitation = sanitationSelect.value === 'yes';
     const notes = document.getElementById('notes').value;
+    const initialPrice = INITIAL_PRICES[petCount][lastCleanup];
     
     // Disable button while processing
     payButton.disabled = true;
@@ -796,6 +871,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceType: serviceType,
+          dogCount: petCount,
           extraPets: extraPets > 0 ? extraPets : 0,
           sanitation: hasSanitation,
           totalAmount: total,
@@ -805,7 +881,9 @@
           customerAddress: address,
           preferredDate: selectedDate,
           preferredTime: selectedTimeSlot,
-          notes: notes
+          notes: notes,
+          lastCleanupPeriod: lastCleanup,
+          initialCleanupPrice: initialPrice
         }),
       });
       
@@ -823,6 +901,8 @@
         formspreeData.append('sanitation', hasSanitation ? 'yes' : 'no');
         formspreeData.append('preferred_date', selectedDate);
         formspreeData.append('preferred_time', selectedTimeSlot);
+        formspreeData.append('last_cleanup', lastCleanup);
+        formspreeData.append('initial_price', initialPrice);
         formspreeData.append('message', notes);
         
         fetch('https://formspree.io/f/mzdovywq', {
@@ -839,7 +919,7 @@
       console.error('Payment error:', error);
       showError('Payment error: ' + error.message + '\n\nPlease try again or contact us at (385)338-1939');
       payButton.disabled = false;
-      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now - Secure Checkout';
+      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now — Secure Checkout';
     }
   });
   
