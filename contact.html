@@ -579,8 +579,6 @@
   const sanitationSummaryPrice = document.getElementById('sanitationSummaryPrice');
   const totalSpan = document.getElementById('totalAmount');
   const recurringNoteDiv = document.getElementById('recurringNote');
-  const payButton = document.getElementById('payButton');
-  const errorMsgDiv = document.getElementById('errorMessage');
 
   // Calendar variables
   let currentDate = new Date();
@@ -597,7 +595,7 @@
       timeSlots.push(`${displayHour}:${minute.toString().padStart(2,'0')} ${ampm}`);
     }
   }
-  const bookedSlots = []; // optional manual overrides
+  const bookedSlots = [];
 
   function formatDateKey(d) { return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`; }
   function formatDisplayDate(d) { return d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
@@ -650,6 +648,7 @@
     calculateTotal();
   }
 
+  // Attach event listeners
   serviceTypeEl.addEventListener('change', toggleLastCleanup);
   dogCountEl.addEventListener('change', () => calculateTotal());
   lastCleanupEl.addEventListener('change', () => calculateTotal());
@@ -678,13 +677,25 @@
       if (!isFri || isPast) cls += ' disabled-day';
       else if (isAvailable) cls += ' friday-available';
       if (isSelected) cls += ' selected-day';
-      const onclickAttr = isAvailable ? `onclick="selectDate('${formatDateKey(dateObj)}', ${dateObj.getFullYear()}, ${dateObj.getMonth()}, ${dateObj.getDate()})"` : '';
-      daysHtml += `<div class="${cls}" ${onclickAttr}>${d}</div>`;
+      daysHtml += `<div class="${cls}" data-date="${formatDateKey(dateObj)}" data-year="${year}" data-month="${month}" data-day="${d}">${d}</div>`;
     }
     document.getElementById('calendarDays').innerHTML = daysHtml;
+    
+    // Attach click events to calendar days
+    document.querySelectorAll('.calendar-day').forEach(dayEl => {
+      if (!dayEl.classList.contains('disabled-day') && dayEl.classList.contains('friday-available')) {
+        const dateStr = dayEl.getAttribute('data-date');
+        const year = parseInt(dayEl.getAttribute('data-year'));
+        const month = parseInt(dayEl.getAttribute('data-month'));
+        const day = parseInt(dayEl.getAttribute('data-day'));
+        if (dateStr) {
+          dayEl.onclick = () => selectDate(dateStr, year, month, day);
+        }
+      }
+    });
   }
 
-  window.selectDate = function(dateKey, year, month, day) {
+  function selectDate(dateKey, year, month, day) {
     selectedCalendarDate = new Date(year, month, day);
     document.getElementById('selectedDate').value = dateKey;
     document.getElementById('selectedDateDisplay').innerText = formatDisplayDate(selectedCalendarDate);
@@ -695,14 +706,16 @@
       const btn = document.createElement('button');
       btn.className = `time-slot ${avail ? 'available' : 'unavailable'}`;
       btn.innerText = slot;
-      if (avail) btn.onclick = () => selectTimeSlot(slot);
+      if (avail) {
+        btn.onclick = () => selectTimeSlot(slot, dateKey);
+      }
       container.appendChild(btn);
     });
     document.getElementById('timeSlotsSection').style.display = 'block';
     renderCalendar();
-  };
+  }
 
-  function selectTimeSlot(slot) {
+  function selectTimeSlot(slot, dateKey) {
     selectedSlot = slot;
     document.getElementById('selectedTimeSlot').value = slot;
     document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected-slot'));
@@ -710,13 +723,20 @@
     document.getElementById('slotFeedback').innerHTML = `✓ Selected: ${slot} on ${formatDisplayDate(selectedCalendarDate)}`;
   }
 
-  document.getElementById('prevMonthBtn').onclick = () => { currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); };
-  document.getElementById('nextMonthBtn').onclick = () => { currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); };
+  document.getElementById('prevMonthBtn').onclick = () => { 
+    currentDate.setMonth(currentDate.getMonth()-1); 
+    renderCalendar(); 
+  };
+  document.getElementById('nextMonthBtn').onclick = () => { 
+    currentDate.setMonth(currentDate.getMonth()+1); 
+    renderCalendar(); 
+  };
 
   // ---------- STRIPE PAYMENT (calls existing Worker) ----------
   const WORKER_URL = 'https://stripe-payments.untappedperformance2.workers.dev';
 
   async function handlePayment() {
+    const errorMsgDiv = document.getElementById('errorMessage');
     errorMsgDiv.style.display = 'none';
     const name = document.getElementById('customerName').value.trim();
     const email = document.getElementById('customerEmail').value.trim();
@@ -732,13 +752,14 @@
     const service = serviceTypeEl.value;
     const sanitation = sanitationEl.value === 'yes';
     let lastCleanup = lastCleanupEl.value;
-    if (service !== 'onetime') lastCleanup = 'within1mo'; // recurring uses "within1mo" for initial pricing but note below
+    if (service !== 'onetime') lastCleanup = 'within1mo';
     const initialPrice = INITIAL_PRICES[dogs]?.[lastCleanup] || 100;
     const sanitationCost = sanitation ? SANITATION_FEE : 0;
     const total = initialPrice + sanitationCost;
 
-    payButton.disabled = true;
-    payButton.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Redirecting to Stripe...';
+    const payBtn = document.getElementById('payButton');
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Redirecting to Stripe...';
 
     try {
       const response = await fetch(WORKER_URL, {
@@ -766,13 +787,18 @@
       else throw new Error(data.error || 'Payment setup failed');
     } catch (err) {
       showError('Payment error: ' + err.message + ' — please call (385) 338-1939');
-      payButton.disabled = false;
-      payButton.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now — Secure Checkout';
+      payBtn.disabled = false;
+      payBtn.innerHTML = '<i class="fas fa-credit-card"></i> Pay Now — Secure Checkout';
     }
   }
 
-  function showError(msg) { errorMsgDiv.innerText = msg; errorMsgDiv.style.display = 'block'; }
-  payButton.onclick = handlePayment;
+  function showError(msg) { 
+    const errorMsgDiv = document.getElementById('errorMessage');
+    errorMsgDiv.innerText = msg; 
+    errorMsgDiv.style.display = 'block'; 
+  }
+  
+  document.getElementById('payButton').onclick = handlePayment;
 
   // INIT
   toggleLastCleanup();
